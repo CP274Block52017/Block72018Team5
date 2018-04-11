@@ -6,7 +6,7 @@
  * @author Nicole
  *
  */
-public class Tournament {
+public class RunTournament {
 
 	/**
 	 * @param args
