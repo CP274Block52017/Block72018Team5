@@ -1,4 +1,3 @@
-
 /**
  * 
  */
@@ -7,14 +6,13 @@
  * @author Nicole
  *
  */
-public class Tournament {
-
+public class RunTournament {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Hi guys");
+		// TODO Auto-generated method stub
 
 	}
 
