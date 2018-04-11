@@ -8,14 +8,15 @@
  *
  */
 public class Tournament {
-
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		System.out.println("Hi guys");
-
+	
+	private String name;
+	private int numTeams;
+	private TournamentWinnerStrategy winnerStrategy;
+	
+	public Tournament(String name, int numTeams, TournamentWinnerStrategy winnerStrategy) {
+		this.name = name;
+		this.numTeams = numTeams;
+		this.winnerStrategy = winnerStrategy;
 	}
 
 }
