@@ -20,7 +20,6 @@ public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 			Collections.shuffle(teams);
 			winningTeam = teams.get(0);
 		}
-		System.out.println("The winner is " + winningTeam.toString());
 		return winningTeam;
 	}
 	

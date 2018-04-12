@@ -18,4 +18,12 @@ public class Team {
 		this.teamMembers = teamMembers;
 	}
 
+	public String getTeamName() {
+		return teamName;
+	}
+
+	public void addPlayer(String playerName) {
+		teamMembers.add(playerName);
+	}
+
 }

@@ -8,10 +8,12 @@ import java.util.Scanner;
 public class RunTournament {
 	
 	private static final int MAX_PARTICIPANTS = 8;
+	private static final int MAX_TEAM_SIZE = 5;
 	private static final int NUMBER_STRATEGIES = 1;
 	private static final int RANDOM_STRATEGY = 1;
 	
 	private static Tournament newTournament;
+	private static TournamentWinnerStrategy chosenStrategy;
 	
 	private static boolean askYesNo(String prompt, Scanner scan) {
 		boolean isYes = false;
@@ -34,21 +36,27 @@ public class RunTournament {
 		return isYes;
 	}
 	
-	private static boolean createTeam(String prompt, Scanner scan) {
- 		boolean enoughPlayers = false;
- 		while (!enoughPlayers) {
- 			System.out.println(prompt);
- 			return false;
+	private static Team createTeam(Scanner scan) {
+		String teamName = askName("\nWhat do you want to name your team?", scan);
+		Team newTeam = new Team(teamName, null);
+ 		int teamSize = 0;
+ 		while (teamSize < MAX_TEAM_SIZE) {
+ 			String player = askName("\nWhich player do you want to add to your team?", scan);
+ 			newTeam.addPlayer(player);
+ 			System.out.println(player + " was added to Team " + teamName);
+ 			teamSize++;
  		}
- 		return false;
+ 		System.out.println("Team " + teamName + " is full!");
+ 		return newTeam;
  	}
- 	
- 	private static String askTournamentName(Scanner scan) {
- 		System.out.println("What do you want to name your tournament?");
- 	 	String tournamentName = scan.nextLine();
+	
+	private static String askName(String prompt, Scanner scan) {
+ 		System.out.println(prompt);
+ 	 	String name = scan.next();
  	 	scan.nextLine();
- 	 	return tournamentName;
- 	 	}
+ 	 	return name;
+ 	 }
+
  	 	
  	private static int askNumberOfTeams(Scanner scan) {
  		int numParticipants = 0;
@@ -103,10 +111,10 @@ public class RunTournament {
  	private static void createTournament(Scanner scan) {
  		Boolean confirmTournament = false;
  		while(!confirmTournament) {
- 			String tournamentName = askTournamentName(scan);
+ 			String tournamentName = askName("\nWhat do you want to name your tournament?", scan);
  			int numParticipants = askNumberOfTeams(scan);
  			int strategyChoice = askStrategy(scan);
- 			TournamentWinnerStrategy chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
+ 			chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
  			System.out.println("Tournament Name: " + tournamentName);
  			System.out.println("Number of Teams/Participants: " + numParticipants);
  			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
@@ -126,12 +134,31 @@ public class RunTournament {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Welcome to the tournament game!");
-		Scanner scan = new Scanner(System.in);
-		Boolean yesTournament = askYesNo("Would you like to create a new tournament? (yes or no)", scan);
-		if (yesTournament) {
-			createTournament(scan);
-		}
+ 		Boolean exitTournamentGenerator = false;
+ 		while(!exitTournamentGenerator) {
+			System.out.println("Welcome to the tournament game!");
+			Scanner scan = new Scanner(System.in);
+			Boolean yesCreate = askYesNo("Would you like to create a new tournament? (yes or no)", scan);
+				if (yesCreate) {
+					createTournament(scan);
+				}
+			int numTeams = 0;
+			while (numTeams < newTournament.getNumTeams()) {
+				yesCreate = askYesNo("\nWould you like to add a new team?\n", scan);
+				newTournament.addTeam(createTeam(scan));
+				//print teams w/members and names
+				//if # teams = max, break loop
+				numTeams++;
+				yesCreate = askYesNo("\nWould you like to add a new team?\n", scan);
+			} 
+			Team winningTeam = chosenStrategy.determineWinner(null);
+			System.out.println("The winner is: " + winningTeam.getTeamName());
+			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n", scan);
+			if(!startAgain) {
+				System.out.println("Thanks for playing! Come back soon!");
+				exitTournamentGenerator = true;
+			}
+ 		}
 	}
 
 }
