@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * 
@@ -11,8 +12,15 @@ import java.util.ArrayList;
 public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 
 	public Team determineWinner(ArrayList<Team> teams) {
-		// TODO Auto-generated method stub
-		return null;
+		Team winningTeam = null;
+		if (teams.isEmpty()) {
+			return null;
+		} 
+		else {
+			Collections.shuffle(teams);
+			winningTeam = teams.get(0);
+		}
+		return winningTeam;
 	}
 	
 	public String getName() {

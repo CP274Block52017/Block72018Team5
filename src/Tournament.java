@@ -19,4 +19,16 @@ public class Tournament {
 		teams = new ArrayList<Team>();
 	}
 	
+	public TournamentWinnerStrategy getWinnerStrategy() {
+		return winnerStrategy;
+	}
+	
+	public void addTeam(Team team) {
+		teams.add(team);
+	}
+	
+	public int getNumTeams() {
+		return numTeams;
+	}
+	
 }
