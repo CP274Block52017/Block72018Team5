@@ -12,6 +12,8 @@ import java.util.Scanner;
  public class RunTournament { 
 	 
 	 private static TournamentWinnerStrategy winnerStrategy;
+	 private static String tournamentName;
+	 private static int numberOfParticipants;
  	 
  	 
  	private static boolean askYesNo(String prompt, Scanner scan) { 
@@ -45,18 +47,46 @@ import java.util.Scanner;
  		return false;
  	}
  	
- 	public static void createTournament() {
+ 	public static String getTournamentName() {
  		Scanner scan = new Scanner(System.in);
  		System.out.println("What do you want to name your tournament?");
  		String tournamentName = scan.nextLine();
- 				
- 		scan = new Scanner(System.in);
+ 		return tournamentName;
+ 	}
+ 	
+ 	public static int getNumberofTeams() {
+ 		Scanner scan = new Scanner(System.in);
  		System.out.println("How many participants do you want in your tournament?");
  		int numberOfParticipants = scan.nextInt();
- 		
- 		scan = new Scanner(System.in);
- 		System.out.println("How would you like to determine the winner?");
+ 		return numberOfParticipants;
+ 	}
+ 	
+ 	public static void getStrategy() {
  		winnerStrategy = null;
+ 	}
+ 	
+ 	public static void createTournament() {
+ 		boolean confirmTournament = false;
+ 		while(!confirmTournament) {
+ 			tournamentName = getTournamentName();
+ 			numberOfParticipants = getNumberofTeams();
+ 			getStrategy();
+ 			System.out.println("Is this the correct information for your tournament?");
+ 			System.out.println("Tournament Name: " + tournamentName);
+ 			System.out.println("Number of Teams: " + numberOfParticipants);
+ 			System.out.println("Strategy to determine winner: " + "default");
+ 			Scanner scan = new Scanner(System.in);
+ 			String answer = scan.next(); 
+ 			if (answer.equalsIgnoreCase("Yes")) {
+ 				confirmTournament = true; 
+ 			} 
+ 			else if (answer.equalsIgnoreCase("No")) { 
+ 				confirmTournament = false;
+ 			} 
+ 			else { 
+ 				System.out.println("\nInvalid entry. Please enter 'yes' or 'no'."); 
+ 			}
+ 		}
  		
  		Tournament tournament = new Tournament(tournamentName, numberOfParticipants, winnerStrategy);
  		
