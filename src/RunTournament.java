@@ -78,6 +78,7 @@ import java.util.Scanner;
  			Scanner scan = new Scanner(System.in);
  			String answer = scan.next(); 
  			if (answer.equalsIgnoreCase("Yes")) {
+ 				Tournament tournament = new Tournament(tournamentName, numberOfParticipants, winnerStrategy);
  				confirmTournament = true; 
  			} 
  			else if (answer.equalsIgnoreCase("No")) { 
@@ -87,8 +88,7 @@ import java.util.Scanner;
  				System.out.println("\nInvalid entry. Please enter 'yes' or 'no'."); 
  			}
  		}
- 		
- 		Tournament tournament = new Tournament(tournamentName, numberOfParticipants, winnerStrategy);
+
  		
  	}
  
