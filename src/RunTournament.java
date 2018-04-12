@@ -48,8 +48,9 @@ public class RunTournament {
  	}
  	
  	private static String askTournamentName(Scanner scan) {
- 		System.out.println("What do you want to name your tournament?");
- 	 	String tournamentName = scan.nextLine();
+ 		System.out.println("\nWhat do you want to name your tournament?");
+ 	 	String tournamentName = scan.next();
+ 	 	scan.nextLine();
  	 	return tournamentName;
  	 	}
  	 	
@@ -58,10 +59,10 @@ public class RunTournament {
  		Boolean validAnswer = false;
  		while (!validAnswer) {
 	 		try {
-	 			System.out.println("How many participants do you want in your tournament?");
+	 			System.out.println("\nHow many participants do you want in your tournament?");
 	 	 		numParticipants = scan.nextInt();
 	 	 		scan.nextLine();
-	 	 		if ((numParticipants > 0) && (numParticipants < MAX_PARTICIPANTS)) {
+	 	 		if ((numParticipants > 0) && (numParticipants <= MAX_PARTICIPANTS)) {
 	 	 			validAnswer = true;
 	 	 		}
 	 		}
@@ -79,16 +80,17 @@ public class RunTournament {
  		int chosenStrategy = 0;
  		Boolean validAnswer = false;
  		while(!validAnswer) {
- 			System.out.println("Choose a strategy to determine the winner of the tournament from the following options: ");
+ 			System.out.println("\nChoose a strategy to determine the winner of the tournament from the following options: ");
  			System.out.println("1: Random Selection");
  			System.out.println("> ");
  			try {
  				chosenStrategy = scan.nextInt();
  				scan.nextLine();
- 				
  				switch (chosenStrategy) {
  				case RANDOM_STRATEGY:
+ 					validAnswer = true;
  					chosenStrategy = RANDOM_STRATEGY;
+ 					break;
  				default: 
  					System.out.println("Invalid selection -- enter a number between 1 and " + NUMBER_STRATEGIES);
  				}
@@ -106,14 +108,13 @@ public class RunTournament {
  		while(!confirmTournament) {
  			String tournamentName = askTournamentName(scan);
  			int numParticipants = askNumberOfTeams(scan);
- 			int strategyChoice = askStrategy(scan);
- 			TournamentWinnerStrategy chosenStrategy = new RandomWinner();
- 			System.out.println("Tournament Name: " + tournamentName);
+ 			TournamentWinnerStrategy chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(askStrategy(scan));
+ 			System.out.println("\nTournament Name: " + tournamentName);
  			System.out.println("Number of Teams/Participants: " + numParticipants);
  			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
- 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?", scan);
+ 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament? ", scan);
  			if (!isCorrect) {
- 				System.out.println("Please edit your tournament information.");
+ 				System.out.println("\nPlease edit your tournament information.");
  			}
  			else {
  				newTournament = new Tournament(tournamentName, numParticipants, chosenStrategy);
@@ -129,7 +130,7 @@ public class RunTournament {
 	public static void main(String[] args) {
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
-		Boolean yesTournament = askYesNo("Would you like to create a new tournament? ", scan);
+		Boolean yesTournament = askYesNo("\nWould you like to create a new tournament? ", scan);
 		if (yesTournament) {
 			createTournament(scan);
 		}
