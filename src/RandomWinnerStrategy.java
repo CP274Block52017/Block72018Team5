@@ -2,29 +2,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
+ * This class contains is a concrete implementation of
+ * TournamentWinnerStrategy and decided the winning team of the tournament
+ * randomly.
  * @author Nicole
- * @author emmablair
+ * @author Kelli
+ * @author Emma
+ *
  */
 public class RandomWinnerStrategy implements TournamentWinnerStrategy {
-	
-	public RandomWinnerStrategy() {
-		
-	}
 
 	public Team determineWinner(ArrayList<Team> teams) {
 		Team winningTeam = null;
-		if(teams.isEmpty()) {
+		if (teams.isEmpty()) {
 			return null;
-		} else {
+		} 
+		else {
 			Collections.shuffle(teams);
 			winningTeam = teams.get(0);
 		}
-		System.out.println("The winner is " + winningTeam.toString());
 		return winningTeam;
 	}
 	
 	public String getName() {
-		return "Random Winner Strategy";
+		return "Random Winner";
 	}
 
 }

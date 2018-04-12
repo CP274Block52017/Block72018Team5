@@ -1,4 +1,12 @@
-
+/**
+ * This class contains the methods and information for the players
+ * on the teams in the tournaments and will be connected to the 
+ * database of all the players.
+ * @author Nicole
+ * @author Kelli
+ * @author Emma
+ *
+ */
 public class Players {
 	
 	/**
@@ -22,6 +30,10 @@ public class Players {
 	
 	String name;
 	
+	/**
+	 * Constructor for Player class.
+	 * @param name - name of the player.
+	 */
 	public Players(String name) {
 		this.name = name;
 	}
