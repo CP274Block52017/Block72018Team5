@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner; 
  
   /** 
@@ -11,9 +12,6 @@ import java.util.Scanner;
   */ 
  public class RunTournament { 
 	 
-	 private static TournamentWinnerStrategy winnerStrategy;
-	 private static String tournamentName;
-	 private static int numberOfParticipants;
  	 
  	 
  	private static boolean askYesNo(String prompt, Scanner scan) { 
@@ -61,35 +59,44 @@ import java.util.Scanner;
  		return numberOfParticipants;
  	}
  	
- 	public static void getStrategy() {
- 		winnerStrategy = null;
+ 	public static int getStrategy() {
+ 		int answer;
+ 		while(true) {
+ 			System.out.println("Choose a strategy to determine the winner of the tournament from the following options: ");
+ 			System.out.println("1: Random Selection");
+ 			System.out.println("> ");
+ 			Scanner in = new Scanner(System.in);
+ 			try {
+ 				answer = in.nextInt();
+ 				in.nextLine();
+ 				
+ 				switch (answer) {
+ 				case 1:
+ 					return 1;
+ 				default: System.out.println("Please enter a number 1 and 1");
+ 				}
+ 			}
+ 			catch (InputMismatchException ex) {
+ 				in.nextLine();
+ 				System.out.println("Please enter a number 1 and 1");
+ 			}
+ 		}
  	}
  	
  	public static void createTournament() {
  		boolean confirmTournament = false;
+ 		String tournamentName = getTournamentName();
+		int numberOfParticipants = getNumberofTeams();
+		int strategyChoice = getStrategy();
+		TournamentWinnerStrategy strategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
  		while(!confirmTournament) {
- 			tournamentName = getTournamentName();
- 			numberOfParticipants = getNumberofTeams();
- 			getStrategy();
- 			System.out.println("Is this the correct information for your tournament?");
  			System.out.println("Tournament Name: " + tournamentName);
  			System.out.println("Number of Teams: " + numberOfParticipants);
  			System.out.println("Strategy to determine winner: " + "default");
  			Scanner scan = new Scanner(System.in);
- 			String answer = scan.next(); 
- 			if (answer.equalsIgnoreCase("Yes")) {
- 				Tournament tournament = new Tournament(tournamentName, numberOfParticipants, winnerStrategy);
- 				confirmTournament = true; 
- 			} 
- 			else if (answer.equalsIgnoreCase("No")) { 
- 				confirmTournament = false;
- 			} 
- 			else { 
- 				System.out.println("\nInvalid entry. Please enter 'yes' or 'no'."); 
- 			}
+ 			askYesNo("Is this the correct information for your tournamnet?", scan);
  		}
-
- 		
+ 		Tournament tournament = new Tournament(tournamentName, numberOfParticipants, strategy);
  	}
  
  
