@@ -7,13 +7,12 @@ import java.util.Collections;
  */
 public class RandomWinner implements TournamentWinnerStrategy {
 	
-	private static Team winningTeam;
-	
 	public RandomWinner() {
 		
 	}
 
 	public Team determineWinner(ArrayList<Team> teams) {
+		Team winningTeam = null;
 		if(teams.isEmpty()) {
 			return null;
 		} else {

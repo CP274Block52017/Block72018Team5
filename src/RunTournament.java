@@ -52,7 +52,7 @@ public class RunTournament {
  		return tournamentName;
  	}
  	
- 	public static int getNumberofTeams() {
+ 	public static int getNumberOfTeams() {
  		Scanner scan = new Scanner(System.in);
  		System.out.println("How many participants do you want in your tournament?");
  		int numberOfParticipants = scan.nextInt();
@@ -63,7 +63,7 @@ public class RunTournament {
  		boolean confirmTournament = false;
  		while(!confirmTournament) {
  			tournamentName = getTournamentName();
- 			numberOfParticipants = getNumberofTeams();
+ 			numberOfParticipants = getNumberOfTeams();
  			getStrategy();
  			System.out.println("Is this the correct information for your tournament?");
  			System.out.println("Tournament Name: " + tournamentName);
@@ -115,6 +115,8 @@ public class RunTournament {
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
 		System.out.println("IsYes: " + askYesNo("Would you like to create a new tournament? (yes or no) ", scan));
+		int strategy = getStrategy();
+		WinnerStrategyFactory.getWinnerStrategy(strategy);
 	}
 
 
