@@ -18,5 +18,4 @@ public class Tournament {
 		this.numTeams = numTeams;
 		this.winnerStrategy = winnerStrategy;
 	}
-
 }

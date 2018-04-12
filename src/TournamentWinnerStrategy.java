@@ -1,13 +1,10 @@
-/**
- * 
- */
-
+import java.util.ArrayList;
 /**
  * @author Nicole
  *
  */
 public interface TournamentWinnerStrategy {
 	
-	public Team determineWinner();
+	public Team determineWinner(ArrayList<Team> teams);
 
 }
