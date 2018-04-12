@@ -5,9 +5,9 @@ import java.util.Collections;
  * @author Nicole
  * @author emmablair
  */
-public class RandomWinner implements TournamentWinnerStrategy {
+public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 	
-	public RandomWinner() {
+	public RandomWinnerStrategy() {
 		
 	}
 
@@ -21,6 +21,10 @@ public class RandomWinner implements TournamentWinnerStrategy {
 		}
 		System.out.println("The winner is " + winningTeam.toString());
 		return winningTeam;
+	}
+	
+	public String getName() {
+		return "Random Winner Strategy";
 	}
 
 }

@@ -6,5 +6,7 @@ import java.util.ArrayList;
 public interface TournamentWinnerStrategy {
 	
 	public Team determineWinner(ArrayList<Team> teams);
+	
+	public String getName();
 
 }
