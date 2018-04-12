@@ -112,7 +112,7 @@ public class RunTournament {
  			System.out.println("\nTournament Name: " + tournamentName);
  			System.out.println("Number of Teams/Participants: " + numParticipants);
  			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
- 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament? ", scan);
+ 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n", scan);
  			if (!isCorrect) {
  				System.out.println("\nPlease edit your tournament information.");
  			}
@@ -130,7 +130,7 @@ public class RunTournament {
 	public static void main(String[] args) {
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
-		Boolean yesTournament = askYesNo("\nWould you like to create a new tournament? ", scan);
+		Boolean yesTournament = askYesNo("\nWould you like to create a new tournament?\n", scan);
 		if (yesTournament) {
 			createTournament(scan);
 		}
