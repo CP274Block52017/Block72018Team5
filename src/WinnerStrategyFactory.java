@@ -1,6 +1,8 @@
 
 public class WinnerStrategyFactory {
 	
+	private static final int RANDOM_STRATEGY = 1;
+	
 	public WinnerStrategyFactory() {
 		
 	}
@@ -8,12 +10,10 @@ public class WinnerStrategyFactory {
 	public static TournamentWinnerStrategy getWinnerStrategy(int chosenStrategy) {
 		switch(chosenStrategy) {
 		case 1:
-			return new RandomWinner();
+			return new RandomWinnerStrategy();
 		default:
-			System.out.println("Please enter a valid option between 1 and 1");
-			System.out.println(" ");
+			return null;
 		}
-		return null;
 	}
 
 }
