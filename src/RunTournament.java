@@ -15,7 +15,7 @@ public class RunTournament {
 	private static final int NUMBER_STRATEGIES = 1;
 	private static final int RANDOM_STRATEGY = 1;
 	
-	private Tournament newTournament;
+	private static Tournament newTournament;
 	
 	private static boolean askYesNo(String prompt, Scanner scan) {
 		boolean isYes = false;
