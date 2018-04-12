@@ -25,5 +25,22 @@ public class Team {
 	public void addPlayer(String playerName) {
 		teamMembers.add(playerName);
 	}
+	
+	public String getMembers() {
+		String members = "";
+		for (String player: teamMembers) {
+			if (members.equals("")) {
+				members = player;
+			}
+			else {
+				members = members + "\n" + player;
+			}
+		}
+		return members;
+	}
+	
+	public String toString() {
+		return getMembers();
+	}
 
 }

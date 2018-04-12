@@ -31,4 +31,8 @@ public class Tournament {
 		return numTeams;
 	}
 	
+	public ArrayList<Team> getTeams() {
+		return teams;
+	}
+	
 }
