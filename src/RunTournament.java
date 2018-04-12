@@ -15,6 +15,8 @@ public class RunTournament {
 	private static final int NUMBER_STRATEGIES = 1;
 	private static final int RANDOM_STRATEGY = 1;
 	
+	private Tournament newTournament;
+	
 	private static boolean askYesNo(String prompt, Scanner scan) {
 		boolean isYes = false;
 		boolean validAnswer = false;
@@ -105,7 +107,7 @@ public class RunTournament {
  			String tournamentName = askTournamentName(scan);
  			int numParticipants = askNumberOfTeams(scan);
  			int strategyChoice = askStrategy(scan);
- 			TournamentWinnerStrategy chosenStrategy = new TournamentWinnerStrategy();
+ 			TournamentWinnerStrategy chosenStrategy = new RandomWinner();
  			System.out.println("Tournament Name: " + tournamentName);
  			System.out.println("Number of Teams/Participants: " + numParticipants);
  			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
@@ -114,7 +116,7 @@ public class RunTournament {
  				System.out.println("Please edit your tournament information.");
  			}
  			else {
- 				Tournament tournament = new Tournament(tournamentName, numParticipants, chosenStrategy);
+ 				newTournament = new Tournament(tournamentName, numParticipants, chosenStrategy);
  				confirmTournament = true;
  			}
  		}
