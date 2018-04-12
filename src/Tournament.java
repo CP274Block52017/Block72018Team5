@@ -53,4 +53,12 @@ public class Tournament {
 		return numTeams;
 	}
 	
+	/**
+	 * Gets the teams in the tournament.
+	 * @return ArrayList<Team> - teams in the tournament.
+	 */
+	public ArrayList<Team> getTeams() {
+		return teams;
+	}
+	
 }

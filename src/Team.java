@@ -36,5 +36,31 @@ public class Team {
 	public void addPlayer(String playerName) {
 		teamMembers.add(playerName);
 	}
+	
+	/**
+	 * Gets the players on a team. 
+	 * @return String - players on a team.
+	 */
+	public String getMembers() {
+		String members = "";
+		for (String player: teamMembers) {
+			if (members.equals("")) {
+				members = player;
+			}
+			else {
+				members = members + "\n" + player;
+			}
+		}
+		return members;
+	}
+	
+	/**
+	 * Method to print out the players
+	 * of a team.
+	 * @return String - players on a team.
+	 */
+	public String toString() {
+		return getMembers();
+	}
 
 }

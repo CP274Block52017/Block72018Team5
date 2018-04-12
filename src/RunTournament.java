@@ -53,16 +53,38 @@ public class RunTournament {
 	 * @return Team - an instance of team.
 	 */
 	private static Team createTeam(Scanner scan) {
-		String teamName = askName("\nWhat do you want to name your team?", scan);
-		Team newTeam = new Team(teamName);
- 		int teamSize = 0;
- 		while (teamSize < MAX_TEAM_SIZE) {
- 			String player = askName("\nWhich player do you want to add to your team?", scan);
- 			newTeam.addPlayer(player);
- 			System.out.println(player + " was added to Team " + teamName);
- 			teamSize++;
- 		}
- 		System.out.println("Team " + teamName + " is full!");
+		Boolean confirmTeam = false;
+		Team newTeam = null;
+		//outer loop so that user can go back and edit/make new team if unhappy with initial entries
+		while (!confirmTeam) {
+			String teamName = askName("\nWhat do you want to name your team?", scan);
+			newTeam = new Team(teamName);
+	 		int teamSize = 0;
+	 		//inner loop adds players to team until team is full
+	 		while (teamSize < MAX_TEAM_SIZE) {
+	 			String player = askName("\nWhich player do you want to add to your team?", scan);
+	 			newTeam.addPlayer(player);
+	 			System.out.println(player + " was added to Team " + teamName);
+	 			teamSize++;
+	 		}
+	 		//checks if user is happy with team; if not, go back and edit
+	 		if (teamSize == MAX_TEAM_SIZE) {
+	 			System.out.println("\nTeam " + teamName + " is full!");
+	 			System.out.println("\nTeam Name: " + teamName);
+	 	 		System.out.println("\nTeam members:");
+	 	 		System.out.println(newTeam);
+	 	 		Boolean isCorrect = askYesNo("Is this the correct information for your team?\n", scan);
+	 			if (!isCorrect) {
+	 				System.out.println("\nPlease edit your team information.");
+	 			}
+	 			else {
+	 				confirmTeam = true;
+	 			}
+	 		}
+	 		else {
+	 			System.out.println((MAX_TEAM_SIZE - teamSize) + " more players needed to make a complete team. Please add another player:");
+	 		}
+		}
  		return newTeam;
  	}
 	
@@ -154,6 +176,7 @@ public class RunTournament {
  			System.out.println("\nTournament Name: " + tournamentName);
  			System.out.println("Number of Teams/Participants: " + numParticipants);
  			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
+ 			//checks if user is happy with tournament; if not, go back and edit
  			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n", scan);
  			if (!isCorrect) {
  				System.out.println("\nPlease edit your tournament information.");
@@ -171,26 +194,31 @@ public class RunTournament {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Welcome to the tournament game!");
-		Scanner scan = new Scanner(System.in);
-		
-		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
-		if (yesCreate) {
-			createTournament(scan);
-		}
-		
-		int numTeams = 0;
-		while (numTeams < newTournament.getNumTeams()) {
-			yesCreate = askYesNo("\nWould you like to add a new team?\n", scan);
-			newTournament.addTeam(createTeam(scan));
-			//print teams w/members and names
-			//if # teams = max, break loop
-			numTeams++;
-			yesCreate = askYesNo("\nWould you like to add a new team?\n", scan);
-		}
-		
-		Team winningTeam = chosenStrategy.determineWinner(null);
-		System.out.println("The winner is: " + winningTeam.getName());
+		Boolean exitTournamentGenerator = false;
+ 		while(!exitTournamentGenerator) {
+			System.out.println("Welcome to the tournament game!");
+			Scanner scan = new Scanner(System.in);
+			Boolean yesCreate = askYesNo("Would you like to create a new tournament? (yes or no)", scan);
+				if (yesCreate) {
+					createTournament(scan);
+				}
+			int numTeams = 0;
+			while (numTeams < newTournament.getNumTeams()) {
+				yesCreate = askYesNo("\nWould you like to add a new team?\n", scan);
+				newTournament.addTeam(createTeam(scan));
+				//print teams w/members and names
+				//if # teams = max, break loop
+				numTeams++;
+				yesCreate = askYesNo("\nWould you like to add a new team?\n", scan);
+			} 
+			Team winningTeam = chosenStrategy.determineWinner(null);
+			System.out.println("The winner is: " + winningTeam.getName());
+			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n", scan);
+			if(!startAgain) {
+				System.out.println("Thanks for playing! Come back soon!");
+				exitTournamentGenerator = true;
+			}
+ 		}
 	}
 
 }
