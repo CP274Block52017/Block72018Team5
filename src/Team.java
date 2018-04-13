@@ -17,15 +17,15 @@ public class Team {
 		this.teamName = teamName;
 		teamMembers = new ArrayList<String>();
 	}
-	
+
 	public String getName() {
 		return teamName;
 	}
-	
+
 	public void addPlayer(String playerName) {
 		teamMembers.add(playerName);
 	}
-	
+
 	public String getMembers() {
 		String members = "";
 		for (String player: teamMembers) {
@@ -42,5 +42,4 @@ public class Team {
 	public String toString() {
 		return getMembers();
 	}
-
 }

@@ -1,12 +1,10 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * 
- */
-
-/**
  * @author Nicole
- *
+ * @author Emma
+ * @author Kelli
  */
 public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 
@@ -24,5 +22,6 @@ public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 	public String getName() {
 		return "Random Winner";
 	}
+
 
 }

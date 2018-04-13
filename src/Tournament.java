@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 /**
  * @author Nicole
- *
+ * @author Kelli
+ * @author Emma
  */
 public class Tournament {
 	
@@ -10,6 +11,7 @@ public class Tournament {
 	private int numTeams;
 	private TournamentWinnerStrategy winnerStrategy;
 	private ArrayList<Team> teams;
+
 	private Team winner;
 	
 	public Tournament(String name, int numTeams, TournamentWinnerStrategy winnerStrategy) {
@@ -18,6 +20,7 @@ public class Tournament {
 		this.winnerStrategy = winnerStrategy;
 		teams = new ArrayList<Team>();
 	}
+
 	
 	public TournamentWinnerStrategy getWinnerStrategy() {
 		return winnerStrategy;
