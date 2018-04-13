@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class RunTournament {
 	
-	private static final int MAX_PARTICIPANTS = 8;
+	private static final int MAX_PARTICIPANTS = 16;
 	private static final int MAX_TEAM_SIZE = 5;
 	private static final int NUMBER_STRATEGIES = 1;
 	private static final int RANDOM_STRATEGY = 1;
@@ -115,10 +115,10 @@ public class RunTournament {
  		Boolean validAnswer = false;
  		while (!validAnswer) {
 	 		try {
-	 			System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8) ");
+	 			System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8, or 16) ");
 	 	 		numParticipants = scan.nextInt();
 	 	 		scan.nextLine();
-	 	 		if ((numParticipants > 0) && (numParticipants <= MAX_PARTICIPANTS)) {
+	 	 		if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == 16)) {
 	 	 			validAnswer = true;
 	 	 		}
 	 		}
@@ -126,7 +126,7 @@ public class RunTournament {
 				scan.nextLine();
 			}
 			if (!validAnswer) {
-				System.out.println("Invalid selection -- enter a number between 1 and " + MAX_PARTICIPANTS);
+				System.out.println("Invalid selection -- enter 2, 4, 8, or 16.");
 			}
 	 	}
  		return numParticipants;
