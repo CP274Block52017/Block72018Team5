@@ -20,6 +20,7 @@ public class RunTournament {
 	
 	private static Tournament newTournament;
 	private static TournamentWinnerStrategy chosenStrategy;
+	private static Team finalWinningTeam;
 	
 	/**
 	 * This method gets user input on whether or not they would like to
@@ -204,6 +205,7 @@ public class RunTournament {
  	private static Team determineRoundWinners(TournamentWinnerStrategy strategy, ArrayList<Team> teams, Scanner scan) {
  		ArrayList<Team> nextRoundTeams = new ArrayList<Team>();
  		Team winningTeam = null;
+ 		Boolean isFinalRound = true;
  		for (int i = 0; i < teams.size(); i += 2) {
  			System.out.println("\nTeam Matchup: " + teams.get(i).getName() + " vs. " + teams.get(i + 1).getName());
  			winningTeam = strategy.determineWinner(teams.get(i), teams.get(i + 1));
@@ -211,6 +213,7 @@ public class RunTournament {
  			nextRoundTeams.add(winningTeam);
  		}
  		if (nextRoundTeams.size() != 1) {
+ 			isFinalRound = false;
  			System.out.println("\nNext round's matchups: ");
  	 		for (int i = 0; i < nextRoundTeams.size(); i += 2) {
  	 			System.out.println(nextRoundTeams.get(i).getName() + " vs. " + nextRoundTeams.get(i + 1).getName());
@@ -223,8 +226,10 @@ public class RunTournament {
  				System.out.println("Tournament terminated!");
  			}
  		}
- 		winningTeam = nextRoundTeams.get(0);
- 		return winningTeam;
+ 		if (isFinalRound) {
+ 	 		finalWinningTeam = winningTeam;
+ 	 	}
+ 		return finalWinningTeam;
  	}
 
 
