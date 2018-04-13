@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 
 import java.util.InputMismatchException;
@@ -22,6 +21,13 @@ public class RunTournament {
 	private static Tournament newTournament;
 	private static TournamentWinnerStrategy chosenStrategy;
 	
+	/**
+	 * This method gets user input on whether or not they would like to
+	 * create a new tournament.
+	 * @param prompt - the prompt to ask the user a question.
+	 * @param scan - the input from the user.
+	 * @return boolean - returns true or false depending on the user's answer.
+	 */
 	private static boolean askYesNo(String prompt, Scanner scan) {
 		boolean isYes = false;
 		boolean validAnswer = false;
@@ -43,6 +49,11 @@ public class RunTournament {
 		return isYes;
 	}
 	
+	/**
+	 * This method prompts the user by asking if they would like to create a team.
+	 * @param scan - user input.
+	 * @return Team - an instance of team.
+	 */
 	private static Team createTeam(Scanner scan) {
 		Boolean confirmTeam = false;
 		Team newTeam = null;
@@ -79,13 +90,32 @@ public class RunTournament {
  		return newTeam;
  	}
 
+
+	
+	/**
+	 * This method gets the names entered by the user.
+	 * @param prompt - the prompt to ask the user for a question.
+	 * @param scan - user input.
+	 * @return String - the name inputed by the user.
+	 */
+	private static String askName(String prompt, Scanner scan) {
+ 		System.out.println(prompt);
+ 	 	String name = scan.nextLine();
+ 	 	return name;
+ 	 }
  	 	
+ 	/**
+ 	 * This method asks the user for the number of teams they would like 
+ 	 * to create for the tournament.
+ 	 * @param scan - user input.
+ 	 * @return int - number of teams to create.
+ 	 */
  	private static int askNumberOfTeams(Scanner scan) {
  		int numParticipants = 0;
  		Boolean validAnswer = false;
  		while (!validAnswer) {
 	 		try {
-	 			System.out.println("How many participants do you want in your tournament (2, 4, or 8)?");
+	 			System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8) ");
 	 	 		numParticipants = scan.nextInt();
 	 	 		scan.nextLine();
 	 	 		if ((numParticipants > 0) && (numParticipants <= MAX_PARTICIPANTS)) {
@@ -101,8 +131,13 @@ public class RunTournament {
 	 	}
  		return numParticipants;
 	}
-
 		
+ 	/**
+ 	 * This method prompts the user for the strategy they would like 
+ 	 * to use to determine the winner of the tournament.
+ 	 * @param scan - user input.
+ 	 * @return int - number correlating to the desired strategy.
+ 	 */
  	private static int askStrategy(Scanner scan) {
  		int chosenStrategy = 0;
  		Boolean validAnswer = false;
@@ -131,6 +166,12 @@ public class RunTournament {
  		return chosenStrategy;
 	 }
 	 	
+	 	
+ 	/**
+ 	 * This method is used to create a tournament given the 
+ 	 * information the user has inputed. 
+ 	 * @param scan - user input.
+ 	 */
  	private static void createTournament(Scanner scan) {
  		Boolean confirmTournament = false;
  		while(!confirmTournament) {
@@ -151,16 +192,14 @@ public class RunTournament {
  			}
  		}
  	}
- 
-	
-	
- 	private static String askName(String prompt, Scanner scan) {
- 		System.out.println(prompt);
- 	 	String name = scan.nextLine();
- 	 	return name;
- 	 }
 
- 	
+ 	/**
+ 	 * 
+ 	 * @param strategy
+ 	 * @param teams
+ 	 * @param scan
+ 	 * @return
+ 	 */
  	private static Team determineRoundWinners(TournamentWinnerStrategy strategy, ArrayList<Team> teams, Scanner scan) {
  		ArrayList<Team> nextRoundTeams = new ArrayList<Team>();
  		Team winningTeam = null;

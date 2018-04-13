@@ -2,9 +2,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ * This class contains is a concrete implementation of
+ * TournamentWinnerStrategy and decided the winning team of the tournament
+ * randomly.
  * @author Nicole
- * @author Emma
  * @author Kelli
+ * @author Emma
+ *
  */
 public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 
@@ -22,6 +26,4 @@ public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 	public String getName() {
 		return "Random Winner";
 	}
-
-
 }
