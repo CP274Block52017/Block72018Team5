@@ -179,10 +179,10 @@ public class RunTournament {
  			int numParticipants = askNumberOfTeams(scan);
  			int strategyChoice = askStrategy(scan);
  			chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
- 			System.out.println("Tournament Name: " + tournamentName);
+ 			System.out.println("\nTournament Name: " + tournamentName);
  			System.out.println("Number of Teams/Participants: " + numParticipants);
  			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
- 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?", scan);
+ 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n", scan);
  			if (!isCorrect) {
  				System.out.println("Please edit your tournament information.");
  			}
@@ -222,6 +222,7 @@ public class RunTournament {
  				System.out.println("Tournament terminated!");
  			}
  		}
+ 		winningTeam = nextRoundTeams.get(0);
  		return winningTeam;
  	}
 
@@ -244,7 +245,7 @@ public class RunTournament {
 			}
 			
 			int numTeams = 0;
-			System.out.println("Need to add " + (newTournament.getNumTeams() - numTeams) + " more team(s) to run tournament. Please add another team:");
+			System.out.println("\nNeed to add " + (newTournament.getNumTeams() - numTeams) + " more team(s) to run tournament. Please add another team:");
 			while (numTeams < newTournament.getNumTeams()) {
 				Team newTeam = createTeam(scan);
 				newTournament.addTeam(newTeam);
@@ -265,7 +266,7 @@ public class RunTournament {
 			
 			Team tournamentWinner = determineRoundWinners(chosenStrategy, newTournament.getTeams(), scan);
 			newTournament.setWinner(tournamentWinner);
-			System.out.println(tournamentWinner.getName() + " has won the tournament!");
+			System.out.println("Team " + tournamentWinner.getName() + " has won the tournament!");
 			
 			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n", scan);
 			if(!startAgain) {
