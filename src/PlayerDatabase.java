@@ -57,7 +57,6 @@ public class PlayerDatabase {
 		) {
 			//create a table of all the players
 			String playerTable = "create table Players ( " +
-				"StudentId int not null auto_increment, " +
 				"Sport varchar(50), " +
 				"Name varchar(50), " +
 				"Height int, " +
@@ -65,7 +64,7 @@ public class PlayerDatabase {
 				"Wins int, " +
 				"Losses int, " +
 				"Year int, " +
-				"primary key (StudentId));";
+				"primary key (Name));";
 			statement.execute(playerTable);
 			
 			//add all of the players to the table
@@ -83,14 +82,24 @@ public class PlayerDatabase {
 			int countInserted = statement.executeUpdate(insertPlayers);
 			System.out.println(countInserted + " players inserted.\n");
 			
-			String getNames = "Select Name From Players";
-			ResultSet allPlayers;
-			allPlayers = statement.executeQuery(getNames);
+			String getEverything = "select Sport, Name, Height, GamesPlayed, Wins, Losses, Year from Players";
+			System.out.println("The SQL Query is: " + getEverything);
+			System.out.println();
 			
+			ResultSet allPlayers;
+			allPlayers = statement.executeQuery(getEverything);
+			
+			System.out.println("The players selected are: ");;
+			int rowCount = 0;
 			while(allPlayers.next()) {
-				Players player = new Players(allPlayers.getString("Name"));
-				players.add(player);
+				String sport = allPlayers.getString("Sport");
+				String name = allPlayers.getString("Name");
+				int height = allPlayers.getInt("Height");
+				System.out.println(sport + ", " + name + ", " + height);;
+				rowCount++;
 			}
+			System.out.println("Total number of records = " + rowCount);
+			
 			
 		} catch (SQLException ex) {
 			ex.printStackTrace();
