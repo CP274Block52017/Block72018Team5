@@ -1,8 +1,13 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
+ * This class contains the prompts for user input and uses it to 
+ * provide input to create the tournament. 
  * @author Nicole
+ * @author Kelli
+ * @author Emma
  *
  */
 public class RunTournament {
@@ -150,19 +155,47 @@ public class RunTournament {
  		}
  	}
  
+ 	private static Team determineRoundWinners(TournamentWinnerStrategy strategy, ArrayList<Team> teams, Scanner scan) {
+ 		ArrayList<Team> nextRoundTeams = new ArrayList<Team>();
+ 		Team winningTeam = null;
+ 		for (int i = 0; i < teams.size(); i += 2) {
+ 			System.out.println("\nTeam Matchup: " + teams.get(i).getName() + " vs. " + teams.get(i + 1).getName());
+ 			winningTeam = strategy.determineWinner(teams.get(i), teams.get(i + 1));
+ 			System.out.println("Team " + winningTeam.getName() + " has won the matchup!");
+ 			nextRoundTeams.add(winningTeam);
+ 		}
+ 		if (nextRoundTeams.size() != 1) {
+ 			System.out.println("\nNext round's matchups: ");
+ 	 		for (int i = 0; i < nextRoundTeams.size(); i += 2) {
+ 	 			System.out.println(nextRoundTeams.get(i).getName() + " vs. " + nextRoundTeams.get(i + 1).getName());
+ 	 		}
+ 	 		Boolean yesContinue = askYesNo("\nWould you like to continue to the next round?\n", scan);
+ 			if (yesContinue) {
+ 				determineRoundWinners(strategy, nextRoundTeams, scan);
+ 			}
+ 			else {
+ 				System.out.println("Tournament terminated!");
+ 			}
+ 		}
+ 		return winningTeam;
+ 	}
 
 	/**
+	 * The main method that runs the tournament.
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Boolean exitTournamentGenerator = false;
+		System.out.println("Welcome to the tournament game!");
  		while(!exitTournamentGenerator) {
-			System.out.println("Welcome to the tournament game!");
 			Scanner scan = new Scanner(System.in);
 			
 			Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
 			if (yesCreate) {
 				createTournament(scan);
+			}
+			else {
+				break;
 			}
 			
 			int numTeams = 0;
@@ -185,15 +218,16 @@ public class RunTournament {
 				}
 			}
 			
-			Team winningTeam = chosenStrategy.determineWinner(newTournament.getTeams());
-			System.out.println("The winner is: " + winningTeam.getName());
+			Team tournamentWinner = determineRoundWinners(chosenStrategy, newTournament.getTeams(), scan);
+			newTournament.setWinner(tournamentWinner);
+			System.out.println(tournamentWinner.getName() + " has won the tournament!");
 			
 			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n", scan);
 			if(!startAgain) {
-				System.out.println("\nThanks for playing! Come back soon!");
 				exitTournamentGenerator = true;
 			}
 		}
+ 		System.out.println("\nThanks for playing! Come back soon!");
 	}
 
 }

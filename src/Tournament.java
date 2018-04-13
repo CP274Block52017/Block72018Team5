@@ -35,4 +35,8 @@ public class Tournament {
 		return teams;
 	}
 	
+	public void setWinner(Team winner) {
+		this.winner = winner;
+	}
+	
 }

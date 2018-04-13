@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 /**
  * 
@@ -10,7 +9,7 @@ import java.util.ArrayList;
  */
 public interface TournamentWinnerStrategy {
 	
-	public Team determineWinner(ArrayList<Team> teams);
+	public Team determineWinner(Team firstTeam, Team secondTeam);
 	
 	public String getName();
 
