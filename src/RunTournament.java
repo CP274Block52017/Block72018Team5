@@ -194,11 +194,12 @@ public class RunTournament {
  	}
 
  	/**
- 	 * 
- 	 * @param strategy
- 	 * @param teams
- 	 * @param scan
- 	 * @return
+ 	 * This method determines the winner of each round and uses recursion to do
+ 	 * this method again and again until the tournament is complete
+ 	 * @param strategy to determine winner
+ 	 * @param teams that are playing tin the tournament
+ 	 * @param new scan to get user input
+ 	 * @return the team that won
  	 */
  	private static Team determineRoundWinners(TournamentWinnerStrategy strategy, ArrayList<Team> teams, Scanner scan) {
  		ArrayList<Team> nextRoundTeams = new ArrayList<Team>();
