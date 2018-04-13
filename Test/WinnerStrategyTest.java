@@ -32,7 +32,7 @@ public class WinnerStrategyTest {
 	public void testRandomWinnerStrategy() {
 		teams.add(team1);
 		winner = new RandomWinnerStrategy();
-		assertEquals(teams.get(0), winner.determineWinner(teams));
+		assertEquals(teams.get(0), winner.determineWinner(team1,team2));
 	}
 
 }

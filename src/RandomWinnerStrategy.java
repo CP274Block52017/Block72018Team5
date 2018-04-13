@@ -1,31 +1,27 @@
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Random;
 
 /**
  * @author Nicole
- * @author emmablair
- * @author Kelli 
+ * @author Emma
+ * @author Kelli
  */
 public class RandomWinnerStrategy implements TournamentWinnerStrategy {
-	
-	public RandomWinnerStrategy() {
-		
-	}
 
-	public Team determineWinner(ArrayList<Team> teams) {
-		Team winningTeam = null;
-		if(teams.isEmpty()) {
-			return null;
-		} else {
-			Collections.shuffle(teams);
-			winningTeam = teams.get(0);
+	public Team determineWinner(Team firstTeam, Team secondTeam) {
+		Random rand = new Random();
+		int winningTeamIndicator = rand.nextInt(2);
+		if (winningTeamIndicator == 0) {
+			return firstTeam;
 		}
-		return winningTeam;
+		else {
+			return secondTeam;
+		}
 	}
 	
 	public String getName() {
-		return "Random Winner Strategy";
+		return "Random Winner";
 	}
 
-}
 
+}

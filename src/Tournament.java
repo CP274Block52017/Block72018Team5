@@ -11,6 +11,8 @@ public class Tournament {
 	private int numTeams;
 	private TournamentWinnerStrategy winnerStrategy;
 	private ArrayList<Team> teams;
+
+	private Team winner;
 	
 	public Tournament(String name, int numTeams, TournamentWinnerStrategy winnerStrategy) {
 		this.name = name;
@@ -18,7 +20,7 @@ public class Tournament {
 		this.winnerStrategy = winnerStrategy;
 		teams = new ArrayList<Team>();
 	}
-	
+
 	
 	public TournamentWinnerStrategy getWinnerStrategy() {
 		return winnerStrategy;
@@ -35,5 +37,9 @@ public class Tournament {
 	public ArrayList<Team> getTeams() {
 		return teams;
 	}
-
+	
+	public void setWinner(Team winner) {
+		this.winner = winner;
+	}
+	
 }
