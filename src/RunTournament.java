@@ -112,7 +112,7 @@ public class RunTournament {
  		Boolean validAnswer = false;
  		while (!validAnswer) {
 	 		try {
-	 			System.out.println("\nHow many participants do you want in your tournament?");
+	 			System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8) ");
 	 	 		numParticipants = scan.nextInt();
 	 	 		scan.nextLine();
 	 	 		if ((numParticipants > 0) && (numParticipants <= MAX_PARTICIPANTS)) {
@@ -141,7 +141,7 @@ public class RunTournament {
  		while(!validAnswer) {
  			System.out.println("\nChoose a strategy to determine the winner of the tournament from the following options: ");
  			System.out.println("1: Random Selection");
- 			System.out.println("> ");
+ 			System.out.print("> ");
  			try {
  				chosenStrategy = scan.nextInt();
  				scan.nextLine();
@@ -193,32 +193,45 @@ public class RunTournament {
 	 * The main method that runs the tournament.
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		Boolean exitTournamentGenerator = false;
+ 	public static void main(String[] args) {
+ 		Boolean exitTournamentGenerator = false;
  		while(!exitTournamentGenerator) {
 			System.out.println("Welcome to the tournament game!");
 			Scanner scan = new Scanner(System.in);
-			Boolean yesCreate = askYesNo("Would you like to create a new tournament? (yes or no)", scan);
-				if (yesCreate) {
-					createTournament(scan);
-				}
+			
+			Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
+			if (yesCreate) {
+				createTournament(scan);
+			}
+			
 			int numTeams = 0;
+			System.out.println("Need to add " + (newTournament.getNumTeams() - numTeams) + " more teams to run tournament. Please add another team:");
 			while (numTeams < newTournament.getNumTeams()) {
-				yesCreate = askYesNo("\nWould you like to add a new team?\n", scan);
-				newTournament.addTeam(createTeam(scan));
-				//print teams w/members and names
-				//if # teams = max, break loop
+				Team newTeam = createTeam(scan);
+				newTournament.addTeam(newTeam);
+				System.out.println("\nTeam " + newTeam.getName() + " added to tournament.");
+				System.out.println("\nTournament Teams:");
+				for (Team team: newTournament.getTeams()) {
+					System.out.println("\nTeam " + team.getName() + ":");
+					System.out.println(team);
+				}
 				numTeams++;
-				yesCreate = askYesNo("\nWould you like to add a new team?\n", scan);
-			} 
-			Team winningTeam = chosenStrategy.determineWinner(null);
+				if (numTeams == newTournament.getNumTeams()) {
+					System.out.println("\nTournament is ready to start!");
+				}
+				else {
+					System.out.println("\nNeed to add " + (newTournament.getNumTeams() - numTeams) + " more teams to run tournament. Please add another team:");
+				}
+			}
+			
+			Team winningTeam = chosenStrategy.determineWinner(newTournament.getTeams());
 			System.out.println("The winner is: " + winningTeam.getName());
+			
 			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n", scan);
 			if(!startAgain) {
-				System.out.println("Thanks for playing! Come back soon!");
+				System.out.println("\nThanks for playing! Come back soon!");
 				exitTournamentGenerator = true;
 			}
- 		}
+		}
 	}
-
 }
