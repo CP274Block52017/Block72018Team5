@@ -13,12 +13,12 @@ public class Team {
 	private String teamName;
 	private ArrayList<String> teamMembers;
 	
-	public Team(String teamName, ArrayList<String> teamMembers) {
+	public Team(String teamName) {
 		this.teamName = teamName;
-		this.teamMembers = teamMembers;
+		teamMembers = new ArrayList<String>();
 	}
 
-	public String getTeamName() {
+	public String getName() {
 		return teamName;
 	}
 
@@ -26,4 +26,20 @@ public class Team {
 		teamMembers.add(playerName);
 	}
 
+	public String getMembers() {
+		String members = "";
+		for (String player: teamMembers) {
+			if (members.equals("")) {
+				members = player;
+			}
+			else {
+				members = members + "\n" + player;
+			}
+		}
+		return members;
+	}
+	
+	public String toString() {
+		return getMembers();
+	}
 }
