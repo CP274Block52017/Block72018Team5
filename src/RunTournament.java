@@ -27,7 +27,7 @@ public class RunTournament {
 		boolean validAnswer = false;
 		while (!validAnswer) {
 			System.out.print(prompt);
-			String answer = scan.next();
+			String answer = scan.nextLine();
 			if (answer.equalsIgnoreCase("Yes")) {
 				isYes = true;
 				validAnswer = true;
@@ -73,7 +73,7 @@ public class RunTournament {
 	 			}
 	 		}
 	 		else {
-	 			System.out.println((MAX_TEAM_SIZE - teamSize) + " more players needed to make a complete team. Please add another player:");
+	 			System.out.println((MAX_TEAM_SIZE - teamSize) + " more player(s) needed to make a complete team. Please add another player:");
 	 		}
 		}
  		return newTeam;
@@ -156,8 +156,7 @@ public class RunTournament {
 	
  	private static String askName(String prompt, Scanner scan) {
  		System.out.println(prompt);
- 	 	String name = scan.next();
- 	 	scan.nextLine();
+ 	 	String name = scan.nextLine();
  	 	return name;
  	 }
 
@@ -195,10 +194,9 @@ public class RunTournament {
 	public static void main(String[] args) {
 		Boolean exitTournamentGenerator = false;
 		System.out.println("Welcome to the tournament game!");
+		Scanner scan = new Scanner(System.in);
+		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
  		while(!exitTournamentGenerator) {
-			Scanner scan = new Scanner(System.in);
-			
-			Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
 			if (yesCreate) {
 				createTournament(scan);
 			}
@@ -207,7 +205,7 @@ public class RunTournament {
 			}
 			
 			int numTeams = 0;
-			System.out.println("Need to add " + (newTournament.getNumTeams() - numTeams) + " more teams to run tournament. Please add another team:");
+			System.out.println("Need to add " + (newTournament.getNumTeams() - numTeams) + " more team(s) to run tournament. Please add another team:");
 			while (numTeams < newTournament.getNumTeams()) {
 				Team newTeam = createTeam(scan);
 				newTournament.addTeam(newTeam);
