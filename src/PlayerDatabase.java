@@ -12,7 +12,7 @@ import java.sql.ResultSet;
  * can be altered by any potential administrator of the game to fit
  * their desired tournament. 
  * For this project, Colorado College athletes were used. Their statistics and 
- * information was gathered from the Colorado College Athletics website.
+ * information was gathered from the Colorado College Athletics page.
  * @author emmablair
  *
  */
@@ -20,6 +20,15 @@ public class PlayerDatabase {
 	
 	public static final String PORT_NUMBER = "8889";
 	private static ArrayList<Players> players = new ArrayList<Players>();
+	
+	private static String sport;
+	private static String name;
+	private static int height;
+	private static int gamesPlayed;
+	private static int wins;
+	private static int losses;
+	private static int year;
+	private static int rowCount;
 	
 	/**
 	 * Constructor is empty.
@@ -84,29 +93,21 @@ public class PlayerDatabase {
 			System.out.println(countInserted + " players inserted.\n");
 			
 			String getEverything = "select Sport, Name, Height, GamesPlayed, Wins, Losses, Year from Players";
-			System.out.println("The SQL Query is: " + getEverything);
-			System.out.println();
-			
+
 			ResultSet allPlayers;
 			allPlayers = statement.executeQuery(getEverything);
-			
-			System.out.println("The players selected are: ");;
-			int rowCount = 0;
+
+			rowCount = 0;
 			while(allPlayers.next()) {
-				String sport = allPlayers.getString("Sport");
-				String name = allPlayers.getString("Name");
-				int height = allPlayers.getInt("Height");
-				int gamesPlayed = allPlayers.getInt("GamesPlayed");
-				int wins = allPlayers.getInt("Wins");
-				int losses = allPlayers.getInt("Losses");
-				int year = allPlayers.getInt("Year");
-				System.out.println("Sport: " + sport + ", Name: " + name + ", Height(in): " + height + ", Games played: " + gamesPlayed + 
-						", Total wins: " +  wins + ", Total losses: " + losses + ", Year in school: " + year);;
+				sport = allPlayers.getString("Sport");
+				name = allPlayers.getString("Name");
+				height = allPlayers.getInt("Height");
+				gamesPlayed = allPlayers.getInt("GamesPlayed");
+				wins = allPlayers.getInt("Wins");
+				losses = allPlayers.getInt("Losses");
+				year = allPlayers.getInt("Year");
 				rowCount++;
 			}
-			System.out.println("Total number of records = " + rowCount);
-			
-			
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
@@ -119,6 +120,17 @@ public class PlayerDatabase {
 	public static ArrayList<Players> getPlayers() {
 		System.out.println(players);
 		return players;
+	}
+	
+	/**
+	 * Allows for the printing of the player information
+	 * in the database if desired.
+	 */
+	public static void showInformation() {
+		System.out.println("The players selected are: ");;
+		System.out.println("Sport: " + sport + ", Name: " + name + ", Height(in): " + height + ", Games played: " + gamesPlayed + 
+				", Total wins: " +  wins + ", Total losses: " + losses + ", Year in school: " + year);;
+		System.out.println("Total number of records = " + rowCount);
 	}
 	
 }
