@@ -15,6 +15,7 @@ public class Players {
 	private static String sport;
 	private static String gender;
 	private static int height;
+	private static int gamesPlayed;
 	private static int wins;
 	private static int losses;
 	private static int year;
@@ -23,10 +24,11 @@ public class Players {
 	 * Constructor for Player class.
 	 * @param name - name of the player.
 	 */
-	public Players(String sport, String name, String gender, int height, int wins, int losses, int year) {
+	public Players(String name, String sport, String gender, int height, int gamesPlayed, int wins, int losses, int year) {
 		this.name = name;
 		this.sport = sport;
 		this.height = height;
+		this.gamesPlayed = gamesPlayed;
 		this.wins = wins;
 		this.losses = losses;
 		this.year = year;
@@ -41,8 +43,16 @@ public class Players {
 		return sport;
 	}
 	
+	public static String getGender() {
+		return gender;
+	}
+	
 	public static int getHeight() {
 		return height;
+	}
+	
+	public static int getGamesPlayed() {
+		return gamesPlayed;
 	}
 	
 	public static int getWins() {
@@ -55,10 +65,6 @@ public class Players {
 	
 	public static int getYear() {
 		return year;
-	}
-	
-	public static String getGender() {
-		return gender;
 	}
 	
 }
