@@ -27,13 +27,7 @@ public class CreatePlayerDatabase {
 		
 	}
 	
-	/**
-	 * Creates the database and table of athletes and 
-	 * their information. This information will be used by the 
-	 * tournament strategies.
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	public static void createDatabase() {
 		try (
 			Connection conn = DriverManager.getConnection(
 				"jdbc:mysql://localhost:" + PORT_NUMBER + 
@@ -46,7 +40,9 @@ public class CreatePlayerDatabase {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		
+	}
+	
+	public static void createTable() {
 		try (
 			Connection conn = DriverManager.getConnection(
 				"jdbc:mysql://localhost:" + PORT_NUMBER + 
@@ -65,22 +61,45 @@ public class CreatePlayerDatabase {
 				"Year int, " +
 				"primary key (Name));";
 			statement.execute(playerTable);
-			//add all of the players to the table
-			String insertPlayers = "insert into Players (Name, Sport, Gender, Height, GamesPlayed, Wins, Losses, Year) values "
-					+ "('Joran Meltzer', 'Basketball', 'Female', 63, 25, 2, 23, 2), "
-					+ "('Kaylyn Radtke', 'Basketball', 'Female', 67, 25, 2, 23, 3), "
-					+ "('CooXooEii Black', 'Basketball', 'Male', 79, 26, 11, 15, 2), "
-					+ "('Edmund Pendleton', 'Basketball', 'Male', 75, 23, 11, 15, 3), "
-					+ "('Kelli Sullivan', 'Soccer', 'Female', 65, 19, 8, 11, 3), "
-					+ "('Anna Gurolnick', 'Volleyball', 'Female', 62, 34, 28, 6, 2), "
-					+ "('Lizzy Counts', 'Volleyball', 'Female', 65, 34, 28, 6, 2), "
-					+ "('Sam Mathai', 'Lacrosse', 'Male', 75, 8, 10, 6, 4), "
-					+ "('Tom Haller', 'Lacrosse', 'Male', 72, 15, 10, 6, 2), "
-					+ "('Jenna McDonald', 'Tennis', 'Female', 65, 40, 6, 14, 2)";
-			int countInserted = statement.executeUpdate(insertPlayers);
-			System.out.println(countInserted + " players inserted.\n");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		}
+		}	
+	}
+	
+	public static void addPlayers() {
+		try (
+			Connection conn = DriverManager.getConnection(
+				"jdbc:mysql://localhost:" + PORT_NUMBER + 
+				"/AthletePlayers?user=root&password=root");
+			Statement statement = conn.createStatement();
+		) {
+		String insertPlayers = "insert into Players (Name, Sport, Gender, Height, GamesPlayed, Wins, Losses, Year) values "
+				+ "('Joran Meltzer', 'Basketball', 'Female', 63, 25, 2, 23, 2), "
+				+ "('Kaylyn Radtke', 'Basketball', 'Female', 67, 25, 2, 23, 3), "
+				+ "('CooXooEii Black', 'Basketball', 'Male', 79, 26, 11, 15, 2), "
+				+ "('Edmund Pendleton', 'Basketball', 'Male', 75, 23, 11, 15, 3), "
+				+ "('Kelli Sullivan', 'Soccer', 'Female', 65, 19, 8, 11, 3), "
+				+ "('Anna Gurolnick', 'Volleyball', 'Female', 62, 34, 28, 6, 2), "
+				+ "('Lizzy Counts', 'Volleyball', 'Female', 65, 34, 28, 6, 2), "
+				+ "('Sam Mathai', 'Lacrosse', 'Male', 75, 8, 10, 6, 4), "
+				+ "('Tom Haller', 'Lacrosse', 'Male', 72, 15, 10, 6, 2), "
+				+ "('Jenna McDonald', 'Tennis', 'Female', 65, 40, 6, 14, 2)";
+		int countInserted = statement.executeUpdate(insertPlayers);
+		System.out.println(countInserted + " players inserted.\n");
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}	
+	}
+	
+	/**
+	 * Creates the database and table of athletes and 
+	 * their information. This information will be used by the 
+	 * tournament strategies.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		CreatePlayerDatabase.createDatabase();
+		CreatePlayerDatabase.createTable();
+		CreatePlayerDatabase.addPlayers();
 	}
 }
