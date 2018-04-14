@@ -55,7 +55,7 @@ public class Player {
 	}
 	
 	public String toString() {
-		return "Name: " + name + "\nSport: " + sport + "\nGender: " + gender + "\nHeight (in.): " + heightInches + "\nGames Played (2017-18): " 
+		return "\nName: " + name + "\nSport: " + sport + "\nGender: " + gender + "\nHeight (in.): " + heightInches + "\nGames Played (2017-18): " 
 				+ gamesPlayed + "\nTeam's Wins: " + teamWins + "\nTeam's Losses: " + teamLosses + "\nClass Year: " + classYear;
 	}
 	
