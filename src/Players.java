@@ -34,35 +34,39 @@ public class Players {
 		this.gender = gender;
 	}
 	
-	public static String getName() {
+	public String getName() {
 		return name;
 	}
 	
-	public static String getSport() {
+	public static void setName(String newName) {
+		name = newName;
+	}
+	
+	public String getSport() {
 		return sport;
 	}
 	
-	public static String getGender() {
+	public String getGender() {
 		return gender;
 	}
 	
-	public static int getHeight() {
+	public int getHeight() {
 		return height;
 	}
 	
-	public static int getGamesPlayed() {
+	public int getGamesPlayed() {
 		return gamesPlayed;
 	}
 	
-	public static int getWins() {
+	public int getWins() {
 		return wins;
 	}
 	
-	public static int getLosses() {
+	public int getLosses() {
 		return losses;
 	}
 	
-	public static int getYear() {
+	public int getYear() {
 		return year;
 	}
 	

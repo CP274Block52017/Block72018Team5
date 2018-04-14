@@ -17,7 +17,6 @@ import java.sql.ResultSet;
 public class GetPlayers {
 	
 	private static final String PORT_NUMBER = "8889";
-	private static Players newPlayer; 
 	
 	private static String sport;
 	private static String name;
@@ -51,26 +50,25 @@ public class GetPlayers {
 					", Games played: " + GetPlayers.getPlayers().get(i).getGamesPlayed() + 
 					", Total wins: " +  GetPlayers.getPlayers().get(i).getWins() + ", Total losses: " + GetPlayers.getPlayers().get(i).getLosses() + 
 					", Year in school: " + GetPlayers.getPlayers().get(i).getYear());;
-			}
-		System.out.println("Total number of records = " + rowCount);
+		}
+		System.out.println("Total: " + rowCount);
 	}
 	
 	public static ArrayList<Players> getPlayers() throws SQLException {
 		ArrayList<Players> players = new ArrayList<Players>();
-		Players newPlayer = new Players(name, sport, gender, heightInInches, gamesPlayed, teamWins, teamLosses, classYear);
+		ResultSet allPlayers;
 		try (
 			Connection conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:" + PORT_NUMBER + 
 					"/AthletePlayers?user=root&password=root");
 			Statement statement = conn.createStatement();
 		) {	
-			
 			String getEverything = "select Name, Sport, Gender, Height, GamesPlayed, Wins, Losses, Year from Players";
-			ResultSet allPlayers;
 			allPlayers = statement.executeQuery(getEverything);
 			
 			rowCount = 0;
 			while(allPlayers.next()) {
+				Players newPlayer = new Players(name, sport, gender, heightInInches, gamesPlayed, teamWins, teamLosses, classYear);
 				name = allPlayers.getString("Name");
 				sport = allPlayers.getString("Sport");
 				gender = allPlayers.getString("Gender");
@@ -80,7 +78,8 @@ public class GetPlayers {
 				teamLosses = allPlayers.getInt("Losses");
 				classYear = allPlayers.getInt("Year");
 				players.add(newPlayer);
-			}	
+				rowCount++;
+			}		
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
@@ -88,7 +87,8 @@ public class GetPlayers {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		GetPlayers.getPlayersNames();
+		//GetPlayers.getPlayersNames();
+		GetPlayers.showInformation();
 	}
 
 }
