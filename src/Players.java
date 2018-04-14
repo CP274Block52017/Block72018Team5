@@ -31,26 +31,23 @@ public class Players {
 	 */
 	
 	String name;
+	String sport;
+	int height;
+	int wins;
+	int losses;
+	int year;
 	
 	/**
 	 * Constructor for Player class.
 	 * @param name - name of the player.
 	 */
-	public Players(String name) {
+	public Players(String sport, String name, int height, int wins, int losses, int year) {
 		this.name = name;
+		this.sport = sport;
+		this.height = height;
+		this.wins = wins;
+		this.losses = losses;
+		this.year = year;
 	}
 	
-	public static ArrayList<String> getAllPlayers() {
-		ArrayList<String> player_names = new ArrayList<String>();
-		for(int i = 0; i < PlayerDatabase.getPlayers().size(); i++) {
-			player_names.add(PlayerDatabase.getPlayers().get(i).toString());
-		}
-		System.out.println(player_names);
-		return player_names;
-	}
-	
-	public static void main(String[] args) {
-		getAllPlayers();
-	}
-
 }
