@@ -11,43 +11,54 @@ import java.util.ArrayList;
  */
 public class Players {
 	
-	/**
-	 * For the first iteration, we will only use names in order to test strategies
-	 * before the database is completely set up.
-	 * int height, int age, int gamePlayed, int minutes, int wins, int losses
-	 * Possibles attributes for the players / athletes
-	 * Basketball
-	 * Name, Height, Age, # of Games Played, Wins, Losses
-	 * Hockey 
-	 * Name, Height, Age, # of Games Played, Wins, Losses
-	 * Soccer
-	 * Name, Height, Age, # of Games Played, Wins, Losses
-	 * Lacrosse
-	 * Name, Height, Age, # of Games Played, Wins, Losses
-	 * Tennis ??? 
-	 * Name, Height, Age, Matches Played, Wins, Losses
-	 * Volleyball
-	 * Name, Height, Age, # of Games PLayed, Wins, Losses
-	 */
-	
-	String name;
-	String sport;
-	int height;
-	int wins;
-	int losses;
-	int year;
+	private static String name;
+	private static String sport;
+	private static String gender;
+	private static int height;
+	private static int wins;
+	private static int losses;
+	private static int year;
 	
 	/**
 	 * Constructor for Player class.
 	 * @param name - name of the player.
 	 */
-	public Players(String sport, String name, int height, int wins, int losses, int year) {
+	public Players(String sport, String name, String gender, int height, int wins, int losses, int year) {
 		this.name = name;
 		this.sport = sport;
 		this.height = height;
 		this.wins = wins;
 		this.losses = losses;
 		this.year = year;
+		this.gender = gender;
+	}
+	
+	public static String getName() {
+		return name;
+	}
+	
+	public static String getSport() {
+		return sport;
+	}
+	
+	public static int getHeight() {
+		return height;
+	}
+	
+	public static int getWins() {
+		return wins;
+	}
+	
+	public static int getLosses() {
+		return losses;
+	}
+	
+	public static int getYear() {
+		return year;
+	}
+	
+	public static String getGender() {
+		return gender;
 	}
 	
 }

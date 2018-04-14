@@ -16,7 +16,7 @@ public interface TournamentWinnerStrategy {
 	 * @param teams
 	 * @return
 	 */
-	public Team determineWinner(ArrayList<Team> teams);
+	public Team determineWinner(Team firstTeam, Team secondTeam);
 	
 	/**
 	 * Provides the name of the winning team.

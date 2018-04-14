@@ -22,7 +22,7 @@ public class WinnerStrategyTest {
 
 	@Before
 	public void setUp() {
-		TournamentWinnerStrategy testStrategy = new FirstTeamWinsStrategy();
+		testStrategy = new FirstTeamWinsStrategy();
 		testTeams = new ArrayList<Team>();
 		Team testTeam1 = new Team("Test Team 1");
 		Team testTeam2 = new Team("Test Team 2");
@@ -42,27 +42,27 @@ public class WinnerStrategyTest {
 	}
 	
 	@Test
-	public void testFirstTwoTeams() {
+	public void testsFirstTwoTeams() {
 		Team winningTestTeam = testStrategy.determineWinner(testTeams.get(0), testTeams.get(1));
 		assertEquals(testTeams.get(0), winningTestTeam);
 	}
 	
 	@Test
-	public void testLastTwoTeams() {
+	public void testsLastTwoTeams() {
 		Team winningTestTeam = testStrategy.determineWinner(testTeams.get(2), testTeams.get(3));
-		assertEquals(testTeams.get(0), winningTestTeam);
+		assertEquals(testTeams.get(2), winningTestTeam);
 	}
 	
 	@Test
-	public void testFirstandLastTeams() {
+	public void testsFirstandLastTeams() {
 		Team winningTestTeam = testStrategy.determineWinner(testTeams.get(0), testTeams.get(3));
 		assertEquals(testTeams.get(0), winningTestTeam);
 	}
 	
 	@Test
-	public void testMiddleTwoTeams() {
+	public void testsMiddleTwoTeams() {
 		Team winningTestTeam = testStrategy.determineWinner(testTeams.get(1), testTeams.get(2));
-		assertEquals(testTeams.get(0), winningTestTeam);
+		assertEquals(testTeams.get(1), winningTestTeam);
 	}
 
 }

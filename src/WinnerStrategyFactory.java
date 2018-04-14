@@ -10,12 +10,12 @@
 public class WinnerStrategyFactory {
 	
 	private static final int RANDOM_STRATEGY = 1;
-	
+
 	/**
 	 * Constructor is empty.
 	 */
 	public WinnerStrategyFactory()  {
-		
+			
 	}
 	
 	/**
@@ -23,15 +23,15 @@ public class WinnerStrategyFactory {
 	 * TournamentWinnerStrategy determined by the user's choice of
 	 * strategy.
 	 * @param chosenStrategy
-	 * @return
+	 * @return the strategy that will be used 
 	 */
 	public static TournamentWinnerStrategy getWinnerStrategy(int chosenStrategy) {
 		switch(chosenStrategy) {
-		case 1: 
+		case RANDOM_STRATEGY: 
 			return new RandomWinnerStrategy();
 		default:
 			return null;
 		}
 	}
-
 }
+

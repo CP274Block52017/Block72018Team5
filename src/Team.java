@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class Team {
 	
 	private String teamName;
-	private ArrayList<String> teamMembers;
+	private ArrayList<Players> teamMembers;
+	private ArrayList<String> playerNames;
 	
 	/**
 	 * Constructor for the Team class.
@@ -18,7 +19,8 @@ public class Team {
 	 */
 	public Team(String teamName) {
 		this.teamName = teamName;
-		teamMembers = new ArrayList<String>();
+		teamMembers = new ArrayList<Players>();
+		playerNames = new ArrayList<String>();
 	}
 	
 	/**
@@ -34,7 +36,7 @@ public class Team {
 	 * @param playerName - name of a player.
 	 */
 	public void addPlayer(String playerName) {
-		teamMembers.add(playerName);
+		playerNames.add(playerName);
 	}
 	
 	/**
@@ -43,13 +45,14 @@ public class Team {
 	 */
 	public String getMembers() {
 		String members = "";
-		for (String player: teamMembers) {
-			if (members.equals("")) {
-				members = player;
-			}
-			else {
-				members = members + "\n" + player;
-			}
+		for (Players player: teamMembers) {
+//			if (player.getName().equals("")) {
+//				members = player;
+//			}
+//			else {
+//				members = members + "\n" + player;
+//			}
+			members = player.getName();
 		}
 		return members;
 	}

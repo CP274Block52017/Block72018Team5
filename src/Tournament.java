@@ -5,7 +5,6 @@ import java.util.ArrayList;
  * @author Nicole
  * @author Kelli
  * @author Emma
- *
  */
 public class Tournament {
 	
@@ -13,7 +12,9 @@ public class Tournament {
 	private int numTeams;
 	private TournamentWinnerStrategy winnerStrategy;
 	private ArrayList<Team> teams;
+
 	private Team winner;
+
 	
 	/**
 	 * Constructor contains needed information for creating
@@ -28,7 +29,7 @@ public class Tournament {
 		this.winnerStrategy = winnerStrategy;
 		teams = new ArrayList<Team>();
 	}
-	
+
 	/**
 	 * Gets the chosen winner strategy.
 	 * @return TournamentWinerStrategy - strategy to determine the winner.
@@ -61,4 +62,13 @@ public class Tournament {
 		return teams;
 	}
 	
+	/**
+	 * Allows us to set winner of tournament if we want to.
+	 * @param winner of the tournament
+	 */
+	public void setWinner(Team winner) {
+		this.winner = winner;
+	}
+	
 }
+
