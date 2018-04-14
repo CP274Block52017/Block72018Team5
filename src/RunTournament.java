@@ -119,7 +119,7 @@ public class RunTournament {
 	 			System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8, or 16) ");
 	 	 		numParticipants = scan.nextInt();
 	 	 		scan.nextLine();
-	 	 		if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == 16)) {
+	 	 		if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == MAX_PARTICIPANTS)) {
 	 	 			validAnswer = true;
 	 	 		}
 	 		}

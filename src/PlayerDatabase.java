@@ -20,8 +20,7 @@ public class PlayerDatabase {
 	
 	public static final String PORT_NUMBER = "8889";
 	
-	private static ArrayList<Players> players = new ArrayList<Players>();
-	private static int rowCount;
+	private static ArrayList<Player> players = new ArrayList<Player>();
 	
 	/**
 	 * Constructor is empty.
@@ -33,7 +32,7 @@ public class PlayerDatabase {
 	/**
 	 * 
 	 * Creates the database and table of athletes and 
-	 * their information. This information will be used by the 
+	 * heir information. This information will be used by the 
 	 * tournament strategies.
 	 * @param args
 	 */
@@ -64,35 +63,34 @@ public class PlayerDatabase {
 				"Sport varchar(50), " +
 				"Gender varchar(50), " +
 				"Height (in.) int, " +
-				"GamesPlayed int, " +
-				"Wins int, " +
-				"Losses int, " +
+				"Games Played (2017-18) int, " +
+				"Team's Wins int, " +
+				"Team's Losses int, " +
 				"Class Year int, " +
 				"primary key (Name));";
 			statement.execute(playerTable);
 			
 			//add all of the players to the table
-			String insertPlayers = "insert into Players (Name, Sport, Gender, Height, GamesPlayed, Wins, Losses, Year) values "
-					+ "('Basketball', 'Joran Meltzer', 63, 25, 2, 23, 2), "
-					+ "('Basketball', 'Kaylyn Radtke', 67, 25, 2, 23, 3), "
-					+ "('Basketball', 'CooXooEii Black', 79, 26, 11, 15, 2), "
-					+ "('Basketball', 'Edmund Pendleton', 75, 23, 11, 15, 3), "
-					+ "('Soccer', 'Kelli Sullivan', 65, 19, 8, 11, 3), "
-					+ "('Volleyball', 'Anna Gurolnick', 62, 34, 28, 6, 2), "
-					+ "('Volleyball', 'Lizzy Counts', 65, 34, 28, 6, 2), "
-					+ "('Lacrosse', 'Sam Mathai', 75, 8, 10, 6, 4), "
-					+ "('Lacrosse', 'Tom Haller', 72, 15, 10, 6, 2), "
-					+ "('Tennis', 'Jenna McDonald', 65, 40, 6, 14, 2)";
+			String insertPlayers = "insert into Players (Name, Sport, Gender, Height (in.), GamesPlayed (2017-18), Team's Wins, Team's Losses, Class Year) values "
+					+ "('Joran Meltzer', 'Basketball', 63, 25, 2, 23, 2), "
+					+ "('Kaylyn Radtke', 'Basketball', 67, 25, 2, 23, 3), "
+					+ "('CooXooEii Black', 'Basketball', 79, 26, 11, 15, 2), "
+					+ "('Edmund Pendleton', 'Basketball', 75, 23, 11, 15, 3), "
+					+ "('Kelli Sullivan', 'Soccer', 65, 19, 8, 11, 3), "
+					+ "('Anna Gurolnick', 'Volleyball', 62, 34, 28, 6, 2), "
+					+ "('Lizzy Counts', 'Volleyball', 65, 34, 28, 6, 2), "
+					+ "('Sam Mathai', 'Lacrosse', 75, 8, 10, 6, 4), "
+					+ "('Tom Haller', 'Lacrosse', 72, 15, 10, 6, 2), "
+					+ "('Jenna McDonald', 'Tennis', 65, 40, 6, 14, 2)";
 			int countInserted = statement.executeUpdate(insertPlayers);
 			System.out.println(countInserted + " players inserted.\n");
 			
-			String getEverything = "select Name, Sport, Gender, Height, GamesPlayed, Wins, Losses, Year from Players";
+			String getEverything = "select Name, Sport, Gender, Height (in.), Games Played (2017-18),Team's Wins, Team's Losses, Class Year from Players";
 
 			ResultSet allPlayers;
 			allPlayers = statement.executeQuery(getEverything);
 
-			rowCount = 0;
-			while(allPlayers.next()) {
+			while (allPlayers.next()) {
 				String name = allPlayers.getString("Name");
 				String sport = allPlayers.getString("Sport");
 				String gender = allPlayers.getString("Gender");
@@ -101,8 +99,7 @@ public class PlayerDatabase {
 				int wins = allPlayers.getInt("Wins");
 				int losses = allPlayers.getInt("Losses");
 				int classYear = allPlayers.getInt("Class Year");
-				rowCount++;
-				players.add(new Player(name, sport, gender, heightInches, gamesPlayed, wins, losses, classYear))
+				players.add(new Player(name, sport, gender, heightInches, gamesPlayed, wins, losses, classYear));
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -110,23 +107,19 @@ public class PlayerDatabase {
 	}
 	
 	/**
-	 * Gets the players entered into the database.
-	 * @return
+	 * Gets all of the players entered into the database
+	 * @return list of players
 	 */
-	public static ArrayList<Players> getPlayers() {
-		System.out.println(players);
+	public static ArrayList<Player> getPlayers() {
 		return players;
 	}
 	
 	/**
-	 * Allows for the printing of the player information
-	 * in the database if desired.
+	 * Gets the number of players in the database
+	 * @return number of players
 	 */
-	public static void showInformation() {
-		System.out.println("The players selected are: ");;
-		System.out.println("Name: " + name + "\nSport: " + gender + "\nGender" + sport + "\nHeight(in): " + height + "\nGames played: " + gamesPlayed + 
-				"\nTotal wins: " +  wins + "\nTotal losses: " + losses + "\nYear in school: " + year);;
-		System.out.println("Total number of records = " + rowCount);
+	public int getNumPlayers() {
+		return players.size();
 	}
 	
 }

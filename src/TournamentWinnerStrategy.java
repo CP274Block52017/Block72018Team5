@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 /**
  * This interface provides the methods needed to create
  * multiple concrete implementations for different strategies to
