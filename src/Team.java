@@ -11,7 +11,7 @@ public class Team {
 	
 	private String teamName;
 	private ArrayList<Players> teamMembers;
-	private ArrayList<String> playerNames;
+	private int lastRoundAverage;
 	
 	/**
 	 * Constructor for the Team class.
@@ -20,7 +20,11 @@ public class Team {
 	public Team(String teamName) {
 		this.teamName = teamName;
 		teamMembers = new ArrayList<Players>();
-		playerNames = new ArrayList<String>();
+		lastRoundAverage = 0;
+	}
+	
+	public ArrayList<Players> getTeamMembersList() {
+		return teamMembers;
 	}
 	
 	/**
@@ -35,8 +39,8 @@ public class Team {
 	 * This method adds the players to a team.
 	 * @param playerName - name of a player.
 	 */
-	public void addPlayer(String playerName) {
-		playerNames.add(playerName);
+	public void addPlayer(Players newPlayer) {
+		teamMembers.add(newPlayer);
 	}
 	
 	/**
@@ -46,15 +50,18 @@ public class Team {
 	public String getMembers() {
 		String members = "";
 		for (Players player: teamMembers) {
-//			if (player.getName().equals("")) {
-//				members = player;
-//			}
-//			else {
-//				members = members + "\n" + player;
-//			}
-			members = player.getName();
+			if (members.equals("")) {
+				members = player.getName();
+			}
+			else {
+				members = members + "\n" + player.getName();
+			}
 		}
 		return members;
+	}
+	
+	public int getTeamSize() {
+		return teamMembers.size();
 	}
 	
 	/**
@@ -64,6 +71,14 @@ public class Team {
 	 */
 	public String toString() {
 		return getMembers();
+	}
+
+	public int getLastRoundAverage() {
+		return lastRoundAverage;
+	}
+
+	public void setLastRoundAverage(int lastRoundAverage) {
+		this.lastRoundAverage = lastRoundAverage;
 	}
 
 }
