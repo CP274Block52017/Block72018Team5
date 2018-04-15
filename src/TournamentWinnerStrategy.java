@@ -8,7 +8,7 @@
  * @author Emma
  */
 public interface TournamentWinnerStrategy {
-
+	
 	/**
 	 * Determines the winning team of the tournament. 
 	 * @param first team in match up and second team in matchup
@@ -21,6 +21,6 @@ public interface TournamentWinnerStrategy {
 	 * @return name
 	 */
 	public String getName();
-
+	
 }
 

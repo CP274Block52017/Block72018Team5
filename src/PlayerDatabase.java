@@ -35,7 +35,7 @@ public class PlayerDatabase {
 			Statement statement = conn.createStatement();
 		) {		
 			//create the database
-			String database = "create database AthletePlayers";
+			String database = "create database if not exists AthletePlayers";
 			statement.execute(database);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -76,7 +76,7 @@ public class PlayerDatabase {
 			Statement statement = conn.createStatement();
 		) {
 			//add all of the players to the table
-			String insertPlayers = "insert into Players (Name, Sport, Gender, Height, GamesPlayed, TeamWins, TeamLosses, ClassYear) values "
+			String insertPlayers = "insert ignore into Players (Name, Sport, Gender, Height, GamesPlayed, TeamWins, TeamLosses, ClassYear) values "
 					+ "('Joran Meltzer', 'Basketball', 'Female', 63, 25, 2, 23, 2), "
 					+ "('Kaylyn Radtke', 'Basketball', 'Female', 67, 25, 2, 23, 3), "
 					+ "('CooXooEii Black', 'Basketball', 'Male', 79, 26, 11, 15, 2), "
@@ -130,6 +130,15 @@ public class PlayerDatabase {
 	 */
 	public static ArrayList<Player> getPlayersList() {
 		return players;
+	}
+	
+	public static Player findPlayer(String playerName) {
+		for (Player player : players) {
+			if (playerName.equals(player.getName())) {
+				return player;
+			}
+		}
+		return null;
 	}
 	
 	/**

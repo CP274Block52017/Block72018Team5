@@ -25,4 +25,5 @@ public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 	public String getName() {
 		return "Random Winner";
 	}
+	
 }
