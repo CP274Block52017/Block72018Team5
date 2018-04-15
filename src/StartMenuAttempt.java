@@ -55,8 +55,11 @@ class YesButton extends JFrame implements ActionListener {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("here");
-			hasBeenClicked = true;
+			JFrame frame = new GetTournamentName("What would you like the name of your tournament to be?");
+			frame.setBackground(Color.black);
+			frame.setTitle("Start Menu");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setVisible(true);
 		}
 	}
 	

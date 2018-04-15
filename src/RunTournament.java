@@ -249,6 +249,7 @@ public class RunTournament {
  	 	}
  		return finalWinningTeam;
  	}
+ 	
 	/**
 	 * The main method that runs the tournament.
 	 * @param args
@@ -261,8 +262,9 @@ public class RunTournament {
 		frame.setTitle("Start Menu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		//Scanner scan = new Scanner(System.in);
-	//	Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n");
+		
+		Scanner scan = new Scanner(System.in);
+		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n");
  		while(!exitTournamentGenerator) {
 			if (yesCreate) {
 				createTournament(scan);
