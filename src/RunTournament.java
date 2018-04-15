@@ -1,5 +1,6 @@
+import java.awt.EventQueue;
 import java.util.ArrayList;
-
+import javax.swing.JFrame;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -205,24 +206,38 @@ public class RunTournament {
  	 * information the user has inputed. 
  	 * @param scan - user input.
  	 */
- 	private static void createTournament(Scanner scan) {
- 		Boolean confirmTournament = false;
- 		while(!confirmTournament) {
- 			String tournamentName = askName("\nWhat do you want to name your tournament?", scan);
- 			int numParticipants = askNumberOfTeams(scan);
- 			int strategyChoice = askStrategy(scan);
- 			chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
- 			System.out.println("\nTournament Name: " + tournamentName);
- 			System.out.println("Number of Teams/Participants: " + numParticipants);
- 			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
- 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n", scan);
- 			if (!isCorrect) {
- 				System.out.println("Please edit your tournament information.");
- 			}
- 			else {
- 				newTournament = new Tournament(tournamentName, numParticipants, chosenStrategy);
- 				confirmTournament = true;
- 			}
+ 	private static void createTournament(boolean isYes) {
+ 		isYes = GUI.getIsYes();
+ 		Scanner scan = new Scanner(System.in);
+ 		if(isYes == true) {
+	 		Boolean confirmTournament = false;
+	 		while(!confirmTournament) {
+	 			EventQueue.invokeLater(new Runnable() {
+	 				public void run() {
+	 					try {
+	 						SecondWindow window = new SecondWindow();
+	 						SecondWindow.getFrame().setVisible(true);
+	 					} catch (Exception e) {
+	 						e.printStackTrace();
+	 					}
+	 				}
+	 			});
+	 			String tournamentName = askName("\nWhat do you want to name your tournament?", scan);
+	 			int numParticipants = askNumberOfTeams(scan);
+	 			int strategyChoice = askStrategy(scan);
+	 			chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
+	 			System.out.println("\nTournament Name: " + tournamentName);
+	 			System.out.println("Number of Teams/Participants: " + numParticipants);
+	 			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
+	 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n", scan);
+	 			if (!isCorrect) {
+	 				System.out.println("Please edit your tournament information.");
+	 			}
+	 			else {
+	 				newTournament = new Tournament(tournamentName, numParticipants, chosenStrategy);
+	 				confirmTournament = true;
+	 			}
+	 		}
  		}
  	}
 
@@ -295,12 +310,23 @@ public class RunTournament {
 	 */
 	public static void main(String[] args) {
 		Boolean exitTournamentGenerator = false;
-		System.out.println("Welcome to the tournament game!");
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI window = new GUI();
+					window.getFrame().setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+//		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
-		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
+		Boolean yesCreate1 = askYesNo("\nWould you like to create a new tournament?\n", scan);
+		Boolean yesCreate = GUI.getIsYes();
  		while(!exitTournamentGenerator) {
 			if (yesCreate) {
-				createTournament(scan);
+				createTournament(yesCreate);
 			}
 			else {
 				break;
