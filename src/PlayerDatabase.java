@@ -134,7 +134,7 @@ public class PlayerDatabase {
 	
 	public static Player findPlayer(String playerName) {
 		for (Player player : players) {
-			if (playerName.equals(player.getName())) {
+			if (playerName.equalsIgnoreCase(player.getName())) {
 				return player;
 			}
 		}
@@ -147,6 +147,16 @@ public class PlayerDatabase {
 	 */
 	public static int getNumPlayers() {
 		return players.size();
+	}
+	
+	public static void generateDatabase() {
+		createDatabase();
+		createTable();
+		addPlayersToDatabase();		
+		getPlayersFromDatabase();
+		for (Player player : players) {
+			System.out.println(player);
+		}
 	}
 	
 	/**

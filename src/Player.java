@@ -49,6 +49,7 @@ public class Player {
 		this.sport = sport;
 		this.gender = gender;
 		this.heightInches = heightInches;
+		this.gamesPlayed = gamesPlayed;
 		this.teamWins = teamWins;
 		this.teamLosses = teamLosses;
 		this.classYear = classYear;

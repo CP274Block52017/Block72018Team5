@@ -17,7 +17,7 @@ public class ByGamesPlayedStrategy implements TournamentWinnerStrategy {
 	}
 	
 	public String getName() {
-		return "Greatest Average Games Played Winner";
+		return "Average Games Played";
 	}
 
 }

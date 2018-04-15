@@ -15,7 +15,7 @@ public class RunTournament {
 	
 	private static final int MAX_PARTICIPANTS = 16;
 	private static final int MAX_TEAM_SIZE = 5;
-	private static final int NUMBER_STRATEGIES = 1;
+	private static final int NUMBER_STRATEGIES = 6;
 	
 	private static final int RANDOM_STRATEGY = 1;
 	private static final int BY_HEIGHT_STRATEGY = 2;
@@ -63,6 +63,7 @@ public class RunTournament {
 	 */
 	private static Team createTeam(Scanner scan) {
 		Boolean confirmTeam = false;
+		Boolean existingPlayer;
 		Team newTeam = null;
 		//outer loop so that user can go back and edit/make new team if unhappy with initial entries
 		while (!confirmTeam) {
@@ -71,11 +72,22 @@ public class RunTournament {
 	 		int teamSize = 0;
 	 		//inner loop adds players to team until team is full
 	 		while (teamSize < MAX_TEAM_SIZE) {
-	 			String playerName = askName("\nWhich player do you want to add to your team?", scan);
-	 			Player chosenPlayer = PlayerDatabase.findPlayer(playerName);
-	 			newTeam.addPlayer(chosenPlayer);
-	 			System.out.println(playerName + " was added to Team " + teamName);
-	 			teamSize++;
+	 			existingPlayer = false;
+	 			//this loop checks to make sure the player name entered by the user actually corresponds to a player in the database, 
+	 			//and if it does not, gives user a chance to correct the input
+	 			while (!existingPlayer) {
+	 				String playerName = askName("\nWhich player do you want to add to your team?", scan);
+		 			Player chosenPlayer = PlayerDatabase.findPlayer(playerName);
+		 			if (chosenPlayer == null) {
+		 				System.out.println("Chosen player does not exist in athlete database. Please enter a valid player name.");
+		 			}
+		 			else {
+		 				newTeam.addPlayer(chosenPlayer);
+			 			System.out.println(playerName + " was added to Team " + teamName);
+			 			teamSize++;
+			 			existingPlayer = true;
+		 			}
+	 			}
 	 		}
 	 		//checks if user is happy with team; if not, go back and edit
 	 		if (teamSize == MAX_TEAM_SIZE) {
@@ -151,7 +163,12 @@ public class RunTournament {
  		Boolean validAnswer = false;
  		while(!validAnswer) {
  			System.out.println("Choose a strategy to determine the winner of the tournament from the following options: ");
- 			System.out.println("1: Random Selection");
+ 			System.out.println("1: Random Winner");
+ 			System.out.println("2: By Greatest Average Height");
+ 			System.out.println("3: By Greatest Average Games Played");
+ 			System.out.println("4: By Greatest Average Games Won");
+ 			System.out.println("5: By Greatest Average Games Lost");
+ 			System.out.println("6: By Greatest Average Class Year");
  			System.out.print("> ");
  			try {
  				chosenStrategy = scan.nextInt();
@@ -209,7 +226,12 @@ public class RunTournament {
  			chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
  			System.out.println("\nTournament Name: " + tournamentName);
  			System.out.println("Number of Teams/Participants: " + numParticipants);
- 			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
+ 			if (chosenStrategy.getName().equals("Random Winner")) {
+ 				System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
+ 			}
+ 			else {
+ 				System.out.println("Strategy to determine winner: Greatest " + chosenStrategy.getName());
+ 			}
  			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n", scan);
  			if (!isCorrect) {
  				System.out.println("Please edit your tournament information.");
@@ -246,7 +268,7 @@ public class RunTournament {
  			}
  			System.out.println("Team " + winningTeam.getName() + " has won the matchup!");
  			if (!chosenStrategy.getName().equals("Random Winner")) {
- 				System.out.println("Team " + winningTeam.getName() + " had an average of " + winningTeam.getLastRoundAverage() + " vs. the losing team's average of " + losingTeam.getLastRoundAverage());
+ 				System.out.println("Team " + winningTeam.getName() + " had a " + chosenStrategy.getName() + " of " + winningTeam.getLastRoundAverage() + " vs. the losing team's " + chosenStrategy.getName() + " of " + losingTeam.getLastRoundAverage());
  			}
  			nextRoundTeams.add(winningTeam);
  		}
@@ -289,6 +311,8 @@ public class RunTournament {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		PlayerDatabase.generateDatabase();
+		
 		Boolean exitTournamentGenerator = false;
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);

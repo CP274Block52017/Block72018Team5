@@ -17,7 +17,7 @@ public class ByGamesLostStrategy implements TournamentWinnerStrategy {
 	}
 	
 	public String getName() {
-		return "Greatest Average Games Lost Winner";
+		return "Average Games Lost";
 	}
 
 }

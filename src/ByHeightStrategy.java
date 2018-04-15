@@ -17,7 +17,7 @@ public class ByHeightStrategy implements TournamentWinnerStrategy {
 	}
 	
 	public String getName() {
-		return "Greatest Average Height Winner";
+		return "Average Height";
 	}
 
 }
