@@ -10,64 +10,96 @@
  */
 public class Players {
 	
-	private static String name;
-	private static String sport;
-	private static String gender;
-	private static int height;
-	private static int gamesPlayed;
-	private static int wins;
-	private static int losses;
-	private static int year;
+	private String name;
+	private String sport;
+	private String gender;
+	private int heightInches;
+	private int gamesPlayed;
+	private int teamWins;
+	private int teamLosses;
+	private int classYear;
 	
 	/**
 	 * Constructor for Player class.
 	 * @param name - name of the player.
 	 */
-	public Players(String name, String sport, String gender, int height, int gamesPlayed, int wins, int losses, int year) {
+	public Players(String name, String sport, String gender, int heightInches, int gamesPlayed, int teamWins, int teamLosses, int classYear) {
 		this.name = name;
 		this.sport = sport;
-		this.height = height;
-		this.gamesPlayed = gamesPlayed;
-		this.wins = wins;
-		this.losses = losses;
-		this.year = year;
 		this.gender = gender;
+		this.heightInches = heightInches;
+		this.teamWins = teamWins;
+		this.teamLosses = teamLosses;
+		this.classYear = classYear;
+	}
+	
+	public String toString() {
+		return "\nName: " + name + "\nSport: " + sport + "\nGender: " + gender + "\nHeight (in.): " + heightInches + "\nGames Played (2017-18): " 
+				+ gamesPlayed + "\nTeam's Wins: " + teamWins + "\nTeam's Losses: " + teamLosses + "\nClass Year: " + classYear;
 	}
 	
 	public String getName() {
 		return name;
 	}
-	
-	public static void setName(String newName) {
-		name = newName;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
+
 	public String getSport() {
 		return sport;
 	}
-	
+
+	public void setSport(String sport) {
+		this.sport = sport;
+	}
+
 	public String getGender() {
 		return gender;
 	}
-	
-	public int getHeight() {
-		return height;
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
-	
+
+	public int getHeightInches() {
+		return heightInches;
+	}
+
+	public void setHeightInches(int heightInches) {
+		this.heightInches = heightInches;
+	}
+
 	public int getGamesPlayed() {
 		return gamesPlayed;
 	}
-	
-	public int getWins() {
-		return wins;
+
+	public void setGamesPlayed(int gamesPlayed) {
+		this.gamesPlayed = gamesPlayed;
 	}
-	
-	public int getLosses() {
-		return losses;
+
+	public int getTeamWins() {
+		return teamWins;
 	}
-	
-	public int getYear() {
-		return year;
+
+	public void setTeamWins(int teamWins) {
+		this.teamWins = teamWins;
+	}
+
+	public int getTeamLosses() {
+		return teamLosses;
+	}
+
+	public void setTeamLosses(int teamLosses) {
+		this.teamLosses = teamLosses;
+	}
+
+	public int getClassYear() {
+		return classYear;
+	}
+
+	public void setClassYear(int classYear) {
+		this.classYear = classYear;
 	}
 	
 }
