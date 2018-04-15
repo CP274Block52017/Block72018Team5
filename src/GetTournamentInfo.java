@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,9 +14,7 @@ import javax.swing.JTextField;
 
 
 
-public class GetTournamentName extends JFrame{
-
-
+public class GetTournamentInfo extends JFrame{
 	private JLabel startLabel;
 	private JTextField nameTextField;
 	private JButton continueButton;
@@ -26,25 +26,33 @@ public class GetTournamentName extends JFrame{
 	private boolean hasBeenClicked;
 	private JComboBox participantsComboBox;
 	
-	private static final int START_FRAME_WIDTH = 500;
-	private static final int START_FRAME_HEIGHT = 500;
+	private static final int START_FRAME_WIDTH = 1000;
+	private static final int START_FRAME_HEIGHT = 1000;
+	private static final int FRAME_WIDTH = 50;
+	private static final int FRAME_HEIGHT= 50;
 	
-	private static final int TEXT_FIELD_WIDTH = 10;
+	private static final int TEXT_FIELD_WIDTH = 50;
 	
 	
-	public GetTournamentName(String prompt){
-		this.prompt = prompt;
-		
+	public GetTournamentInfo(String prompt){
+		createControlPanel();
+		label = new JLabel(prompt);
 		choiceListener = new ChoiceListener();
 		textListener = new TextListener();
 		buttonListener = new ContinueListener();
 		
+		setSize(START_FRAME_WIDTH, START_FRAME_HEIGHT);	
+	}
+	
+	public void createControlPanel() {
 		JPanel comboPanel = createComboBox();
 		JPanel namePanel = createTournamentTextField();
-		createContinueButton();
-		createPanel();
-		
-		setSize(START_FRAME_WIDTH, START_FRAME_HEIGHT);	
+		JPanel buttonPanel = createContinueButton();
+		JPanel controlPanel = new JPanel();
+		controlPanel.setLayout(new BorderLayout());
+		controlPanel.add(comboPanel, BorderLayout.CENTER);
+		controlPanel.add(namePanel, BorderLayout.NORTH);
+		controlPanel.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
 
@@ -57,8 +65,10 @@ public class GetTournamentName extends JFrame{
 		participantsComboBox.addItem(16);
 		participantsComboBox.addActionListener(choiceListener);
 		JPanel panel = new JPanel();
-		panel.add(startLabel);
-		panel.add(participantsComboBox);
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		panel.setLayout(new BorderLayout());
+		panel.add(startLabel, BorderLayout.NORTH);
+		panel.add(participantsComboBox, BorderLayout.CENTER);
 		return panel;
 	}
 	
@@ -66,14 +76,20 @@ public class GetTournamentName extends JFrame{
 		startLabel = new JLabel("What is the name of the tournament?");
 		nameTextField = new JTextField(TEXT_FIELD_WIDTH);
 		JPanel panel = new JPanel();
-		panel.add(startLabel);
-		panel.add(nameTextField);
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		panel.setLayout(new BorderLayout());
+		panel.add(startLabel, BorderLayout.NORTH);
+		panel.add(nameTextField, BorderLayout.CENTER);
 		return panel;
 	}
-	public void createContinueButton() {
+	public JPanel createContinueButton() {
 		continueButton = new JButton("Next");
 		buttonListener = new ContinueListener();
 		continueButton.addActionListener(buttonListener);
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		panel.add(continueButton, BorderLayout.CENTER);
+		return panel;
 	}
 
 	public boolean getClick() {
