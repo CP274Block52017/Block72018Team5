@@ -1,7 +1,18 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 
 /**
  * This class contains the prompts for user input and uses it to 
@@ -18,32 +29,41 @@ public class RunTournament {
 	private static final int NUMBER_STRATEGIES = 1;
 	private static final int RANDOM_STRATEGY = 1;
 	
+	
 	private static Tournament newTournament;
 	private static TournamentWinnerStrategy chosenStrategy;
+	private static Team finalWinningTeam;
+	private static boolean yesCreate;
 	
+	private static JButton yesButton;
+	private static JButton noButton;
+	private static JLabel label;
+	private static ActionListener yesListener;
+	private ActionListener noListener;
+	private static JPanel panel;
+	
+	private static final int FRAME_WIDTH = 500;
+	private static final int FRAME_HEIGHT = 500;
+	
+
 	/**
 	 * This method gets user input on whether or not they would like to
 	 * create a new tournament.
 	 * @param prompt - the prompt to ask the user a question.
-	 * @param scan - the input from the user.
 	 * @return boolean - returns true or false depending on the user's answer.
 	 */
-	private static boolean askYesNo(String prompt, Scanner scan) {
+	private static boolean askYesNo(String prompt) {
 		boolean isYes = false;
 		boolean validAnswer = false;
 		while (!validAnswer) {
-			System.out.print(prompt);
-			String answer = scan.nextLine();
-			if (answer.equalsIgnoreCase("Yes")) {
+			if (isYes) {
 				isYes = true;
 				validAnswer = true;
 			}
-			else if (answer.equalsIgnoreCase("No")) {
+			else {
+				//exitWindow();
 				isYes = false;
 				validAnswer = true;
-			}
-			else {
-				System.out.println("\nInvalid entry. Please enter 'yes' or 'no'.");
 			}
 		}
 		return isYes;
@@ -75,7 +95,7 @@ public class RunTournament {
 	 			System.out.println("\nTeam Name: " + teamName);
 	 	 		System.out.println("\nTeam members:");
 	 	 		System.out.println(newTeam);
-	 	 		Boolean isCorrect = askYesNo("Is this the correct information for your team?\n", scan);
+	 	 		Boolean isCorrect = askYesNo("Is this the correct information for your team?\n");
 	 			if (!isCorrect) {
 	 				System.out.println("\nPlease edit your team information.");
 	 			}
@@ -89,7 +109,6 @@ public class RunTournament {
 		}
  		return newTeam;
  	}
-
 
 	
 	/**
@@ -182,7 +201,7 @@ public class RunTournament {
  			System.out.println("\nTournament Name: " + tournamentName);
  			System.out.println("Number of Teams/Participants: " + numParticipants);
  			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
- 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n", scan);
+ 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n");
  			if (!isCorrect) {
  				System.out.println("Please edit your tournament information.");
  			}
@@ -204,6 +223,7 @@ public class RunTournament {
  	private static Team determineRoundWinners(TournamentWinnerStrategy strategy, ArrayList<Team> teams, Scanner scan) {
  		ArrayList<Team> nextRoundTeams = new ArrayList<Team>();
  		Team winningTeam = null;
+ 		Boolean isFinalRound = true;
  		for (int i = 0; i < teams.size(); i += 2) {
  			System.out.println("\nTeam Matchup: " + teams.get(i).getName() + " vs. " + teams.get(i + 1).getName());
  			winningTeam = strategy.determineWinner(teams.get(i), teams.get(i + 1));
@@ -211,11 +231,12 @@ public class RunTournament {
  			nextRoundTeams.add(winningTeam);
  		}
  		if (nextRoundTeams.size() != 1) {
+ 			isFinalRound = false;
  			System.out.println("\nNext round's matchups: ");
  	 		for (int i = 0; i < nextRoundTeams.size(); i += 2) {
  	 			System.out.println(nextRoundTeams.get(i).getName() + " vs. " + nextRoundTeams.get(i + 1).getName());
  	 		}
- 	 		Boolean yesContinue = askYesNo("\nWould you like to continue to the next round?\n", scan);
+ 	 		Boolean yesContinue = askYesNo("\nWould you like to continue to the next round?\n");
  			if (yesContinue) {
  				determineRoundWinners(strategy, nextRoundTeams, scan);
  			}
@@ -223,20 +244,25 @@ public class RunTournament {
  				System.out.println("Tournament terminated!");
  			}
  		}
- 		winningTeam = nextRoundTeams.get(0);
- 		return winningTeam;
+ 		if (isFinalRound) {
+ 	 		finalWinningTeam = winningTeam;
+ 	 	}
+ 		return finalWinningTeam;
  	}
-
-
 	/**
 	 * The main method that runs the tournament.
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Boolean exitTournamentGenerator = false;
-		System.out.println("Welcome to the tournament game!");
-		Scanner scan = new Scanner(System.in);
-		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
+		
+		JFrame frame = new WelcomeSign("Welcome to the tournament game!");
+		frame.setBackground(Color.black);
+		frame.setTitle("Start Menu");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		//Scanner scan = new Scanner(System.in);
+	//	Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n");
  		while(!exitTournamentGenerator) {
 			if (yesCreate) {
 				createTournament(scan);
@@ -269,7 +295,7 @@ public class RunTournament {
 			newTournament.setWinner(tournamentWinner);
 			System.out.println("Team " + tournamentWinner.getName() + " has won the tournament!");
 			
-			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n", scan);
+			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n");
 			if(!startAgain) {
 				exitTournamentGenerator = true;
 			}
