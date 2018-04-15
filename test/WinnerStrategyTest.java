@@ -28,16 +28,19 @@ public class WinnerStrategyTest {
 		Team testTeam2 = new Team("Test Team 2");
 		Team testTeam3 = new Team("Test Team 3");
 		Team testTeam4 = new Team("Test Team 4");
+		Team testTeam5 = new Team("Test Team 5");
 		for (int i = 0; i <= 5; i++) {
-			testTeam1.addPlayer("testPlayer" + i);
-			testTeam2.addPlayer("testPlayer" + i);
-			testTeam3.addPlayer("testPlayer" + i);
-			testTeam4.addPlayer("testPlayer" + i);
+			testTeam1.addPlayer(new Players("Emma", "Basketball", "Female", 69, 5, 10, 6, 2));
+			testTeam2.addPlayer(new Players("Kelli", "Soccer", "Female", 66, 8, 10, 5, 3));
+			testTeam3.addPlayer(new Players("Nicole", "Lacrosse", "Female", 65, 7, 15, 1, 2));
+			testTeam4.addPlayer(new Players("Janet", "Golf", "Female", 55, 3, 7, 2, 4));
+			testTeam5.addPlayer(new Players("Dan", "Tennis", "Male", 78, 9, 11, 6, 4));
 		}
 		testTeams.add(testTeam1);
 		testTeams.add(testTeam2);
 		testTeams.add(testTeam3);
 		testTeams.add(testTeam4);
+		testTeams.add(testTeam5);
 		Collections.shuffle(testTeams);
 	}
 	
