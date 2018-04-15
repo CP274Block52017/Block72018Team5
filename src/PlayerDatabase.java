@@ -29,25 +29,20 @@ public class PlayerDatabase {
 		
 	}
 	
-	/**
-	 * 
-	 * Creates the database and table of athletes and 
-	 * heir information. This information will be used by the 
-	 * tournament strategies.
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	private static void createDatabase() {
 		try (
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:" + PORT_NUMBER + "/"); // MySQL
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:" + PORT_NUMBER + "/?user=root&password=root");
 			Statement statement = conn.createStatement();
-			) {		
+		) {		
 			//create the database
-			String database = "create database if not exists AthletePlayers";
+			String database = "create database AthletePlayers";
 			statement.execute(database);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		
+	}
+	
+	private static void createTable() {
 		try (
 			Connection conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:" + PORT_NUMBER + 
@@ -67,7 +62,19 @@ public class PlayerDatabase {
 				"ClassYear int, " +
 				"primary key (Name));";
 			statement.execute(playerTable);
-			
+		} 
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	private static void addPlayersToDatabase() {
+		try (
+			Connection conn = DriverManager.getConnection(
+				"jdbc:mysql://localhost:" + PORT_NUMBER + 
+				"/AthletePlayers?user=root&password=root");
+			Statement statement = conn.createStatement();
+		) {
 			//add all of the players to the table
 			String insertPlayers = "insert into Players (Name, Sport, Gender, Height, GamesPlayed, TeamWins, TeamLosses, ClassYear) values "
 					+ "('Joran Meltzer', 'Basketball', 'Female', 63, 25, 2, 23, 2), "
@@ -82,12 +89,24 @@ public class PlayerDatabase {
 					+ "('Jenna McDonald', 'Tennis', 'Female', 65, 40, 6, 14, 2)";
 			int countInserted = statement.executeUpdate(insertPlayers);
 			System.out.println(countInserted + " players inserted.\n");
-			
+		} 
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}	
+	}
+	
+	private static void getPlayersFromDatabase() {
+		try (
+				Connection conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:" + PORT_NUMBER + 
+					"/AthletePlayers?user=root&password=root");
+				Statement statement = conn.createStatement();
+		) {
 			String getEverything = "select Name, Sport, Gender, Height, GamesPlayed, TeamWins, TeamLosses, ClassYear from Players";
-
+	
 			ResultSet allPlayers;
 			allPlayers = statement.executeQuery(getEverything);
-
+	
 			while (allPlayers.next()) {
 				String name = allPlayers.getString("Name");
 				String sport = allPlayers.getString("Sport");
@@ -99,19 +118,17 @@ public class PlayerDatabase {
 				int classYear = allPlayers.getInt("ClassYear");
 				players.add(new Player(name, sport, gender, heightInches, gamesPlayed, wins, losses, classYear));
 			}
-			for (Player player : players) {
-				System.out.println(player);
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
 		}
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}	
 	}
 	
 	/**
 	 * Gets all of the players entered into the database
 	 * @return list of players
 	 */
-	public static ArrayList<Player> getPlayers() {
+	public static ArrayList<Player> getPlayersList() {
 		return players;
 	}
 	
@@ -122,6 +139,24 @@ public class PlayerDatabase {
 	public static int getNumPlayers() {
 		return players.size();
 	}
+	
+	/**
+	 * 
+	 * Creates the database and table of athletes and 
+	 * heir information. This information will be used by the 
+	 * tournament strategies.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		createDatabase();
+		createTable();
+		addPlayersToDatabase();		
+		getPlayersFromDatabase();
+		for (Player player : players) {
+			System.out.println(player);
+		}
+	}
+
 	
 }
 
