@@ -187,6 +187,20 @@ public class CreatePlayerDatabase {
 		return players;
 	}
 	
+	public static void showInformation() {
+		System.out.println("The players selected are: ");;
+		int rowCount = 0;
+		for(int i = 0; i < players.size(); i++) {
+			System.out.println("Name: " + players.get(i).getName() + ", Sport: " + players.get(i).getSport() 
+								+ ", Gender: " + players.get(i).getGender() + ", Height(in): " + players.get(i).getHeightInches() 
+								+ ", Games played: " + players.get(i).getGamesPlayed() + ", Total wins: " + players.get(i).getGamesPlayed()  + ", Total losses: " 
+								+ players.get(i).getTeamWins() + ", Year in school: " + players.get(i).getTeamLosses());;
+			System.out.println("Total number of records = " + rowCount);
+			rowCount++;
+		}
+		System.out.println("Total number of records = " + rowCount);
+	}
+	
 	/**
 	 * Creates the database and table of athletes and 
 	 * their information. This information will be used by the 
@@ -194,11 +208,12 @@ public class CreatePlayerDatabase {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		CreatePlayerDatabase.createDatabase();
-		CreatePlayerDatabase.createTable();
-		CreatePlayerDatabase.addPlayers();
+		//CreatePlayerDatabase.createDatabase();
+		//CreatePlayerDatabase.createTable();
+		//CreatePlayerDatabase.addPlayers();
 		CreatePlayerDatabase.getPlayers();
 		//CreatePlayerDatabase.getPlayerNames();
+		CreatePlayerDatabase.showInformation();
 	}
 	
 }
