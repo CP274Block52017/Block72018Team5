@@ -154,7 +154,7 @@ public class CreatePlayerDatabase {
 	 * Creates players with the given attributes of each player in
 	 * the database and stores them all in an arraylist.
 	 */
-	public static void getPlayers() {
+	public static ArrayList<Players> getPlayers() {
 		try (
 			Connection conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:" + PORT_NUMBER + 
@@ -181,24 +181,34 @@ public class CreatePlayerDatabase {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+		return players;
 	}
 	
 	public static ArrayList<Players> getPlayerList() {
 		return players;
 	}
 	
+	public static Players findPlayer(String playerName) {
+		for (Players player : players) {
+			if (playerName.equals(player.getName())) {
+				return player;
+			}
+		}
+		return null;
+	}
+	
 	public static void showInformation() {
-		System.out.println("The players selected are: ");;
-		int rowCount = 0;
+		System.out.println("The players in database are: ");;
+		int rowCount = 1;
 		for(int i = 0; i < players.size(); i++) {
 			System.out.println("Name: " + players.get(i).getName() + ", Sport: " + players.get(i).getSport() 
-								+ ", Gender: " + players.get(i).getGender() + ", Height(in): " + players.get(i).getHeightInches() 
+								+ ", Gender: " + players.get(i).getGender() + ", Height in inches: " + players.get(i).getHeightInches() 
 								+ ", Games played: " + players.get(i).getGamesPlayed() + ", Total wins: " + players.get(i).getGamesPlayed()  + ", Total losses: " 
 								+ players.get(i).getTeamWins() + ", Year in school: " + players.get(i).getTeamLosses());;
-			System.out.println("Total number of records = " + rowCount);
+			System.out.println("Player Total = " + rowCount);
 			rowCount++;
 		}
-		System.out.println("Total number of records = " + rowCount);
+		System.out.println("Total number of players = " + (rowCount - 1));
 	}
 	
 	/**
@@ -208,12 +218,11 @@ public class CreatePlayerDatabase {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//CreatePlayerDatabase.createDatabase();
-		//CreatePlayerDatabase.createTable();
-		//CreatePlayerDatabase.addPlayers();
+		CreatePlayerDatabase.createDatabase();
+		CreatePlayerDatabase.createTable();
+		CreatePlayerDatabase.addPlayers();
 		CreatePlayerDatabase.getPlayers();
-		//CreatePlayerDatabase.getPlayerNames();
-		CreatePlayerDatabase.showInformation();
+		//CreatePlayerDatabase.showInformation();
 	}
 	
 }

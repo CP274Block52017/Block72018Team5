@@ -16,10 +16,17 @@ public class RunTournament {
 	private static final int MAX_PARTICIPANTS = 16;
 	private static final int MAX_TEAM_SIZE = 5;
 	private static final int NUMBER_STRATEGIES = 1;
+	
 	private static final int RANDOM_STRATEGY = 1;
+	private static final int BY_HEIGHT_STRATEGY = 2;
+	private static final int BY_GAMESPLAYED_STRATEGY = 3;
+	private static final int BY_GAMESWON_STRATEGY = 4;
+	private static final int BY_GAMESLOST_STRATEGY = 5;
+	private static final int BY_CLASSYEAR_STRATEGY = 6;
 	
 	private static Tournament newTournament;
 	private static TournamentWinnerStrategy chosenStrategy;
+	private static Team finalWinningTeam;
 	
 	/**
 	 * This method gets user input on whether or not they would like to
@@ -64,15 +71,10 @@ public class RunTournament {
 	 		int teamSize = 0;
 	 		//inner loop adds players to team until team is full
 	 		while (teamSize < MAX_TEAM_SIZE) {
-	 			String player = askName("\nWhich player do you want to add to your team?", scan);
-	 			//when a player name is entered, it should search the database for the corresponding name,
-	 			//get all the attributes and put that member on the team, should find a way to store
-	 			//all the attributes of each team member, aka height, age, to a list of some sort
-	 			//in order to easily use them for the strategies.
-	 			//Players newPlayer = new Players(); 
-	 			//newTeam.addPlayer(newPlayer.getName());
-	 			newTeam.addPlayer(player);
-	 			System.out.println(player + " was added to Team " + teamName);
+	 			String playerName = askName("\nWhich player do you want to add to your team?", scan);
+	 			Players chosenPlayer = CreatePlayerDatabase.findPlayer(playerName);
+	 			newTeam.addPlayer(chosenPlayer);
+	 			System.out.println(playerName + " was added to Team " + teamName);
 	 			teamSize++;
 	 		}
 	 		//checks if user is happy with team; if not, go back and edit
@@ -124,7 +126,7 @@ public class RunTournament {
 	 			System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8, or 16) ");
 	 	 		numParticipants = scan.nextInt();
 	 	 		scan.nextLine();
-	 	 		if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == 16)) {
+	 	 		if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == MAX_PARTICIPANTS)) {
 	 	 			validAnswer = true;
 	 	 		}
 	 		}
@@ -150,6 +152,11 @@ public class RunTournament {
  		while(!validAnswer) {
  			System.out.println("Choose a strategy to determine the winner of the tournament from the following options: ");
  			System.out.println("1: Random Selection");
+ 			System.out.println("2: Athletes' Hieght");
+ 			System.out.println("3: Athletes' Games Played");
+ 			System.out.println("4: Athletes' Games Won");
+ 			System.out.println("5: Athletes' Games Lost");
+ 			System.out.println("6: Athletes' Class Year");
  			System.out.print("> ");
  			try {
  				chosenStrategy = scan.nextInt();
@@ -158,6 +165,26 @@ public class RunTournament {
  				switch (chosenStrategy) {
  				case RANDOM_STRATEGY:
  					chosenStrategy = RANDOM_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_HEIGHT_STRATEGY: 
+ 					chosenStrategy = BY_HEIGHT_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_GAMESPLAYED_STRATEGY: 
+ 					chosenStrategy = BY_GAMESPLAYED_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_GAMESWON_STRATEGY: 
+ 					chosenStrategy = BY_GAMESWON_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_GAMESLOST_STRATEGY: 
+ 					chosenStrategy = BY_GAMESLOST_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_CLASSYEAR_STRATEGY: 
+ 					chosenStrategy = BY_CLASSYEAR_STRATEGY;
  					validAnswer = true;
  					break;
  				default: 
@@ -200,22 +227,36 @@ public class RunTournament {
  	}
 
  	/**
- 	 * 
- 	 * @param strategy
- 	 * @param teams
- 	 * @param scan
- 	 * @return
+ 	 * This method determines the winner of each round and uses recursion to do
+ 	 * this method again and again until the tournament is complete
+ 	 * @param strategy to determine winner
+ 	 * @param teams that are playing tin the tournament
+ 	 * @param new scan to get user input
+ 	 * @return the team that won
  	 */
  	private static Team determineRoundWinners(TournamentWinnerStrategy strategy, ArrayList<Team> teams, Scanner scan) {
  		ArrayList<Team> nextRoundTeams = new ArrayList<Team>();
  		Team winningTeam = null;
+ 		Team losingTeam = null;
+ 		Boolean isFinalRound = true;
  		for (int i = 0; i < teams.size(); i += 2) {
  			System.out.println("\nTeam Matchup: " + teams.get(i).getName() + " vs. " + teams.get(i + 1).getName());
+ 			
  			winningTeam = strategy.determineWinner(teams.get(i), teams.get(i + 1));
+ 			if (teams.get(i).getName().equals(winningTeam.getName())) {
+ 				losingTeam = teams.get(i + 1);
+ 			}
+ 			else {
+ 				losingTeam = teams.get(i);
+ 			}
  			System.out.println("Team " + winningTeam.getName() + " has won the matchup!");
+ 			if (!chosenStrategy.getName().equals("Random Winner")) {
+ 				System.out.println("Team " + winningTeam.getName() + " had an average of " + winningTeam.getLastRoundAverage() + " vs. the losing team's average of " + losingTeam.getLastRoundAverage());
+ 			}
  			nextRoundTeams.add(winningTeam);
  		}
  		if (nextRoundTeams.size() != 1) {
+ 			isFinalRound = false;
  			System.out.println("\nNext round's matchups: ");
  	 		for (int i = 0; i < nextRoundTeams.size(); i += 2) {
  	 			System.out.println(nextRoundTeams.get(i).getName() + " vs. " + nextRoundTeams.get(i + 1).getName());
@@ -228,8 +269,23 @@ public class RunTournament {
  				System.out.println("Tournament terminated!");
  			}
  		}
- 		winningTeam = nextRoundTeams.get(0);
- 		return winningTeam;
+ 		if (isFinalRound) {
+ 	 		finalWinningTeam = winningTeam;
+ 	 	}
+ 		return finalWinningTeam;
+ 	}
+ 	
+ 	public static Team determineWinningAverage(Team firstTeam, Team secondTeam) {
+ 		if (firstTeam.getLastRoundAverage() > secondTeam.getLastRoundAverage()) {
+			return firstTeam;
+		}
+		else if (firstTeam.getLastRoundAverage() < secondTeam.getLastRoundAverage()) {
+			return secondTeam;
+		}
+		else { // if teams are tied, pick a random winner
+			RandomWinnerStrategy randomWinner = new RandomWinnerStrategy();
+			return randomWinner.determineWinner(firstTeam, secondTeam);
+		}
  	}
 
 
