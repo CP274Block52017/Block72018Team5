@@ -1,5 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -15,68 +20,49 @@ import javax.swing.border.TitledBorder;
 public class WelcomeSign extends JFrame{
 
 
-	private JLabel startLabel;
-	private JTextField startTextField;
-	private JButton startButton;
-	private JLabel label;
-	private ActionListener startListener;
+	private JPanel contentPanel;
 	private String prompt;
-	private boolean hasBeenClicked;
-	
-	private static final int START_FRAME_WIDTH = 500;
-	private static final int START_FRAME_HEIGHT = 500;
-	
-	private static final int START_FIELD_WIDTH = 10;
-	
 	
 	public WelcomeSign(String prompt){
 		this.prompt = prompt;
-		
-		createTextField();
-		createButton();
-		createPanel();
-		
-		setSize(START_FRAME_WIDTH, START_FRAME_HEIGHT);	
-	}
-	
-	public void createTextField() {
-		startLabel = new JLabel("Who is creating a tournament today?");
-		startTextField = new JTextField(START_FIELD_WIDTH);
-	}
-	public void createButton() {
-		startButton = new JButton("Start");
-		startListener = new StartButton();
-		startButton.addActionListener(startListener);
+		setTitle("Start Menu");
+		setBackground(Color.BLACK);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 792, 422);
+		contentPanel = new JPanel();
+		contentPanel.setBackground(new Color(0, 0, 0));
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setLayout(new BorderLayout(0, 0));
+		contentPanel.add(createLabel(), BorderLayout.NORTH);
+		contentPanel.add(createButton(), BorderLayout.CENTER);
+		setContentPane(contentPanel);
 	}
 
-	public boolean getClick() {
-		return hasBeenClicked;
+	public JButton createButton() {
+		JButton button = new JButton("Start");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StartMenuAttempt frame = new StartMenuAttempt();
+				frame.setVisible(true);
+			}
+		});
+		button.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
+		button.setBackground(Color.BLACK);
+		button.setForeground(Color.WHITE);
+		button.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		button.setPreferredSize(new Dimension(50, 35));
+		return button;
 	}
 	
-	private void createPanel() {
-		label = new JLabel(prompt);
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		panel.add(label, BorderLayout.BEFORE_FIRST_LINE);
-		panel.add(startTextField, BorderLayout.CENTER);
-		panel.add(startButton, BorderLayout.SOUTH);
-		add(panel);
-	}
-
-class StartButton extends JFrame implements ActionListener {
-		
-		
-		public StartButton() {
-			hasBeenClicked = false;
-		}
-
-		public void actionPerformed(ActionEvent e) {
-			JFrame frame = new StartMenuAttempt("Would you like to create a new tournament?");
-			frame.setBackground(Color.black);
-			frame.setTitle("Start Menu");
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setVisible(true);
-		}
-	}
-	
+	public JLabel createLabel(){
+		JLabel label = new JLabel(prompt);
+		label.setFont(new Font("Verdana", Font.PLAIN, 20));
+		label.setPreferredSize(new Dimension(445, 60));
+		label.setMinimumSize(new Dimension(445, 60));
+		label.setMaximumSize(new Dimension(445, 60));
+		label.setBackground(Color.BLACK);
+		label.setForeground(Color.WHITE);
+		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+		return label;
+	}	
 }

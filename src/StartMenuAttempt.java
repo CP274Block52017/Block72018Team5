@@ -1,5 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,59 +12,69 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class StartMenuAttempt extends JFrame{
-	private JLabel rateLabel;
-	private JTextField rateField;
-	private JButton button;
-	private JButton yesButton;
-	private JButton noButton;
-	private JLabel label;
-	private ActionListener yesListener;
+	
+	private JPanel controlPanel;
 	private String prompt;
-	private boolean hasBeenClicked;
 	
-	private static final int FRAME_WIDTH = 500;
-	private static final int FRAME_HEIGHT = 500;
-	
-	private static final int FIELD_WIDTH = 310;
-	private static final int FIELD_HEIGHT = 10;
-	
-	
-	public StartMenuAttempt(String prompt){
-		this.prompt = prompt;
-		createComponenets();
-		setSize(FRAME_WIDTH, FRAME_HEIGHT);	
+	public StartMenuAttempt(){
+		setTitle("Begin");
+		setBackground(Color.BLACK);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 792, 422);
+		controlPanel = new JPanel();
+		controlPanel.setBackground(new Color(0, 0, 0));
+		controlPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		controlPanel.setLayout(new BorderLayout(0, 0));
+		controlPanel.add(createLabel(), BorderLayout.NORTH);
+		controlPanel.add(createYesButton(), BorderLayout.WEST);
+		controlPanel.add(createNoButton(), BorderLayout.EAST);
+		setContentPane(controlPanel);
 	}
 	
-	private void createComponenets() {
-		yesButton = new JButton("Yes!");
-		yesListener = new YesButton();
-		yesButton.addActionListener(yesListener);
-		noButton = new JButton("No!");
-		label = new JLabel(prompt);
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		panel.add(label);
-		panel.add(yesButton, BorderLayout.WEST);
-		panel.add(noButton, BorderLayout.EAST);
-		add(panel);
-	}
-
-class YesButton extends JFrame implements ActionListener {
-		
-		
-		public YesButton() {
-			hasBeenClicked = false;
-		}
-
-		public void actionPerformed(ActionEvent e) {
-			JFrame frame = new GetTournamentInfo("What would you like the name of your tournament to be?");
-			frame.setBackground(Color.black);
-			frame.setTitle("Start Menu");
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setVisible(true);
-		}
+	public JLabel createLabel(){
+		JLabel label = new JLabel("Would you like to start a new tournament?");
+		label.setFont(new Font("Verdana", Font.PLAIN, 20));
+		label.setPreferredSize(new Dimension(445, 60));
+		label.setMinimumSize(new Dimension(445, 60));
+		label.setMaximumSize(new Dimension(445, 60));
+		label.setBackground(Color.BLACK);
+		label.setForeground(Color.WHITE);
+		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+		return label;
 	}
 	
+	public JButton createYesButton() {
+		JButton button = new JButton("Yes");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GetTournamentName frame = new GetTournamentName();
+				frame.setVisible(true);
+			}
+		});
+		button.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
+		button.setBackground(Color.BLACK);
+		button.setForeground(Color.WHITE);
+		button.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		button.setPreferredSize(new Dimension(100, 35));
+		return button;
+	}
+	
+	public JButton createNoButton() {
+		JButton button = new JButton("No");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PickStrategy frame = new PickStrategy();
+				frame.setVisible(true);
+			}
+		});
+		button.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
+		button.setBackground(Color.BLACK);
+		button.setForeground(Color.WHITE);
+		button.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		button.setPreferredSize(new Dimension(100, 35));
+		return button;
+	}	
 }
