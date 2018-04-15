@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 /**
  * This interface provides the methods needed to create
  * multiple concrete implementations for different strategies to
@@ -7,21 +6,20 @@ import java.util.ArrayList;
  * @author Nicole
  * @author Kelli
  * @author Emma
- *
  */
 public interface TournamentWinnerStrategy {
 	
 	/**
 	 * Determines the winning team of the tournament. 
-	 * @param teams
-	 * @return
+	 * @param first team in match up and second team in matchup
+	 * @return the winner of the match up
 	 */
 	public Team determineWinner(Team firstTeam, Team secondTeam);
-	
+
 	/**
 	 * Provides the name of the winning team.
-	 * @return
+	 * @return name
 	 */
 	public String getName();
-
+	
 }
