@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -26,4 +25,5 @@ public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 	public String getName() {
 		return "Random Winner";
 	}
+	
 }
