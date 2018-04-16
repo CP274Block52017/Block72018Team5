@@ -325,7 +325,7 @@ public class RunTournament {
 
 
 	/**
-	 * The main method that runs the tournament.
+	 * This is the main method that runs the tournament.
 	 * @param args
 	 */
 	public static void main(String[] args) {
