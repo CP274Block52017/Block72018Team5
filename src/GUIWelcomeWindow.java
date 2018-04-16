@@ -1,26 +1,25 @@
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import java.awt.Font;
-
-public class GUIWelcomeWindow extends JFrame {
+	import javax.swing.JFrame;
+	import javax.swing.JButton;
+	import java.awt.Color;
+	import java.awt.event.ActionListener;
+	import java.awt.event.ActionEvent;
+	import javax.swing.JLabel;
+	import java.awt.Font;
 	
-	private static final long serialVersionUID = 1L;
-	private static JFrame frame;
-	private static boolean hasBeenClicked;
-	private ActionListener yesListener;
-	private ActionListener noListener;
-	private static final int FRAME_WIDTH = 1500;
-	private static final int FRAME_HEIGHT = 1500;
+	public class GUIWelcomeWindow extends JFrame {
 	
-	public GUIWelcomeWindow() {
-		initialize();
-		setSize(FRAME_WIDTH, FRAME_HEIGHT);	
-	}
+		private static final long serialVersionUID = 1L;
+		private static JFrame frame;
+		private static boolean hasBeenClicked;
+		private ActionListener yesListener;
+		private ActionListener noListener;
+		private static final int FRAME_WIDTH = 1500;
+		private static final int FRAME_HEIGHT = 1500;
+		
+		public GUIWelcomeWindow() {
+			initialize();
+			setSize(FRAME_WIDTH, FRAME_HEIGHT);	
+		}
 	
 	/**
 	 * Initialize the contents of the frame.
@@ -142,6 +141,9 @@ public class GUIWelcomeWindow extends JFrame {
 	
 	class NoButton extends JFrame implements ActionListener {
 		
+		/**
+		 * 
+		 */
 		private static final long serialVersionUID = 1L;
 
 		public NoButton() {
@@ -153,6 +155,7 @@ public class GUIWelcomeWindow extends JFrame {
 			hasBeenClicked = false;
 		}
 	}
+
 }
 
 

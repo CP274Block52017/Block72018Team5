@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-
 /**
- * This class contains the methods for creating a tournament. 
+ * This class contains the methods for creating
+ * a tournament. 
  * @author Nicole
  * @author Kelli
- * @author Emma
  * @author Emma
  */
 public class Tournament {
@@ -14,9 +13,8 @@ public class Tournament {
 	private TournamentWinnerStrategy winnerStrategy;
 	private ArrayList<Team> teams;
 	private Team winner;
-	private ArrayList<Team> teams;
-	private Team winner;
 
+	
 	/**
 	 * Constructor contains needed information for creating
 	 * a new tournament.
@@ -37,6 +35,7 @@ public class Tournament {
 	 */
 	public TournamentWinnerStrategy getWinnerStrategy() {
 		return winnerStrategy;
+	}
 	
 	/**
 	 * Adds a team to the list of teams in the tournament.
@@ -70,12 +69,5 @@ public class Tournament {
 		this.winner = winner;
 	}
 	
-	/**
-	 * Allows us to set winner of tournament if we want to.
-	 * @param winner of the tournament
-	 */
-	public void setWinner(Team winner) {
-		this.winner = winner;
-	}
-	
 }
+

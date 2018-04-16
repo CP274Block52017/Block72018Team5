@@ -1,4 +1,3 @@
-
 /**
  * This interface provides the methods needed to create
  * multiple concrete implementations for different strategies to
@@ -15,7 +14,6 @@ public interface TournamentWinnerStrategy {
 	 * @param first team in match up and second team in matchup
 	 * @return the winner of the match up
 	 */
-
 	public Team determineWinner(Team firstTeam, Team secondTeam);
 
 	/**
@@ -23,5 +21,6 @@ public interface TournamentWinnerStrategy {
 	 * @return name
 	 */
 	public String getName();
-
+	
 }
+
