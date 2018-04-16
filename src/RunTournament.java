@@ -1,18 +1,7 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 
 /**
  * This class contains the prompts for user input and uses it to 
@@ -26,44 +15,42 @@ public class RunTournament {
 	
 	private static final int MAX_PARTICIPANTS = 16;
 	private static final int MAX_TEAM_SIZE = 5;
-	private static final int NUMBER_STRATEGIES = 1;
-	private static final int RANDOM_STRATEGY = 1;
+	private static final int NUMBER_STRATEGIES = 6;
 	
+	private static final int RANDOM_STRATEGY = 1;
+	private static final int BY_HEIGHT_STRATEGY = 2;
+	private static final int BY_GAMESPLAYED_STRATEGY = 3;
+	private static final int BY_GAMESWON_STRATEGY = 4;
+	private static final int BY_GAMESLOST_STRATEGY = 5;
+	private static final int BY_CLASSYEAR_STRATEGY = 6;
 	
 	private static Tournament newTournament;
 	private static TournamentWinnerStrategy chosenStrategy;
 	private static Team finalWinningTeam;
-	private static boolean yesCreate;
 	
-	private static JButton yesButton;
-	private static JButton noButton;
-	private static JLabel label;
-	private static ActionListener yesListener;
-	private ActionListener noListener;
-	private static JPanel panel;
-	
-	private static final int FRAME_WIDTH = 500;
-	private static final int FRAME_HEIGHT = 500;
-	
-
 	/**
 	 * This method gets user input on whether or not they would like to
 	 * create a new tournament.
 	 * @param prompt - the prompt to ask the user a question.
+	 * @param scan - the input from the user.
 	 * @return boolean - returns true or false depending on the user's answer.
 	 */
-	private static boolean askYesNo(String prompt) {
+	private static boolean askYesNo(String prompt, Scanner scan) {
 		boolean isYes = false;
 		boolean validAnswer = false;
 		while (!validAnswer) {
-			if (isYes) {
+			System.out.print(prompt);
+			String answer = scan.nextLine();
+			if (answer.equalsIgnoreCase("Yes")) {
 				isYes = true;
 				validAnswer = true;
 			}
-			else {
-				//exitWindow();
+			else if (answer.equalsIgnoreCase("No")) {
 				isYes = false;
 				validAnswer = true;
+			}
+			else {
+				System.out.println("\nInvalid entry. Please enter 'yes' or 'no'.");
 			}
 		}
 		return isYes;
@@ -76,6 +63,7 @@ public class RunTournament {
 	 */
 	private static Team createTeam(Scanner scan) {
 		Boolean confirmTeam = false;
+		Boolean existingPlayer;
 		Team newTeam = null;
 		//outer loop so that user can go back and edit/make new team if unhappy with initial entries
 		while (!confirmTeam) {
@@ -84,10 +72,26 @@ public class RunTournament {
 	 		int teamSize = 0;
 	 		//inner loop adds players to team until team is full
 	 		while (teamSize < MAX_TEAM_SIZE) {
-	 			String player = askName("\nWhich player do you want to add to your team?", scan);
-	 			newTeam.addPlayer(player);
-	 			System.out.println(player + " was added to Team " + teamName);
-	 			teamSize++;
+	 			existingPlayer = false;
+	 			System.out.println("\n");
+	 			for (Player player : PlayerDatabase.getPlayersList()) {
+	 				System.out.println(player.getName() + ", " + player.getSport());
+	 			}
+	 			//this loop checks to make sure the player name entered by the user actually corresponds to a player in the database, 
+	 			//and if it does not, gives user a chance to correct the input
+	 			while (!existingPlayer) {
+	 				String playerName = askName("\nWhich player do you want to add to your team?", scan);
+		 			Player chosenPlayer = PlayerDatabase.findPlayer(playerName);
+		 			if (chosenPlayer == null) {
+		 				System.out.println("Chosen player does not exist in athlete database. Please enter a valid player name.");
+		 			}
+		 			else {
+		 				newTeam.addPlayer(chosenPlayer);
+			 			System.out.println(playerName + " was added to Team " + teamName);
+			 			teamSize++;
+			 			existingPlayer = true;
+		 			}
+	 			}
 	 		}
 	 		//checks if user is happy with team; if not, go back and edit
 	 		if (teamSize == MAX_TEAM_SIZE) {
@@ -95,7 +99,7 @@ public class RunTournament {
 	 			System.out.println("\nTeam Name: " + teamName);
 	 	 		System.out.println("\nTeam members:");
 	 	 		System.out.println(newTeam);
-	 	 		Boolean isCorrect = askYesNo("Is this the correct information for your team?\n");
+	 	 		Boolean isCorrect = askYesNo("Is this the correct information for your team?\n", scan);
 	 			if (!isCorrect) {
 	 				System.out.println("\nPlease edit your team information.");
 	 			}
@@ -109,6 +113,7 @@ public class RunTournament {
 		}
  		return newTeam;
  	}
+
 
 	
 	/**
@@ -137,7 +142,7 @@ public class RunTournament {
 	 			System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8, or 16) ");
 	 	 		numParticipants = scan.nextInt();
 	 	 		scan.nextLine();
-	 	 		if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == 16)) {
+	 	 		if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == MAX_PARTICIPANTS)) {
 	 	 			validAnswer = true;
 	 	 		}
 	 		}
@@ -162,7 +167,12 @@ public class RunTournament {
  		Boolean validAnswer = false;
  		while(!validAnswer) {
  			System.out.println("Choose a strategy to determine the winner of the tournament from the following options: ");
- 			System.out.println("1: Random Selection");
+ 			System.out.println("1: Random Winner");
+ 			System.out.println("2: By Greatest Average Height");
+ 			System.out.println("3: By Greatest Average Games Played");
+ 			System.out.println("4: By Greatest Average Games Won");
+ 			System.out.println("5: By Greatest Average Games Lost");
+ 			System.out.println("6: By Greatest Average Class Year");
  			System.out.print("> ");
  			try {
  				chosenStrategy = scan.nextInt();
@@ -171,6 +181,26 @@ public class RunTournament {
  				switch (chosenStrategy) {
  				case RANDOM_STRATEGY:
  					chosenStrategy = RANDOM_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_HEIGHT_STRATEGY: 
+ 					chosenStrategy = BY_HEIGHT_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_GAMESPLAYED_STRATEGY: 
+ 					chosenStrategy = BY_GAMESPLAYED_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_GAMESWON_STRATEGY: 
+ 					chosenStrategy = BY_GAMESWON_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_GAMESLOST_STRATEGY: 
+ 					chosenStrategy = BY_GAMESLOST_STRATEGY;
+ 					validAnswer = true;
+ 					break;
+ 				case BY_CLASSYEAR_STRATEGY: 
+ 					chosenStrategy = BY_CLASSYEAR_STRATEGY;
  					validAnswer = true;
  					break;
  				default: 
@@ -200,8 +230,13 @@ public class RunTournament {
  			chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
  			System.out.println("\nTournament Name: " + tournamentName);
  			System.out.println("Number of Teams/Participants: " + numParticipants);
- 			System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
- 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n");
+ 			if (chosenStrategy.getName().equals("Random Winner")) {
+ 				System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
+ 			}
+ 			else {
+ 				System.out.println("Strategy to determine winner: Greatest " + chosenStrategy.getName());
+ 			}
+ 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n", scan);
  			if (!isCorrect) {
  				System.out.println("Please edit your tournament information.");
  			}
@@ -223,11 +258,22 @@ public class RunTournament {
  	private static Team determineRoundWinners(TournamentWinnerStrategy strategy, ArrayList<Team> teams, Scanner scan) {
  		ArrayList<Team> nextRoundTeams = new ArrayList<Team>();
  		Team winningTeam = null;
+ 		Team losingTeam = null;
  		Boolean isFinalRound = true;
  		for (int i = 0; i < teams.size(); i += 2) {
  			System.out.println("\nTeam Matchup: " + teams.get(i).getName() + " vs. " + teams.get(i + 1).getName());
+ 			
  			winningTeam = strategy.determineWinner(teams.get(i), teams.get(i + 1));
+ 			if (teams.get(i).getName().equals(winningTeam.getName())) {
+ 				losingTeam = teams.get(i + 1);
+ 			}
+ 			else {
+ 				losingTeam = teams.get(i);
+ 			}
  			System.out.println("Team " + winningTeam.getName() + " has won the matchup!");
+ 			if (!chosenStrategy.getName().equals("Random Winner")) {
+ 				System.out.println("Team " + winningTeam.getName() + " had a " + chosenStrategy.getName() + " of " + winningTeam.getLastRoundAverage() + " vs. the losing team's " + chosenStrategy.getName() + " of " + losingTeam.getLastRoundAverage());
+ 			}
  			nextRoundTeams.add(winningTeam);
  		}
  		if (nextRoundTeams.size() != 1) {
@@ -236,7 +282,7 @@ public class RunTournament {
  	 		for (int i = 0; i < nextRoundTeams.size(); i += 2) {
  	 			System.out.println(nextRoundTeams.get(i).getName() + " vs. " + nextRoundTeams.get(i + 1).getName());
  	 		}
- 	 		Boolean yesContinue = askYesNo("\nWould you like to continue to the next round?\n");
+ 	 		Boolean yesContinue = askYesNo("\nWould you like to continue to the next round?\n", scan);
  			if (yesContinue) {
  				determineRoundWinners(strategy, nextRoundTeams, scan);
  			}
@@ -250,21 +296,31 @@ public class RunTournament {
  		return finalWinningTeam;
  	}
  	
+ 	public static Team determineWinningAverage(Team firstTeam, Team secondTeam) {
+ 		if (firstTeam.getLastRoundAverage() > secondTeam.getLastRoundAverage()) {
+			return firstTeam;
+		}
+		else if (firstTeam.getLastRoundAverage() < secondTeam.getLastRoundAverage()) {
+			return secondTeam;
+		}
+		else { // if teams are tied, pick a random winner
+			RandomWinnerStrategy randomWinner = new RandomWinnerStrategy();
+			return randomWinner.determineWinner(firstTeam, secondTeam);
+		}
+ 	}
+
+
 	/**
 	 * The main method that runs the tournament.
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		PlayerDatabase.generateDatabase();
+		
 		Boolean exitTournamentGenerator = false;
-		
-		JFrame frame = new WelcomeSign("Welcome to the tournament game!");
-		frame.setBackground(Color.black);
-		frame.setTitle("Start Menu");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		
+		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
-		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n");
+		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
  		while(!exitTournamentGenerator) {
 			if (yesCreate) {
 				createTournament(scan);
@@ -297,7 +353,7 @@ public class RunTournament {
 			newTournament.setWinner(tournamentWinner);
 			System.out.println("Team " + tournamentWinner.getName() + " has won the tournament!");
 			
-			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n");
+			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n", scan);
 			if(!startAgain) {
 				exitTournamentGenerator = true;
 			}

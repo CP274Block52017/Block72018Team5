@@ -12,7 +12,6 @@ public class Tournament {
 	private int numTeams;
 	private TournamentWinnerStrategy winnerStrategy;
 	private ArrayList<Team> teams;
-
 	private Team winner;
 
 	

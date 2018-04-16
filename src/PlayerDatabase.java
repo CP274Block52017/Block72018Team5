@@ -5,49 +5,44 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
+/**
+ * This class will create a database of athletes/players and their 
+ * statistics to be used by the tournament strategies to determine
+ * the winner of the tournament. Specific statistics and players
+ * can be altered by any potential administrator of the game to fit
+ * their desired tournament. 
+ * For this project, Colorado College athletes were used. Their statistics and 
+ * information was gathered from the Colorado College Athletics page.
+ * @author emmablair
+ *
+ */
 public class PlayerDatabase {
 	
+	public static final String PORT_NUMBER = "3306";
+	
+	private static ArrayList<Player> players = new ArrayList<Player>();
+	
 	/**
-	 * For the first iteration, we will only use names in order to test strategies
-	 * before the database is completely set up.
-	 * int height, int age, int gamePlayed, int minutes, int wins, int losses
-	 * Possibles attributes for the players / athletes
-	 * Basketball
-	 * Name, Height, Age, # of Games Played, Wins, Losses
-	 * Hockey 
-	 * Name, Height, Age, # of Games Played, Wins, Losses
-	 * Soccer
-	 * Name, Height, Age, # of Games Played, Wins, Losses
-	 * Lacrosse
-	 * Name, Height, Age, # of Games Played, Wins, Losses
-	 * Tennis ??? 
-	 * Name, Height, Age, Matches Played, Wins, Losses
-	 * Volleyball
-	 * Name, Height, Age, # of Games PLayed, Wins, Losses
+	 * Constructor is empty.
 	 */
-	
-	public static final String PORT_NUMBER = "8889";
-	
-	private static ArrayList<Players> players = new ArrayList<Players>();
-	
 	public PlayerDatabase() {
 		
 	}
 	
-	public static void main(String[] args) {
+	private static void createDatabase() {
 		try (
-			Connection conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:" + PORT_NUMBER + 
-					"/ebookshop?user=root&password=root"); // MySQL
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:" + PORT_NUMBER + "/?user=root&password=root");
 			Statement statement = conn.createStatement();
-			) {		
+		) {		
 			//create the database
-//			String database = "create database AthletePlayers";
-//			statement.execute(database);
+			String database = "create database if not exists AthletePlayers";
+			statement.execute(database);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		
+	}
+	
+	private static void createTable() {
 		try (
 			Connection conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:" + PORT_NUMBER + 
@@ -56,106 +51,120 @@ public class PlayerDatabase {
 			Statement statement = conn.createStatement();
 		) {
 			//create a table of all the players
-			String playerTable = "create table Players ( " +
-				"Sport varchar(50), " +
+			String playerTable = "create table if not exists Players ( " +
 				"Name varchar(50), " +
+				"Sport varchar(50), " +
+				"Gender varchar(50), " +
 				"Height int, " +
 				"GamesPlayed int, " +
-				"Wins int, " +
-				"Losses int, " +
-				"Year int, " +
+				"TeamWins int, " +
+				"TeamLosses int, " +
+				"ClassYear int, " +
 				"primary key (Name));";
 			statement.execute(playerTable);
-			
-			//add all of the players to the table
-			String insertPlayers = "insert into Players (Sport, Name, Height, GamesPlayed, Wins, Losses, Year) values "
-					+ "('Basketball', 'Joran Meltzer', 63, 25, 2, 23, 2), "
-					+ "('Basketball', 'Kaylyn Radtke', 67, 25, 2, 23, 3), "
-					+ "('Basketball', 'Payton Katich', 66, 25, 2, 23, 3), "
-					+ "('Basketball', 'Casey Torbet', 67, 25, 2, 23, 3), "
-					+ "('Basketball', 'Evan Underbrink', 71, 19, 2, 23, 1), "
-					+ "('Basketball', 'Christina Bowman', 65, 9, 2, 23, 4), "
-					+ "('Basketball', 'Korbyn Ukasiuk', 72, 14, 2, 23, 1), "
-					+ "('Basketball', 'CooXooEii Black', 79, 26, 11, 15, 2), "
-					+ "('Basketball', 'Edmund Pendleton', 75, 23, 11, 15, 3), "
-					+ "('Basketball', 'Chris Martin', 77, 26, 11, 15, 3), "
-					+ "('Basketball', 'Nabeel Elabdeia', 75, 5, 11, 15, 1), "
-					+ "('Basketball', 'John Hatch', 79, 26, 11, 15, 3), "
-					+ "('Volleyball', 'Anna Gurolnick', 62, 34, 28, 6, 2), "
-					+ "('Volleyball', 'Lizzy Counts', 65, 34, 28, 6, 2), "
-					+ "('Volleyball', 'Abbe Holtze', 70, 21, 28, 6, 4), "
-					+ "('Volleyball', 'Glenna Yancey', 76, 33, 28, 6, 4), "
-					+ "('Volleyball', 'Aria Dudley', 71, 16, 28, 6, 3), "
-					+ "('Volleyball', 'Jordan Mullen', 68, 25, 28, 6, 1), "
-					+ "('Lacrosse', 'Sam Mathai', 75, 8, 10, 6, 4), "
-					+ "('Lacrosse', 'Tom Haller', 72, 15, 10, 6, 2), "
-					+ "('Lacrosse', 'Robbie Stern', 76, 16, 10, 6, 3), "
-					+ "('Lacrosse', 'Coby Petau', 70, 16, 10, 6, 1), "
-					+ "('Lacrosse', 'Parker Woo', 71, 16, 10, 6, 2), "
-					+ "('Lacrosse', 'Carter Richerdson', 72, 10, 10, 6, 2), "
-					+ "('Lacrosse', 'Nate Sweet', 75, 9, 10, 6, 3), "
-					+ "('Lacrosse', 'Conner Hanney', 70, 16, 10, 6, 4), "
-					+ "('Lacrosse', 'Matt Rockwell' 5, 70, 10, 6, 3), "
-					+ "('Lacrosse', 'Steph Kelly', 72, 20, 15, 5, 3), "
-					+ "('Lacrosse', 'Zoe Frolik', 66, 15, 15, 5, 3), "
-					+ "('Lacrosse', 'Ellie Meyer', 68, 20, 15, 5, 2), "
-					+ "('Lacrosse', 'Lydia French', 66, 20, 15, 5, 4), "
-					+ "('Lacrosse', 'Lauren Pejza', 68, 13, 15, 5, 1), "
-					+ "('Lacrosse', 'Avery Melville', 66, 7, 15, 5, 1), "
-					+ "('Soccer', 'Clara Richter', 70, 18, 8, 11, 2), "
-					+ "('Soccer', 'Kelli Sullivan', 65, 19, 8, 11, 3), "
-					+ "('Soccer', 'Lauren Milliet' , 61, 19, 8, 11, 2), "
-					+ "('Soccer', 'Catie McDonald', 66, 13, 8, 11, 1), "
-					+ "('Soccer', 'Molly Hiniker', 68, 8, 8, 11, 1), "
-					+ "('Soccer', 'Chanisse Hendrix', 64, 19, 8, 11, 4), "  
-					+ "('Soccer', 'Ali Basom', 64, 16, 8, 11, 3), "
-					+ "('Soccer', 'Dana Gornick', 71, 19, 8, 11, 4), "
-					+ "('Soccer', 'Keenan Amer', 63, 20, 16, 3, 2), "
-					+ "('Soccer', 'Jack McCormick', 75, 18, 16, 3, 4), "
-					+ "('Soccer', 'Josh Raizner', 67, 8, 16, 3, 1), "
-					+ "('Soccer', 'Hayden Cogswell', 68, 16, 16, 3, 1), "
-					+ "('Soccer', 'Griffin Wesley', 71, 18, 16, 3, 2), "
-					+ "('Soccer', 'Sam Markin', 70, 15, 16, 3, 3), "
-					+ "('Soccer', 'Daniel Kruger', 74, 10, 16, 3, 2), "
-					+ "('Hockey', 'Luc Gerdes', 72, 36, 8, 24, 4), "
-					+ "('Hockey', 'Alex Berdardinelli', 69, 35, 8, 24, 1), "
-					+ "('Hockey', 'Trey Bradley', 69, 9, 8, 24, 2), "
-					+ "('Hockey', 'Teemu Kivihalme', 72, 36, 8, 24, 3), "
-					+ "('Hockey', 'Trevor Gooch', 73, 21, 8, 24, 2), "
-					+ "('Hockey', 'Max St. Pierre', 74, 7, 8, 24, 1),  "
-					+ "('Hockey', 'Cole McCaskill', 73, 30, 8, 24, 2),  "
-					+ "('Tennis', 'Jenna McDonald', 65, 40, 6, 14, 2)";
-			int countInserted = statement.executeUpdate(insertPlayers);
-			System.out.println(countInserted + " players inserted.\n");
-			
-			String getEverything = "select Sport, Name, Height, GamesPlayed, Wins, Losses, Year from Players";
-			System.out.println("The SQL Query is: " + getEverything);
-			System.out.println();
-			
-			ResultSet allPlayers;
-			allPlayers = statement.executeQuery(getEverything);
-			
-			System.out.println("The players selected are: ");;
-			int rowCount = 0;
-			while(allPlayers.next()) {
-				String sport = allPlayers.getString("Sport");
-				String name = allPlayers.getString("Name");
-				int height = allPlayers.getInt("Height");
-				System.out.println(sport + ", " + name + ", " + height);;
-				rowCount++;
-			}
-			System.out.println("Total number of records = " + rowCount);
-			
-			
-		} catch (SQLException ex) {
+		} 
+		catch (SQLException ex) {
 			ex.printStackTrace();
 		}
 	}
 	
-	public static ArrayList<Players> getPlayers() {
-		System.out.println(players);
+	private static void addPlayersToDatabase() {
+		try (
+			Connection conn = DriverManager.getConnection(
+				"jdbc:mysql://localhost:" + PORT_NUMBER + 
+				"/AthletePlayers?user=root&password=root");
+			Statement statement = conn.createStatement();
+		) {
+			//add all of the players to the table
+			String insertPlayers = "insert ignore into Players (Name, Sport, Gender, Height, GamesPlayed, TeamWins, TeamLosses, ClassYear) values "
+					+ "('Joran Meltzer', 'Basketball', 'Female', 63, 25, 2, 23, 2), "
+					+ "('Kaylyn Radtke', 'Basketball', 'Female', 67, 25, 2, 23, 3), "
+					+ "('CooXooEii Black', 'Basketball', 'Male', 79, 26, 11, 15, 2), "
+					+ "('Edmund Pendleton', 'Basketball', 'Male', 75, 23, 11, 15, 3), "
+					+ "('Kelli Sullivan', 'Soccer', 'Female', 65, 19, 8, 11, 3), "
+					+ "('Anna Gurolnick', 'Volleyball', 'Female', 62, 34, 28, 6, 2), "
+					+ "('Lizzy Counts', 'Volleyball', 'Female', 65, 34, 28, 6, 2), "
+					+ "('Sam Mathai', 'Lacrosse', 'Male', 75, 8, 10, 6, 4), "
+					+ "('Tom Haller', 'Lacrosse', 'Male', 72, 15, 10, 6, 2), "
+					+ "('Jenna McDonald', 'Tennis', 'Female', 65, 40, 6, 14, 2)";
+			int countInserted = statement.executeUpdate(insertPlayers);
+			if (countInserted != 0) {
+				System.out.println(countInserted + " players inserted.\n");
+			}
+		} 
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}	
+	}
+	
+	private static void getPlayersFromDatabase() {
+		try (
+				Connection conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:" + PORT_NUMBER + 
+					"/AthletePlayers?user=root&password=root");
+				Statement statement = conn.createStatement();
+		) {
+			String getEverything = "select Name, Sport, Gender, Height, GamesPlayed, TeamWins, TeamLosses, ClassYear from Players";
+	
+			ResultSet allPlayers;
+			allPlayers = statement.executeQuery(getEverything);
+	
+			while (allPlayers.next()) {
+				String name = allPlayers.getString("Name");
+				String sport = allPlayers.getString("Sport");
+				String gender = allPlayers.getString("Gender");
+				int heightInches = allPlayers.getInt("Height");
+				int gamesPlayed = allPlayers.getInt("GamesPlayed");
+				int wins = allPlayers.getInt("TeamWins");
+				int losses = allPlayers.getInt("TeamLosses");
+				int classYear = allPlayers.getInt("ClassYear");
+				players.add(new Player(name, sport, gender, heightInches, gamesPlayed, wins, losses, classYear));
+			}
+		}
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}	
+	}
+	
+	/**
+	 * Gets all of the players entered into the database
+	 * @return list of players
+	 */
+	public static ArrayList<Player> getPlayersList() {
 		return players;
 	}
+	
+	public static Player findPlayer(String playerName) {
+		for (Player player : players) {
+			if (playerName.equalsIgnoreCase(player.getName())) {
+				return player;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets the number of players in the database
+	 * @return number of players
+	 */
+	public static int getNumPlayers() {
+		return players.size();
+	}
+	
+	
+	/**
+	 * 
+	 * Creates the database and table of athletes and 
+	 * their information. This information will be used by the 
+	 * tournament strategies.
+	 */
+	public static void generateDatabase() {
+		createDatabase();
+		createTable();
+		addPlayersToDatabase();		
+		getPlayersFromDatabase();
+	}
+
 	
 }
 
