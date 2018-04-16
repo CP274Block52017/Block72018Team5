@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -392,7 +393,3 @@ public class RunTournament {
  		System.out.println("\nThanks for playing! Come back soon!");
 	}
 }
-
-
-
-
