@@ -11,11 +11,11 @@ public class Tournament {
 	private String name;
 	private int numTeams;
 	private TournamentWinnerStrategy winnerStrategy;
-	private ArrayList<Team> teams;
 
+	private ArrayList<Team> teams;
 	private Team winner;
 
-	
+　
 	/**
 	 * Constructor contains needed information for creating
 	 * a new tournament.
@@ -37,6 +37,7 @@ public class Tournament {
 	public TournamentWinnerStrategy getWinnerStrategy() {
 		return winnerStrategy;
 	}
+
 	
 	/**
 	 * Adds a team to the list of teams in the tournament.
@@ -71,4 +72,3 @@ public class Tournament {
 	}
 	
 }
-

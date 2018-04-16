@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 import java.util.InputMismatchException;
@@ -73,11 +74,15 @@ public class RunTournament {
 	 		//inner loop adds players to team until team is full
 	 		while (teamSize < MAX_TEAM_SIZE) {
 	 			existingPlayer = false;
+	 			System.out.println("\n");
+	 			for (Player player : PlayerDatabase.getPlayersList()) {
+	 				System.out.println(player.getName() + ", " + player.getSport());
+	 			}
 	 			//this loop checks to make sure the player name entered by the user actually corresponds to a player in the database, 
 	 			//and if it does not, gives user a chance to correct the input
 	 			while (!existingPlayer) {
 	 				String playerName = askName("\nWhich player do you want to add to your team?", scan);
-		 			Players chosenPlayer = PlayerDatabase.findPlayer(playerName);
+		 			Player chosenPlayer = PlayerDatabase.findPlayer(playerName);
 		 			if (chosenPlayer == null) {
 		 				System.out.println("Chosen player does not exist in athlete database. Please enter a valid player name.");
 		 			}
@@ -110,7 +115,7 @@ public class RunTournament {
  		return newTeam;
  	}
 
-
+　
 	
 	/**
 	 * This method gets the names entered by the user.
@@ -290,6 +295,7 @@ public class RunTournament {
  	 		finalWinningTeam = winningTeam;
  	 	}
  		return finalWinningTeam;
+
  	}
  	
  	public static Team determineWinningAverage(Team firstTeam, Team secondTeam) {
@@ -304,15 +310,16 @@ public class RunTournament {
 			return randomWinner.determineWinner(firstTeam, secondTeam);
 		}
  	}
+ 	
+ 
 
-
+　
 	/**
 	 * The main method that runs the tournament.
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		PlayerDatabase.generateDatabase();
-		
 		Boolean exitTournamentGenerator = false;
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
@@ -357,3 +364,5 @@ public class RunTournament {
  		System.out.println("\nThanks for playing! Come back soon!");
 	}
 }
+
+　

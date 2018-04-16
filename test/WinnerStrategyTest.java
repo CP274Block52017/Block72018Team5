@@ -1,8 +1,6 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * This test tests the FirstTeamWinsStrategy as of right now, which we created just for the tests cases 
@@ -17,120 +15,157 @@ import java.util.Collections;
 
 public class WinnerStrategyTest {
 	
-	private TournamentWinnerStrategy testStrategy;
-	private ArrayList<Team> testTeams;
-	private ArrayList<Team> testAllStrategiesTeams;
-	Team test1;
-	Team test2;
-
+	private Team testTeam1;
+	private Team testTeam2;
+	private Team testTeam3;
+	private Team testTeam4;
+	
 	@Before
 	public void setUp() {
-		testTeams = new ArrayList<Team>();
-		Team testTeam1 = new Team("Test Team 1");
-		Team testTeam2 = new Team("Test Team 2");
-		Team testTeam3 = new Team("Test Team 3");
-		Team testTeam4 = new Team("Test Team 4");
-		Team testTeam5 = new Team("Test Team 5");
-		for (int i = 0; i <= 5; i++) {
-			testTeam1.addPlayer(new Players("Emma", "Basketball", "Female", 69, 5, 10, 6, 2));
-			testTeam2.addPlayer(new Players("Kelli", "Soccer", "Female", 66, 8, 10, 5, 3));
-			testTeam3.addPlayer(new Players("Nicole", "Lacrosse", "Female", 65, 7, 15, 1, 2));
-			testTeam4.addPlayer(new Players("Janet", "Golf", "Female", 55, 3, 7, 2, 4));
-			testTeam5.addPlayer(new Players("Dan", "Tennis", "Male", 78, 9, 11, 6, 4));
-		}
+		testTeam1 = new Team("Test Team 1");
+		testTeam2 = new Team("Test Team 2");
+		testTeam3 = new Team("Test Team 3");
+		testTeam4 = new Team("Test Team 4");
+		testTeam1.addPlayer(new Player("Test Player 1", "Soccer", "Female", 75, 50, 20, 30, 2));
+		testTeam1.addPlayer(new Player("Test Player 2", "Soccer", "Female", 60, 30, 20, 10, 3));
+		testTeam1.addPlayer(new Player("Test Player 3", "Soccer", "Female", 65, 43, 23, 20, 4));
 		
-		testTeams.add(testTeam1);
-		testTeams.add(testTeam2);
-		testTeams.add(testTeam3);
-		testTeams.add(testTeam4);
-		testTeams.add(testTeam5);
-		Collections.shuffle(testTeams);
+		testTeam2.addPlayer(new Player("Test Player 1", "Soccer", "Female", 45, 56, 21, 34, 2));
+		testTeam2.addPlayer(new Player("Test Player 2", "Soccer", "Female", 61, 52, 22, 11, 2));
+		testTeam2.addPlayer(new Player("Test Player 3", "Soccer", "Female", 65, 44, 26, 17, 4));
 		
-		testAllStrategiesTeams = new ArrayList<Team>();
-		test1 = new Team("Test 1");
-		test1.addPlayer(new Players("Emma", "Basketball", "Female", 5, 6, 10, 5, 4));
-		test1.addPlayer(new Players("Kelli", "Soccer", "Female", 7, 8, 12, 7, 3));
-		test1.addPlayer(new Players("Nicole", "Lacrosse", "Female", 6, 7, 10, 5, 4));
-		test1.addPlayer(new Players("Janet", "Golf", "Female", 7, 8, 12, 7, 3));
-		test1.addPlayer(new Players("Dan", "Tennis", "Male", 5, 6, 10, 5, 4));
+		testTeam3.addPlayer(new Player("Test Player 1", "Soccer", "Female", 75, 50, 20, 30, 2));
+		testTeam3.addPlayer(new Player("Test Player 2", "Soccer", "Female", 75, 50, 20, 30, 2));
+		testTeam3.addPlayer(new Player("Test Player 3", "Soccer", "Female", 75, 50, 20, 30, 2));
 		
-		test2 = new Team("Test 2");
-		test2.addPlayer(new Players("Emma", "Basketball", "Female", 3, 4, 8, 1, 2));
-		test2.addPlayer(new Players("Kelli", "Soccer", "Female", 5, 6, 10, 3, 3));
-		test2.addPlayer(new Players("Nicole", "Lacrosse", "Female", 3, 4, 8, 1, 2));
-		test2.addPlayer(new Players("Janet", "Golf", "Female", 5, 6, 10, 3, 3));
-		test2.addPlayer(new Players("Dan", "Tennis", "Male", 3, 4, 8, 1, 2));
-		
-	}
-	
-	//First Team Wins
-	@Test
-	public void testsFirstTwoTeams() {
-		testStrategy = new FirstTeamWinsStrategy();
-		Team winningTestTeam = testStrategy.determineWinner(testTeams.get(0), testTeams.get(1));
-		assertEquals(testTeams.get(0), winningTestTeam);
+		testTeam4.addPlayer(new Player("Test Player 1", "Soccer", "Female", 61, 52, 22, 11, 3));
+		testTeam4.addPlayer(new Player("Test Player 2", "Soccer", "Female", 61, 52, 22, 11, 3));
+		testTeam4.addPlayer(new Player("Test Player 3", "Soccer", "Female", 61, 52, 22, 11, 3));
 	}
 	
 	@Test
-	public void testsLastTwoTeams() {
-		testStrategy = new FirstTeamWinsStrategy();
-		Team winningTestTeam = testStrategy.determineWinner(testTeams.get(2), testTeams.get(3));
-		assertEquals(testTeams.get(2), winningTestTeam);
+	public void testOnePlayerPerTeamByHeight() {
+		TournamentWinnerStrategy testStrategy = new ByHeightStrategy();
+		Team newTestTeam1 = new Team("Test Team 1");
+		newTestTeam1.addPlayer(new Player("Test Player 1", "Soccer", "Female", 55, 37, 24, 11, 2));
+		Team newTestTeam2 = new Team("Test Team 2");
+		newTestTeam2.addPlayer(new Player("Test Player 2", "Soccer", "Female", 23, 27, 19, 10, 3));
+		Team winningTestTeam = testStrategy.determineWinner(newTestTeam1, newTestTeam2);
+		assertEquals(newTestTeam1, winningTestTeam);
 	}
 	
 	@Test
-	public void testsFirstandLastTeams() {
-		testStrategy = new FirstTeamWinsStrategy();
-		Team winningTestTeam = testStrategy.determineWinner(testTeams.get(0), testTeams.get(3));
-		assertEquals(testTeams.get(0), winningTestTeam);
+	public void testOnePlayerPerTeamByGamesPlayed() {
+		TournamentWinnerStrategy testStrategy = new ByGamesPlayedStrategy();
+		Team newTestTeam1 = new Team("Test Team 1");
+		newTestTeam1.addPlayer(new Player("Test Player 1", "Soccer", "Female", 55, 37, 24, 11, 2));
+		Team newTestTeam2 = new Team("Test Team 2");
+		newTestTeam2.addPlayer(new Player("Test Player 2", "Soccer", "Female", 23, 27, 19, 10, 3));
+		Team winningTestTeam = testStrategy.determineWinner(newTestTeam1, newTestTeam2);
+		assertEquals(newTestTeam1, winningTestTeam);
 	}
 	
 	@Test
-	public void testsMiddleTwoTeams() {
-		testStrategy = new FirstTeamWinsStrategy();
-		Team winningTestTeam = testStrategy.determineWinner(testTeams.get(1), testTeams.get(2));
-		assertEquals(testTeams.get(1), winningTestTeam);
+	public void testOnePlayerPerTeamByGamesWon() {
+		TournamentWinnerStrategy testStrategy = new ByGamesWonStrategy();
+		Team newTestTeam1 = new Team("Test Team 1");
+		newTestTeam1.addPlayer(new Player("Test Player 1", "Soccer", "Female", 55, 37, 24, 11, 2));
+		Team newTestTeam2 = new Team("Test Team 2");
+		newTestTeam2.addPlayer(new Player("Test Player 2", "Soccer", "Female", 23, 27, 19, 10, 3));
+		Team winningTestTeam = testStrategy.determineWinner(newTestTeam1, newTestTeam2);
+		assertEquals(newTestTeam1, winningTestTeam);
 	}
 	
-	
-	//ByClassYearStrategy
 	@Test
-	public void testClassYearStrategy() {
-		testStrategy = new ByClassYearStrategy();
-		Team winningTestTeam = testStrategy.determineWinner(test1, test2);
-		assertEquals(test1, winningTestTeam);
+	public void testOnePlayerPerTeamByGamesLost() {
+		TournamentWinnerStrategy testStrategy = new ByGamesLostStrategy();
+		Team newTestTeam1 = new Team("Test Team 1");
+		newTestTeam1.addPlayer(new Player("Test Player 1", "Soccer", "Female", 55, 37, 24, 14, 2));
+		Team newTestTeam2 = new Team("Test Team 2");
+		newTestTeam2.addPlayer(new Player("Test Player 2", "Soccer", "Female", 23, 27, 19, 10, 3));
+		Team winningTestTeam = testStrategy.determineWinner(newTestTeam1, newTestTeam2);
+		assertEquals(newTestTeam1, winningTestTeam);
 	}
 	
-	//ByGamesLostStrategy
 	@Test
-	public void testGamesLostStrategy() {
-		testStrategy = new ByGamesLostStrategy();
-		Team winningTestTeam = testStrategy.determineWinner(test1, test2);
-		assertEquals(test1, winningTestTeam);
+	public void testOnePlayerPerTeamByClassYear() {
+		TournamentWinnerStrategy testStrategy = new ByClassYearStrategy();
+		Team newTestTeam1 = new Team("Test Team 1");
+		newTestTeam1.addPlayer(new Player("Test Player 1", "Soccer", "Female", 55, 37, 24, 11, 2));
+		Team newTestTeam2 = new Team("Test Team 2");
+		newTestTeam2.addPlayer(new Player("Test Player 2", "Soccer", "Female", 23, 27, 19, 10, 3));
+		Team winningTestTeam = testStrategy.determineWinner(newTestTeam1, newTestTeam2);
+		assertEquals(newTestTeam2, winningTestTeam);
 	}
 	
-	//ByGamesPlayedStrategy
-	@Test
-	public void testGamesPlayedStrategy() {
-		testStrategy = new ByGamesPlayedStrategy();
-		Team winningTestTeam = testStrategy.determineWinner(test1, test2);
-		assertEquals(test1, winningTestTeam);
+	@Test 
+	public void testAllPlayersEqualOnTeamByHeight() {
+		TournamentWinnerStrategy testStrategy = new ByHeightStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam3, testTeam4);
+		assertEquals(testTeam3, winningTestTeam);
 	}
 	
-	//ByGamesWonStrategy
-	@Test
-	public void testGamesWinStrategy() {
-		testStrategy = new ByGamesWonStrategy();
-		Team winningTestTeam = testStrategy.determineWinner(test1, test2);
-		assertEquals(test1, winningTestTeam);
+	@Test 
+	public void testAllPlayersEqualOnTeamByGamesPlayed() {
+		TournamentWinnerStrategy testStrategy = new ByGamesPlayedStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam3, testTeam4);
+		assertEquals(testTeam4, winningTestTeam);
 	}
 	
-	//ByHeightStrategy
+	@Test 
+	public void testAllPlayersEqualOnTeamByGamesWon() {
+		TournamentWinnerStrategy testStrategy = new ByGamesWonStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam3, testTeam4);
+		assertEquals(testTeam4, winningTestTeam);
+	}
+	
+	@Test 
+	public void testAllPlayersEqualOnTeamByGamesLost() {
+		TournamentWinnerStrategy testStrategy = new ByGamesLostStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam3, testTeam4);
+		assertEquals(testTeam3, winningTestTeam);
+	}
+	
+	@Test 
+	public void testAllPlayersEqualOnTeamByClassYear() {
+		TournamentWinnerStrategy testStrategy = new ByClassYearStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam3, testTeam4);
+		assertEquals(testTeam4, winningTestTeam);
+	}
+	
 	@Test
-	public void testHeightStrategy() {
-		testStrategy = new ByHeightStrategy();
-		Team winningTestTeam = testStrategy.determineWinner(test1, test2);
-		assertEquals(test1, winningTestTeam);
+	public void testFivePlayerTeamsByHeight() {
+		TournamentWinnerStrategy testStrategy = new ByHeightStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam1, testTeam2);
+		assertEquals(testTeam1, winningTestTeam);
+	}
+	
+	@Test
+	public void testFivePlayerTeamsByGamesPlayed() {
+		TournamentWinnerStrategy testStrategy = new ByGamesPlayedStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam1, testTeam2);
+		assertEquals(testTeam2, winningTestTeam);
+	}
+	
+	@Test
+	public void testFivePlayerTeamsByGamesWon() {
+		TournamentWinnerStrategy testStrategy = new ByGamesWonStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam1, testTeam2);
+		assertEquals(testTeam2, winningTestTeam);
+	}
+	
+	@Test
+	public void testFivePlayerTeamsByGamesLost() {
+		TournamentWinnerStrategy testStrategy = new ByGamesLostStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam1, testTeam2);
+		assertEquals(testTeam2, winningTestTeam);
+	}
+	
+	@Test
+	public void testFivePlayerTeamsByClassYear() {
+		TournamentWinnerStrategy testStrategy = new ByClassYearStrategy();
+		Team winningTestTeam = testStrategy.determineWinner(testTeam1, testTeam2);
+		assertEquals(testTeam1, winningTestTeam);
 	}
 
 }
