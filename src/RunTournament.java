@@ -1,3 +1,4 @@
+import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import java.util.InputMismatchException;
@@ -330,6 +331,17 @@ public class RunTournament {
 	 */
 	public static void main(String[] args) {
 		PlayerDatabase.generateDatabase();
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUIWelcomeWindow window = new GUIWelcomeWindow();
+					window.getFrame().setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		
 		Boolean exitTournamentGenerator = false;
 		System.out.println("Welcome to the tournament game!");
