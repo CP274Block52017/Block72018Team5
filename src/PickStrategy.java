@@ -23,12 +23,14 @@ import java.awt.event.ActionListener;
 public class PickStrategy extends JFrame {
 
 	private JPanel contentPanel;
+	private Object participants;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public PickStrategy() {
+	public PickStrategy(Object particpants) {
+		this.participants = participants;
 		setTitle("Tournament Info");
 		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,6 +61,8 @@ public class PickStrategy extends JFrame {
 		JButton button = new JButton("Next");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			DisplayTournamentInfo frame = new DisplayTournamentInfo(participants);
+			frame.setVisible(true);
 			}
 		});
 		button.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));

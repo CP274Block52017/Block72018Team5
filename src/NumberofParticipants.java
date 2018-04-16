@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 public class NumberofParticipants extends JFrame {
 
 	private JPanel contentPanel;
+	private Object participants;
 
 
 	/**
@@ -59,8 +60,9 @@ public class NumberofParticipants extends JFrame {
 		JButton button = new JButton("Next");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PickStrategy frame = new PickStrategy();
+				PickStrategy frame = new PickStrategy(participants);
 				frame.setVisible(true);
+				
 			}
 		});
 		button.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
@@ -82,7 +84,7 @@ public class NumberofParticipants extends JFrame {
 		comboBox.addItem(16);
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				
+				 participants = comboBox.getSelectedItem();
 			}
 		});
 		comboBox.setFont(new Font("Verdana", Font.PLAIN, 18));

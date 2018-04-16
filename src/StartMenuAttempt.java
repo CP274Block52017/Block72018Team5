@@ -64,12 +64,12 @@ public class StartMenuAttempt extends JFrame{
 	
 	public JButton createNoButton() {
 		JButton button = new JButton("No");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PickStrategy frame = new PickStrategy();
-				frame.setVisible(true);
-			}
-		});
+//		button.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				PickStrategy frame = new PickStrategy();
+//				frame.setVisible(true);
+//			}
+//		});
 		button.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
 		button.setBackground(Color.BLACK);
 		button.setForeground(Color.WHITE);
