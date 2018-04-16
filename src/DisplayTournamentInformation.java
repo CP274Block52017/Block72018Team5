@@ -72,7 +72,6 @@ public class DisplayTournamentInformation {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel label = new JLabel(SecondWindow.getTeamName());
-		//label.setText(SecondWindow.getTeamName());
 		label.setForeground(Color.WHITE);
 		label.setBounds(250, 162, 61, 16);
 		frame.getContentPane().add(label);
@@ -112,7 +111,16 @@ public class DisplayTournamentInformation {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						CreateTeam window = new CreateTeam();
+						window.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 			hasBeenClicked = true;
 		}
 	}

@@ -61,9 +61,9 @@ public class SecondWindow extends JFrame {
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblWhatWouldYou = new JLabel("What would you like to name you team?");
+		JLabel lblWhatWouldYou = new JLabel("What would you like to name your tournament?");
 		lblWhatWouldYou.setForeground(Color.WHITE);
-		lblWhatWouldYou.setBounds(101, 6, 249, 16);
+		lblWhatWouldYou.setBounds(73, 6, 300, 16);
 		frame.getContentPane().add(lblWhatWouldYou);
 		
 		TextField textField = new TextField();
@@ -107,27 +107,33 @@ public class SecondWindow extends JFrame {
 		choice.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
-				
+				participantNumber = choice.getSelectedIndex();
 			}
 		});
 		choice.add("2");
 		choice.add("4");
 		choice.add("8");
 		choice.add("16");
-		choice.setBackground(Color.BLACK);
-		choice.setForeground(Color.WHITE);
+		choice.setBackground(Color.ORANGE);
+		choice.setForeground(Color.BLACK);
 		choice.setBounds(147, 115, 146, 27);
 		frame.getContentPane().add(choice);
 		
 		Choice choice_1 = new Choice();
+		choice_1.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				strategy = choice.getSelectedIndex();
+			}
+		});
 		choice_1.add("1: Random Selection");
 		choice_1.add("2: Athletes' Height");
 		choice_1.add("3: Athletes' Games Played");
 		choice_1.add("4: Athletes' Games Won");
 		choice_1.add("5: Athletes' Games Lost");
 		choice_1.add("6: Athletes' Class Year");
-		choice_1.setBackground(Color.BLACK);
-		choice_1.setForeground(Color.WHITE);
+		choice_1.setBackground(Color.ORANGE);
+		choice_1.setForeground(Color.BLACK);
 		choice_1.setBounds(147, 199, 146, 27);
 		frame.getContentPane().add(choice_1);
 		frame.setBounds(100, 100, 450, 300);

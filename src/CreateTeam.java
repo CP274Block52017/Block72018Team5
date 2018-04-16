@@ -9,12 +9,19 @@ import java.awt.Button;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class CreateTeam {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private JTextField textField;
 	private static String teamName;
+	private static String firstAthlete;
+	private static String secondAthlete;
+	private static String thirdAthlete;
+	private static String fourthAthlete;
+	private static String fifthAthlete;
 
 	/**
 	 * Launch the application.
@@ -81,26 +88,95 @@ public class CreateTeam {
 		frame.getContentPane().add(lblAthlete_1);
 		
 		Choice choice = new Choice();
+		choice.add("1");
+		choice.add("2");
+		choice.add("3");
+		choice.add("4");
+		choice.add("5");
+		choice.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				firstAthlete = choice.getSelectedItem();
+			}
+		});
 		choice.setBounds(116, 76, 115, 27);
 		frame.getContentPane().add(choice);
 		
 		Choice choice_1 = new Choice();
+		choice_1.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				secondAthlete = choice_1.getSelectedItem();
+			}
+		});
+		choice_1.add("1");
+		choice_1.add("2");
+		choice_1.add("3");
+		choice_1.add("4");
+		choice_1.add("5");
 		choice_1.setBounds(125, 140, 106, 27);
 		frame.getContentPane().add(choice_1);
 		
 		Choice choice_2 = new Choice();
+		choice_2.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				thirdAthlete = choice_2.getSelectedItem();
+			}
+		});
+		choice_2.add("1");
+		choice_2.add("2");
+		choice_2.add("3");
+		choice_2.add("4");
+		choice_2.add("5");
 		choice_2.setBounds(119, 211, 112, 27);
 		frame.getContentPane().add(choice_2);
 		
 		Choice choice_3 = new Choice();
+		choice_3.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				fourthAthlete = choice_3.getSelectedItem();
+			}
+		});
+		choice_3.add("1");
+		choice_3.add("2");
+		choice_3.add("3");
+		choice_3.add("4");
+		choice_3.add("5");
 		choice_3.setBounds(312, 107, 106, 27);
 		frame.getContentPane().add(choice_3);
 		
 		Choice choice_4 = new Choice();
+		choice_4.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				fifthAthlete = choice_4.getSelectedItem();
+			}
+		});
+		choice_4.add("1");
+		choice_4.add("2");
+		choice_4.add("3");
+		choice_4.add("4");
+		choice_4.add("5");
 		choice_4.setBounds(311, 177, 106, 27);
 		frame.getContentPane().add(choice_4);
 		
 		Button button = new Button("Submit Team");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							DisplayTeam window = new DisplayTeam();
+							window.getFrame().setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		button.setBounds(312, 239, 117, 29);
 		frame.getContentPane().add(button);
 		
@@ -122,6 +198,30 @@ public class CreateTeam {
 	
 	public static String getTeamName() {
 		return teamName;
+	}
+	
+	public static JFrame getFrame() {
+		return frame;
+	}
+	
+	public static String getFirstAthlete() {
+		return firstAthlete;
+	}
+	
+	public static String getSecondAthlete() {
+		return secondAthlete;
+	}
+	
+	public static String getThirdAthlete() {
+		return thirdAthlete;
+	}
+	
+	public static String getFourthAthlete() {
+		return fourthAthlete;
+	}
+	
+	public static String getFifthAthlete() {
+		return fifthAthlete;
 	}
 	
 }
