@@ -115,7 +115,7 @@ public class RunTournament {
  		return newTeam;
  	}
 
-
+　
 	
 	/**
 	 * This method gets the names entered by the user.
@@ -313,7 +313,7 @@ public class RunTournament {
  	
  
 
-
+　
 	/**
 	 * The main method that runs the tournament.
 	 * @param args
@@ -365,4 +365,4 @@ public class RunTournament {
 	}
 }
 
-
+　

@@ -77,7 +77,7 @@ public class Team {
 		return getMembers();
 	}
 
-
+　
 	public double getLastRoundAverage() {
 		return lastRoundAverage;
 	}
@@ -88,4 +88,4 @@ public class Team {
 
 }
 
-
+　

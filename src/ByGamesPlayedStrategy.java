@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public class ByGamesPlayedStrategy implements TournamentWinnerStrategy {
@@ -21,4 +22,3 @@ public class ByGamesPlayedStrategy implements TournamentWinnerStrategy {
 	}
 
 }
-

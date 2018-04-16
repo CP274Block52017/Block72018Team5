@@ -15,7 +15,7 @@ public class Tournament {
 	private ArrayList<Team> teams;
 	private Team winner;
 
-
+　
 	/**
 	 * Constructor contains needed information for creating
 	 * a new tournament.
