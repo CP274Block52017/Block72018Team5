@@ -1,6 +1,5 @@
 import java.awt.EventQueue;
 import java.util.ArrayList;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

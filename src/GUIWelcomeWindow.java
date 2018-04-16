@@ -1,18 +1,14 @@
-	import java.awt.EventQueue;
 	import javax.swing.JFrame;
 	import javax.swing.JButton;
 	import java.awt.Color;
-	import javax.swing.JTextField;
 	import java.awt.event.ActionListener;
-	import java.util.ArrayList;
-	import java.util.Scanner;
 	import java.awt.event.ActionEvent;
 	import javax.swing.JLabel;
-	import java.awt.Label;
 	import java.awt.Font;
 	
 	public class GUIWelcomeWindow extends JFrame {
 	
+		private static final long serialVersionUID = 1L;
 		private static JFrame frame;
 		private static boolean hasBeenClicked;
 		private ActionListener yesListener;
@@ -112,12 +108,17 @@
 			return hasBeenClicked;
 		}
 		
-		public static JFrame getFrame() {
+		public JFrame getFrame() {
 			return frame;
 		}
 	
 	class YesButton extends JFrame implements ActionListener {
 		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public YesButton() {
 			hasBeenClicked = false;
 		}
@@ -140,6 +141,11 @@
 	
 	class NoButton extends JFrame implements ActionListener {
 		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public NoButton() {
 			hasBeenClicked = false;
 		}
