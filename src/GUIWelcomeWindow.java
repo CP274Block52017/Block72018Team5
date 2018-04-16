@@ -6,6 +6,11 @@
 	import javax.swing.JLabel;
 	import java.awt.Font;
 	
+	/**
+	* This class creates a GUI for the first pop-up window that 
+	* allows the user to decide if they want to begin a tournament 
+	* or exit the window.
+	*/
 	public class GUIWelcomeWindow extends JFrame {
 	
 		private static final long serialVersionUID = 1L;
@@ -22,7 +27,8 @@
 		}
 	
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the frame, which includes all
+	 * of the labels and buttons that contain the information. 
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -112,17 +118,27 @@
 			return frame;
 		}
 	
+	/**
+	* This class allows for the yes button to have an action
+	* when it is clicked by the user. Currently for the demo, the yes 
+	* button also exits out of the program, later it will take the user
+	* to the next frame. 
+	*/
 	class YesButton extends JFrame implements ActionListener {
 		
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 
+		/**
+		* Constructor for yes button.
+		*/
 		public YesButton() {
 			hasBeenClicked = false;
 		}
 	
+		/**
+		* This determine the action for the button.
+		* @param e - the action event.
+		*/
 		public void actionPerformed(ActionEvent e) {
 	//		EventQueue.invokeLater(new Runnable() {
 	//			public void run() {
@@ -139,17 +155,25 @@
 		}
 	}
 	
+	/**
+	* This class allows for the no button to have an action
+	* when it is clicked by the user.
+	*/
 	class NoButton extends JFrame implements ActionListener {
 		
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 
+		/**
+		* Constructor for the no button.
+		*/
 		public NoButton() {
 			hasBeenClicked = false;
 		}
-	
+		
+		/**
+		* This determine the action for the button.
+		* @param e - the action event.
+		*/
 		public void actionPerformed(ActionEvent e) {
 			System.exit(1);
 			hasBeenClicked = false;
