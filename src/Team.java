@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 /**
  * This class provides the methods for the teams in
@@ -84,4 +85,3 @@ public class Team {
 	}
 
 }
-

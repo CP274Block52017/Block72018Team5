@@ -1,3 +1,4 @@
+
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -152,7 +153,6 @@ public class GUIWelcomeWindow extends JFrame {
 			hasBeenClicked = false;
 		}
 	}
-
 }
 
 

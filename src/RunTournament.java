@@ -1,6 +1,7 @@
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -87,6 +88,12 @@ public class RunTournament {
 	 			while (!existingPlayer) {
 	 				String playerName = askName("\nWhich player do you want to add to your team?", scan);
 		 			Player chosenPlayer = PlayerDatabase.findPlayer(playerName);
+
+	 			//this loop checks to make sure the player name entered by the user actually corresponds to a player in the database, 
+	 			//and if it does not, gives user a chance to correct the input
+	 			while (!existingPlayer) {
+	 				String playerName = askName("\nWhich player do you want to add to your team?", scan);
+		 			Players chosenPlayer = PlayerDatabase.findPlayer(playerName);
 		 			if (chosenPlayer == null) {
 		 				System.out.println("Chosen player does not exist in athlete database. Please enter a valid player name.");
 		 			}
@@ -310,7 +317,51 @@ public class RunTournament {
  	 * It is used by the strategies which determine the winner based on different player attributes.
  	 * @param firstTeam - first team in matchup
  	 * @return secondTeam - second team in matchup
+ 	 * @param teams that are playing tin the tournament
+ 	 * @param new scan to get user input
+ 	 * @return the team that won
  	 */
+ 	private static Team determineRoundWinners(TournamentWinnerStrategy strategy, ArrayList<Team> teams, Scanner scan) {
+ 		ArrayList<Team> nextRoundTeams = new ArrayList<Team>();
+ 		Team winningTeam = null;
+ 		Team losingTeam = null;
+ 		Boolean isFinalRound = true;
+ 		for (int i = 0; i < teams.size(); i += 2) {
+ 			System.out.println("\nTeam Matchup: " + teams.get(i).getName() + " vs. " + teams.get(i + 1).getName());
+ 			
+ 			winningTeam = strategy.determineWinner(teams.get(i), teams.get(i + 1));
+ 			if (teams.get(i).getName().equals(winningTeam.getName())) {
+ 				losingTeam = teams.get(i + 1);
+ 			}
+ 			else {
+ 				losingTeam = teams.get(i);
+ 			}
+ 			System.out.println("Team " + winningTeam.getName() + " has won the matchup!");
+ 			if (!chosenStrategy.getName().equals("Random Winner")) {
+ 				System.out.println("Team " + winningTeam.getName() + " had a " + chosenStrategy.getName() + " of " + winningTeam.getLastRoundAverage() + " vs. the losing team's " + chosenStrategy.getName() + " of " + losingTeam.getLastRoundAverage());
+ 			}
+ 			nextRoundTeams.add(winningTeam);
+ 		}
+ 		if (nextRoundTeams.size() != 1) {
+ 			isFinalRound = false;
+ 			System.out.println("\nNext round's matchups: ");
+ 	 		for (int i = 0; i < nextRoundTeams.size(); i += 2) {
+ 	 			System.out.println(nextRoundTeams.get(i).getName() + " vs. " + nextRoundTeams.get(i + 1).getName());
+ 	 		}
+ 	 		Boolean yesContinue = askYesNo("\nWould you like to continue to the next round?\n", scan);
+ 			if (yesContinue) {
+ 				determineRoundWinners(strategy, nextRoundTeams, scan);
+ 			}
+ 			else {
+ 				System.out.println("Tournament terminated!");
+ 			}
+ 		}
+ 		if (isFinalRound) {
+ 	 		finalWinningTeam = winningTeam;
+ 	 	}
+ 		return finalWinningTeam;
+ 	}
+ 	
  	public static Team determineWinningAverage(Team firstTeam, Team secondTeam) {
  		if (firstTeam.getLastRoundAverage() > secondTeam.getLastRoundAverage()) {
 			return firstTeam;
@@ -349,6 +400,11 @@ public class RunTournament {
 		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
 		
 		//loop continues while tournament master wants to create a new tournament
+
+		Boolean exitTournamentGenerator = false;
+		System.out.println("Welcome to the tournament game!");
+		Scanner scan = new Scanner(System.in);
+		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
  		while(!exitTournamentGenerator) {
 			if (yesCreate) {
 				createTournament(scan);
