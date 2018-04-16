@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 /**
  * This class provides the methods for the teams in
@@ -10,9 +11,10 @@ import java.util.ArrayList;
 public class Team {
 	
 	private String teamName;
+
 	private ArrayList<Player> teamMembers;
 	private double lastRoundAverage;
-
+	
 	/**
 	 * Constructor for the Team class.
 	 * @param teamName
@@ -23,11 +25,11 @@ public class Team {
 		lastRoundAverage = 0.0;
 	}
 	
-
 	public ArrayList<Player> getTeamMembersList() {
 		return teamMembers;
-	}
 
+	}
+	
 	/**
 	 * This method provides the name of a team.
 	 * @return
@@ -60,6 +62,7 @@ public class Team {
 		}
 		return members;
 	}
+
 	
 	public int getTeamSize() {
 		return teamMembers.size();
@@ -74,6 +77,7 @@ public class Team {
 		return getMembers();
 	}
 
+
 	public double getLastRoundAverage() {
 		return lastRoundAverage;
 	}
@@ -83,4 +87,5 @@ public class Team {
 	}
 
 }
+
 

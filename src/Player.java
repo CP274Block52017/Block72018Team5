@@ -10,8 +10,6 @@
  */
 public class Player {
 	
-
-	
 	private String name;
 	private String sport;
 	private String gender;
@@ -30,6 +28,7 @@ public class Player {
 		this.sport = sport;
 		this.gender = gender;
 		this.heightInches = heightInches;
+		this.gamesPlayed = gamesPlayed;
 		this.teamWins = teamWins;
 		this.teamLosses = teamLosses;
 		this.classYear = classYear;

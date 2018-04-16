@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 import java.util.InputMismatchException;
@@ -294,6 +295,7 @@ public class RunTournament {
  	 		finalWinningTeam = winningTeam;
  	 	}
  		return finalWinningTeam;
+
  	}
  	
  	public static Team determineWinningAverage(Team firstTeam, Team secondTeam) {
@@ -308,6 +310,8 @@ public class RunTournament {
 			return randomWinner.determineWinner(firstTeam, secondTeam);
 		}
  	}
+ 	
+ 
 
 
 	/**
@@ -316,7 +320,6 @@ public class RunTournament {
 	 */
 	public static void main(String[] args) {
 		PlayerDatabase.generateDatabase();
-		
 		Boolean exitTournamentGenerator = false;
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
@@ -361,4 +364,5 @@ public class RunTournament {
  		System.out.println("\nThanks for playing! Come back soon!");
 	}
 }
+
 
