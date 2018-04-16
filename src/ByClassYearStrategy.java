@@ -17,7 +17,7 @@ public class ByClassYearStrategy implements TournamentWinnerStrategy {
 	}
 	
 	public String getName() {
-		return "Greatest Average Class Year Winner";
+		return "Average Class Year";
 	}
 
 }

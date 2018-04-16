@@ -88,6 +88,8 @@ public class CreateTeam {
 		frame.getContentPane().add(lblAthlete_1);
 		
 		Choice choice = new Choice();
+		choice.setBackground(Color.ORANGE);
+		choice.setForeground(Color.BLACK);
 		choice.add("1");
 		choice.add("2");
 		choice.add("3");
@@ -103,6 +105,8 @@ public class CreateTeam {
 		frame.getContentPane().add(choice);
 		
 		Choice choice_1 = new Choice();
+		choice_1.setBackground(Color.ORANGE);
+		choice_1.setForeground(Color.BLACK);
 		choice_1.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
@@ -118,6 +122,8 @@ public class CreateTeam {
 		frame.getContentPane().add(choice_1);
 		
 		Choice choice_2 = new Choice();
+		choice_2.setForeground(Color.BLACK);
+		choice_2.setBackground(Color.ORANGE);
 		choice_2.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
@@ -133,6 +139,8 @@ public class CreateTeam {
 		frame.getContentPane().add(choice_2);
 		
 		Choice choice_3 = new Choice();
+		choice_3.setForeground(Color.BLACK);
+		choice_3.setBackground(Color.ORANGE);
 		choice_3.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
@@ -148,6 +156,8 @@ public class CreateTeam {
 		frame.getContentPane().add(choice_3);
 		
 		Choice choice_4 = new Choice();
+		choice_4.setForeground(Color.BLACK);
+		choice_4.setBackground(Color.ORANGE);
 		choice_4.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {

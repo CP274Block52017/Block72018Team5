@@ -62,16 +62,19 @@ public class DisplayTournamentInformation {
 		frame.getContentPane().add(lblStrategyToDetermine);
 		
 		JLabel lblNewLabel = new JLabel();
+		lblNewLabel.setText(String.valueOf(SecondWindow.getTeamName()));
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(186, 61, 61, 16);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel();
+		lblNewLabel_1.setText(String.valueOf(SecondWindow.getParticipantNumber()));
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(177, 112, 61, 16);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JLabel label = new JLabel(SecondWindow.getTeamName());
+		JLabel label = new JLabel();
+		label.setText(String.valueOf(SecondWindow.getStrategy()));
 		label.setForeground(Color.WHITE);
 		label.setBounds(250, 162, 61, 16);
 		frame.getContentPane().add(label);

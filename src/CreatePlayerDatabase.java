@@ -218,10 +218,11 @@ public class CreatePlayerDatabase {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		CreatePlayerDatabase.createDatabase();
-		CreatePlayerDatabase.createTable();
-		CreatePlayerDatabase.addPlayers();
+//		CreatePlayerDatabase.createDatabase();
+//		CreatePlayerDatabase.createTable();
+//		CreatePlayerDatabase.addPlayers();
 		CreatePlayerDatabase.getPlayers();
+		CreatePlayerDatabase.getPlayerList();
 		//CreatePlayerDatabase.showInformation();
 	}
 	
