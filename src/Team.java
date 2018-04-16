@@ -12,7 +12,7 @@ public class Team {
 	private String teamName;
 	private ArrayList<Player> teamMembers;
 	private double lastRoundAverage;
-	
+
 	/**
 	 * Constructor for the Team class.
 	 * @param teamName
@@ -23,10 +23,11 @@ public class Team {
 		lastRoundAverage = 0.0;
 	}
 	
+
 	public ArrayList<Player> getTeamMembersList() {
 		return teamMembers;
 	}
-	
+
 	/**
 	 * This method provides the name of a team.
 	 * @return

@@ -11,10 +11,11 @@ public class Tournament {
 	private String name;
 	private int numTeams;
 	private TournamentWinnerStrategy winnerStrategy;
+
 	private ArrayList<Team> teams;
 	private Team winner;
 
-	
+
 	/**
 	 * Constructor contains needed information for creating
 	 * a new tournament.
@@ -36,6 +37,7 @@ public class Tournament {
 	public TournamentWinnerStrategy getWinnerStrategy() {
 		return winnerStrategy;
 	}
+
 	
 	/**
 	 * Adds a team to the list of teams in the tournament.
@@ -62,7 +64,7 @@ public class Tournament {
 	}
 	
 	/**
-	 * Allows us to set winner of tournament if we want to
+	 * Allows us to set winner of tournament if we want to.
 	 * @param winner of the tournament
 	 */
 	public void setWinner(Team winner) {
@@ -70,4 +72,3 @@ public class Tournament {
 	}
 	
 }
-
