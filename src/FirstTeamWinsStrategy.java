@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class FirstTeamWinsStrategy implements TournamentWinnerStrategy {
 
@@ -8,6 +7,14 @@ public class FirstTeamWinsStrategy implements TournamentWinnerStrategy {
 
 	public String getName() {
 		return "First Team Wins";
+	}
+
+	public int getWinningAverage() {
+		return 0;
+	}
+
+	public int getLosingAverage() {
+		return 0;
 	}
 	
 	
