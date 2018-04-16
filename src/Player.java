@@ -1,4 +1,3 @@
-
  /**
  * This class contains the methods and information for the players
  * on the teams in the tournaments and will be connected to the 
@@ -9,6 +8,27 @@
  *
  */
 public class Player {
+	
+	
+
+	/**
+	 * For the first iteration, we will only use names in order to test strategies
+	 * before the database is completely set up.
+	 * int height, int age, int gamePlayed, int minutes, int wins, int losses
+	 * Possibles attributes for the players / athletes
+	 * Basketball
+	 * Name, Height, Age, # of Games Played, Wins, Losses
+	 * Hockey 
+	 * Name, Height, Age, # of Games Played, Wins, Losses
+	 * Soccer
+	 * Name, Height, Age, # of Games Played, Wins, Losses
+	 * Lacrosse
+	 * Name, Height, Age, # of Games Played, Wins, Losses
+	 * Tennis ??? 
+	 * Name, Height, Age, Matches Played, Wins, Losses
+	 * Volleyball
+	 * Name, Height, Age, # of Games PLayed, Wins, Losses
+	 */
 	
 	private String name;
 	private String sport;
@@ -104,3 +124,4 @@ public class Player {
 	}
 	
 }
+

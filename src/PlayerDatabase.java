@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,7 +18,7 @@ import java.sql.ResultSet;
  */
 public class PlayerDatabase {
 	
-	public static final String PORT_NUMBER = "8889";
+	public static final String PORT_NUMBER = "3306";
 	
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	
@@ -134,7 +133,9 @@ public class PlayerDatabase {
 					+ "('Max St. Pierre', 'Hockey', 'Male', 74, 7, 8, 24, 1), "
 					+ "('Cole McCaskill', 'Hockey', 'Male', 73, 30, 8, 24, 2)";
 			int countInserted = statement.executeUpdate(insertPlayers);
-			System.out.println(countInserted + " players inserted.\n");
+			if (countInserted != 0) {
+				System.out.println(countInserted + " players inserted.\n");
+			}
 		} 
 		catch (SQLException ex) {
 			ex.printStackTrace();
@@ -194,13 +195,13 @@ public class PlayerDatabase {
 	public static int getNumPlayers() {
 		return players.size();
 	}
-
+	
+	
 	/**
 	 * 
 	 * Creates the database and table of athletes and 
-	 * heir information. This information will be used by the 
+	 * their information. This information will be used by the 
 	 * tournament strategies.
-	 * @param args
 	 */
 	public static void generateDatabase() {
 		createDatabase();
@@ -208,5 +209,8 @@ public class PlayerDatabase {
 		addPlayersToDatabase();		
 		getPlayersFromDatabase();
 	}
+
+	
 }
+
 
