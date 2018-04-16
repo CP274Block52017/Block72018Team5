@@ -73,6 +73,10 @@ public class RunTournament {
 	 		//inner loop adds players to team until team is full
 	 		while (teamSize < MAX_TEAM_SIZE) {
 	 			existingPlayer = false;
+	 			System.out.println("\n");
+	 			for (Player player : PlayerDatabase.getPlayersList()) {
+	 				System.out.println(player.getName() + ", " + player.getSport());
+	 			}
 	 			//this loop checks to make sure the player name entered by the user actually corresponds to a player in the database, 
 	 			//and if it does not, gives user a chance to correct the input
 	 			while (!existingPlayer) {

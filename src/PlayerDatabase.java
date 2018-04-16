@@ -88,7 +88,9 @@ public class PlayerDatabase {
 					+ "('Tom Haller', 'Lacrosse', 'Male', 72, 15, 10, 6, 2), "
 					+ "('Jenna McDonald', 'Tennis', 'Female', 65, 40, 6, 14, 2)";
 			int countInserted = statement.executeUpdate(insertPlayers);
-			System.out.println(countInserted + " players inserted.\n");
+			if (countInserted != 0) {
+				System.out.println(countInserted + " players inserted.\n");
+			}
 		} 
 		catch (SQLException ex) {
 			ex.printStackTrace();
@@ -149,31 +151,18 @@ public class PlayerDatabase {
 		return players.size();
 	}
 	
+	
+	/**
+	 * 
+	 * Creates the database and table of athletes and 
+	 * their information. This information will be used by the 
+	 * tournament strategies.
+	 */
 	public static void generateDatabase() {
 		createDatabase();
 		createTable();
 		addPlayersToDatabase();		
 		getPlayersFromDatabase();
-		for (Player player : players) {
-			System.out.println(player);
-		}
-	}
-	
-	/**
-	 * 
-	 * Creates the database and table of athletes and 
-	 * heir information. This information will be used by the 
-	 * tournament strategies.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		createDatabase();
-		createTable();
-		addPlayersToDatabase();		
-		getPlayersFromDatabase();
-		for (Player player : players) {
-			System.out.println(player);
-		}
 	}
 
 	
