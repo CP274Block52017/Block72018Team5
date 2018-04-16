@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Team {
 	
 	private String teamName;
+
 	private ArrayList<Player> teamMembers;
 	private double lastRoundAverage;
 	
@@ -25,6 +26,7 @@ public class Team {
 	
 	public ArrayList<Player> getTeamMembersList() {
 		return teamMembers;
+
 	}
 	
 	/**
@@ -64,6 +66,10 @@ public class Team {
 		return teamMembers.size();
 	}
 	
+	public int getTeamSize() {
+		return teamMembers.size();
+	}
+	
 	/**
 	 * Method to print out the players
 	 * of a team.
@@ -71,6 +77,14 @@ public class Team {
 	 */
 	public String toString() {
 		return getMembers();
+	}
+
+	public double getLastRoundAverage() {
+		return lastRoundAverage;
+	}
+
+	public void setLastRoundAverage(double lastRoundAverage) {
+		this.lastRoundAverage = lastRoundAverage;
 	}
 
 	public double getLastRoundAverage() {
