@@ -57,7 +57,8 @@ public class RunTournament {
 	}
 	
 	/**
-	 * This method prompts the user by asking if they would like to create a team.
+	 * This method prompts the user by asking if they would like to create a team, 
+	 * allowing the user to input the team's name and add players from the athlete database to the team.
 	 * @param scan - user input.
 	 * @return Team - an instance of team.
 	 */
@@ -65,11 +66,13 @@ public class RunTournament {
 		Boolean confirmTeam = false;
 		Boolean existingPlayer;
 		Team newTeam = null;
+		
 		//outer loop so that user can go back and edit/make new team if unhappy with initial entries
 		while (!confirmTeam) {
 			String teamName = askName("\nWhat do you want to name your team?", scan);
 			newTeam = new Team(teamName);
 	 		int teamSize = 0;
+	 		
 	 		//inner loop adds players to team until team is full
 	 		while (teamSize < MAX_TEAM_SIZE) {
 	 			existingPlayer = false;
@@ -77,6 +80,7 @@ public class RunTournament {
 	 			for (Player player : PlayerDatabase.getPlayersList()) {
 	 				System.out.println(player.getName() + ", " + player.getSport());
 	 			}
+	 			
 	 			//this loop checks to make sure the player name entered by the user actually corresponds to a player in the database, 
 	 			//and if it does not, gives user a chance to correct the input
 	 			while (!existingPlayer) {
@@ -93,6 +97,7 @@ public class RunTournament {
 		 			}
 	 			}
 	 		}
+	 		
 	 		//checks if user is happy with team; if not, go back and edit
 	 		if (teamSize == MAX_TEAM_SIZE) {
 	 			System.out.println("\nTeam " + teamName + " is full!");
@@ -251,7 +256,7 @@ public class RunTournament {
  	 * This method determines the winner of each round and uses recursion to do
  	 * this method again and again until the tournament is complete
  	 * @param strategy to determine winner
- 	 * @param teams that are playing tin the tournament
+ 	 * @param teams that are playing in the tournament
  	 * @param new scan to get user input
  	 * @return the team that won
  	 */
@@ -260,9 +265,10 @@ public class RunTournament {
  		Team winningTeam = null;
  		Team losingTeam = null;
  		Boolean isFinalRound = true;
+ 		
+ 		//determines winners for each matchup in current round, adds winners to list of teams advancing to next round
  		for (int i = 0; i < teams.size(); i += 2) {
  			System.out.println("\nTeam Matchup: " + teams.get(i).getName() + " vs. " + teams.get(i + 1).getName());
- 			
  			winningTeam = strategy.determineWinner(teams.get(i), teams.get(i + 1));
  			if (teams.get(i).getName().equals(winningTeam.getName())) {
  				losingTeam = teams.get(i + 1);
@@ -276,6 +282,8 @@ public class RunTournament {
  			}
  			nextRoundTeams.add(winningTeam);
  		}
+ 		
+ 		//recursive method calls itself if there is more than one team left in the tournament
  		if (nextRoundTeams.size() != 1) {
  			isFinalRound = false;
  			System.out.println("\nNext round's matchups: ");
@@ -296,6 +304,12 @@ public class RunTournament {
  		return finalWinningTeam;
  	}
  	
+ 	/**
+ 	 * This method determines the winner of each an individual matchup between two teams.
+ 	 * It is used by the strategies which determine the winner based on different player attributes.
+ 	 * @param firstTeam - first team in matchup
+ 	 * @return secondTeam - second team in matchup
+ 	 */
  	public static Team determineWinningAverage(Team firstTeam, Team secondTeam) {
  		if (firstTeam.getLastRoundAverage() > secondTeam.getLastRoundAverage()) {
 			return firstTeam;
@@ -321,6 +335,8 @@ public class RunTournament {
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
 		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
+		
+		//loop continues while tournament master wants to create a new tournament
  		while(!exitTournamentGenerator) {
 			if (yesCreate) {
 				createTournament(scan);
@@ -331,6 +347,8 @@ public class RunTournament {
 			
 			int numTeams = 0;
 			System.out.println("\nNeed to add " + (newTournament.getNumTeams() - numTeams) + " more team(s) to run tournament. Please add another team:");
+			
+			//loop continues while teams still need to be added to the tournament to match number of participants (teams) entered by tournament master
 			while (numTeams < newTournament.getNumTeams()) {
 				Team newTeam = createTeam(scan);
 				newTournament.addTeam(newTeam);
@@ -349,10 +367,12 @@ public class RunTournament {
 				}
 			}
 			
+			//Determine winners for each round of tournament, including final winner
 			Team tournamentWinner = determineRoundWinners(chosenStrategy, newTournament.getTeams(), scan);
 			newTournament.setWinner(tournamentWinner);
 			System.out.println("Team " + tournamentWinner.getName() + " has won the tournament!");
 			
+			//Ask tournament master whether to start new tournament
 			Boolean startAgain = askYesNo("\nWould you like to start a new tournament?\n", scan);
 			if(!startAgain) {
 				exitTournamentGenerator = true;
