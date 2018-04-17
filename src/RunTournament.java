@@ -28,6 +28,8 @@ public class RunTournament {
 	private static TournamentWinnerStrategy chosenStrategy;
 	private static Team finalWinningTeam;
 	
+	private static GUIWelcomeWindow welcomeWindow;
+	
 	/**
 	 * This method gets user input on whether or not they would like to
 	 * create a new tournament.
@@ -129,7 +131,9 @@ public class RunTournament {
 	 */
 	private static String askName(String prompt, Scanner scan) {
  		System.out.println(prompt);
- 	 	String name = scan.nextLine();
+ 	 	//String name = scan.nextLine();
+ 	 	String name = GUICreateTournamentWindow.getTeamName();
+ 	 	System.out.println(name);
  	 	return name;
  	 }
  	 	
@@ -140,25 +144,25 @@ public class RunTournament {
  	 * @return int - number of teams to create.
  	 */
  	private static int askNumberOfTeams(Scanner scan) {
- 		int numParticipants = 0;
- 		Boolean validAnswer = false;
- 		while (!validAnswer) {
-	 		try {
-	 			System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8, or 16) ");
-	 	 		numParticipants = scan.nextInt();
-	 	 		scan.nextLine();
-	 	 		if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == MAX_PARTICIPANTS)) {
-	 	 			validAnswer = true;
-	 	 		}
-	 		}
-	 		catch(InputMismatchException ex) {
-				scan.nextLine();
-			}
-			if (!validAnswer) {
-				System.out.println("Invalid selection -- enter 2, 4, 8, or 16.");
-			}
-	 	}
- 		return numParticipants;
+ 		//int numParticipants = 0;
+ 		//Boolean validAnswer = false;
+ 		//while (!validAnswer) {
+	 		//try {
+	 			//System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8, or 16) ");
+	 	 		//numParticipants = scan.nextInt();
+	 	 		//scan.nextLine();
+	 	 		//if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == MAX_PARTICIPANTS)) {
+	 	 			//validAnswer = true;
+	 	 		//}
+	 		//}
+	 		//catch(InputMismatchException ex) {
+				//scan.nextLine();
+			//}
+			//if (!validAnswer) {
+				//System.out.println("Invalid selection -- enter 2, 4, 8, or 16.");
+			//}
+	 	//}
+ 		return GUICreateTournamentWindow.getParticipantNumber();
 	}
 		
  	/**
@@ -168,56 +172,56 @@ public class RunTournament {
  	 * @return int - number correlating to the desired strategy.
  	 */
  	private static int askStrategy(Scanner scan) {
- 		int chosenStrategy = 0;
- 		Boolean validAnswer = false;
- 		while(!validAnswer) {
- 			System.out.println("Choose a strategy to determine the winner of the tournament from the following options: ");
- 			System.out.println("1: Random Winner");
- 			System.out.println("2: By Greatest Average Height");
- 			System.out.println("3: By Greatest Average Games Played");
- 			System.out.println("4: By Greatest Average Games Won");
- 			System.out.println("5: By Greatest Average Games Lost");
- 			System.out.println("6: By Greatest Average Class Year");
- 			System.out.print("> ");
- 			try {
- 				chosenStrategy = scan.nextInt();
- 				scan.nextLine();
+ 		//int chosenStrategy = 0;
+ 		//Boolean validAnswer = false;
+ 		//while(!validAnswer) {
+ 			//System.out.println("Choose a strategy to determine the winner of the tournament from the following options: ");
+ 			//System.out.println("1: Random Winner");
+ 			//System.out.println("2: By Greatest Average Height");
+ 			//System.out.println("3: By Greatest Average Games Played");
+ 		//	System.out.println("4: By Greatest Average Games Won");
+ 			//System.out.println("5: By Greatest Average Games Lost");
+ 			//System.out.println("6: By Greatest Average Class Year");
+ 			//System.out.print("> ");
+ 			//try {
+ 				//chosenStrategy = scan.nextInt();
+ 				//scan.nextLine();
  				
- 				switch (chosenStrategy) {
- 				case RANDOM_STRATEGY:
- 					chosenStrategy = RANDOM_STRATEGY;
- 					validAnswer = true;
- 					break;
- 				case BY_HEIGHT_STRATEGY: 
- 					chosenStrategy = BY_HEIGHT_STRATEGY;
- 					validAnswer = true;
- 					break;
- 				case BY_GAMESPLAYED_STRATEGY: 
- 					chosenStrategy = BY_GAMESPLAYED_STRATEGY;
- 					validAnswer = true;
- 					break;
- 				case BY_GAMESWON_STRATEGY: 
- 					chosenStrategy = BY_GAMESWON_STRATEGY;
- 					validAnswer = true;
- 					break;
- 				case BY_GAMESLOST_STRATEGY: 
- 					chosenStrategy = BY_GAMESLOST_STRATEGY;
- 					validAnswer = true;
- 					break;
- 				case BY_CLASSYEAR_STRATEGY: 
- 					chosenStrategy = BY_CLASSYEAR_STRATEGY;
- 					validAnswer = true;
- 					break;
- 				default: 
- 					System.out.println("Invalid selection -- enter a number between 1 and " + NUMBER_STRATEGIES);
- 				}
- 			}
- 			catch (InputMismatchException ex) {
- 				scan.nextLine();
- 				System.out.println("Invalid selection -- enter a number between 1 and " + NUMBER_STRATEGIES);
- 			}
- 		}
- 		return chosenStrategy;
+ 				//switch (chosenStrategy) {
+ 				//case RANDOM_STRATEGY:
+ 					//chosenStrategy = RANDOM_STRATEGY;
+ 					//validAnswer = true;
+ 					//break;
+ 				//case BY_HEIGHT_STRATEGY: 
+ 					//chosenStrategy = BY_HEIGHT_STRATEGY;
+ 					//validAnswer = true;
+ 					//break;
+ 				//case BY_GAMESPLAYED_STRATEGY: 
+ 					//chosenStrategy = BY_GAMESPLAYED_STRATEGY;
+ 					//validAnswer = true;
+ 					//break;
+ 				//case BY_GAMESWON_STRATEGY: 
+ 					//chosenStrategy = BY_GAMESWON_STRATEGY;
+ 					//validAnswer = true;
+ 					//break;
+ 				//case BY_GAMESLOST_STRATEGY: 
+ 					//chosenStrategy = BY_GAMESLOST_STRATEGY;
+ 					//validAnswer = true;
+ 					//break;
+ 				//case BY_CLASSYEAR_STRATEGY: 
+ 					//chosenStrategy = BY_CLASSYEAR_STRATEGY;
+ 					//validAnswer = true;
+ 					//break;
+ 				//default: 
+ 					//System.out.println("Invalid selection -- enter a number between 1 and " + NUMBER_STRATEGIES);
+ 				//}
+ 			//}
+ 			//catch (InputMismatchException ex) {
+ 				//scan.nextLine();
+ 				//System.out.println("Invalid selection -- enter a number between 1 and " + NUMBER_STRATEGIES);
+ 			//}
+ 		//}
+ 		return GUICreateTournamentWindow.getStrategy();
 	 }
 	 	
 	 	
@@ -334,14 +338,14 @@ public class RunTournament {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUIWelcomeWindow window = new GUIWelcomeWindow();
-					window.getFrame().setVisible(true);
+					welcomeWindow = new GUIWelcomeWindow();
+					welcomeWindow.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		
+	
 		Boolean exitTournamentGenerator = false;
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
