@@ -127,7 +127,7 @@ class YesButton extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUICreateNewTournament window = new GUICreateNewTournament();
+					GUICreateNewTournamentWindow window = new GUICreateNewTournamentWindow();
 					window.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
