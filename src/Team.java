@@ -16,17 +16,13 @@ public class Team {
 	
 	/**
 	 * Constructor for the Team class.
-	 * @param teamName - name of the team
+	 * @param teamName
 	 */
 	public Team(String teamName) {
 		this.teamName = teamName;
 		teamMembers = new ArrayList<Player>();
 		lastRoundAverage = 0.0;
 	}
-	/**
-	*This method returns the lists of players that are on this team
-	*@return Array list of players on the team
-	**/
 	
 	public ArrayList<Player> getTeamMembersList() {
 		return teamMembers;
@@ -64,10 +60,7 @@ public class Team {
 		}
 		return members;
 	}
-	/**
-	*Gets the size of the team
-	*@return number of players on team
-	**/
+	
 	public int getTeamSize() {
 		return teamMembers.size();
 	}
@@ -80,17 +73,11 @@ public class Team {
 	public String toString() {
 		return getMembers();
 	}
-	/**
-	*returns the average for the last round
-	*@return the last round average
-	**/
+
 	public double getLastRoundAverage() {
 		return lastRoundAverage;
 	}
-	/**
-	* Sets the average for the last round
-	*@param the average number for the last round we want to set
-	**/		
+
 	public void setLastRoundAverage(double lastRoundAverage) {
 		this.lastRoundAverage = lastRoundAverage;
 	}

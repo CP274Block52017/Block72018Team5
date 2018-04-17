@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -34,7 +35,8 @@ public class RunTournament {
 	 * @param prompt - the prompt to ask the user a question.
 	 * @param scan - the input from the user.
 	 * @return boolean - returns true or false depending on the user's answer.
-	 */
+	 **/
+
 	private static boolean askYesNo(String prompt, Scanner scan) {
 		boolean isYes = false;
 		boolean validAnswer = false;
@@ -341,6 +343,7 @@ public class RunTournament {
 				}
 			}
 		});
+		
 		Boolean exitTournamentGenerator = false;
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
@@ -391,6 +394,5 @@ public class RunTournament {
  		System.out.println("\nThanks for playing! Come back soon!");
 	}
 }
-
 
 
