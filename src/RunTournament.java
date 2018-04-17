@@ -341,7 +341,6 @@ public class RunTournament {
 				}
 			}
 		});
-		
 		Boolean exitTournamentGenerator = false;
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);

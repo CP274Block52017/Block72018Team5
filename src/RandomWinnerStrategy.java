@@ -10,7 +10,13 @@ import java.util.Random;
  *
  */
 public class RandomWinnerStrategy implements TournamentWinnerStrategy {
-
+	
+	/**
+	*This method determines the winner between the two teams randomly
+	*@param first team playing
+	*@param second team playing
+	*@return the team who one
+	**/
 	public Team determineWinner(Team firstTeam, Team secondTeam) {
 		Random rand = new Random();
 		int winningTeamIndicator = rand.nextInt(2);
@@ -21,7 +27,10 @@ public class RandomWinnerStrategy implements TournamentWinnerStrategy {
 			return secondTeam;
 		}
 	}
-	
+	/**
+	*Gets the name of this strategy
+	*return name of this strategy
+	**/
 	public String getName() {
 		return "Random Winner";
 	}

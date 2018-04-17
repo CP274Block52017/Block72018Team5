@@ -1,3 +1,4 @@
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,7 +29,10 @@ public class PlayerDatabase {
 	public PlayerDatabase() {
 		
 	}
-	
+	/**
+	*This method creates the database using the my SQL 
+	*and actually creates the database 
+	**/
 	private static void createDatabase() {
 		try (
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:" + PORT_NUMBER + "/?user=root&password=root");
@@ -41,6 +45,12 @@ public class PlayerDatabase {
 			ex.printStackTrace();
 		}
 	}
+	/**
+	*This method is going to add all the schema we want in our database
+	*It creates a table of players containing their name, sport, gender, height
+	*games played, teams wins, team losses, class year, and it makes the name the
+	*primary key of this table is going to be the player name
+	**/
 	
 	private static void createTable() {
 		try (
@@ -67,6 +77,11 @@ public class PlayerDatabase {
 			ex.printStackTrace();
 		}
 	}
+	/**
+	*This method is going to put the playesr into the table we generated above
+	*in the database that we have already created. We got this information
+	*about CC athletes from the 2016-2017 season.
+	**/
 	
 	private static void addPlayersToDatabase() {
 		try (
@@ -141,7 +156,9 @@ public class PlayerDatabase {
 			ex.printStackTrace();
 		}	
 	}
-	
+	/**This method is going to grab the players from our database
+	*and getting their inforamtion
+	**/
 	private static void getPlayersFromDatabase() {
 		try (
 				Connection conn = DriverManager.getConnection(
@@ -178,7 +195,11 @@ public class PlayerDatabase {
 	public static ArrayList<Player> getPlayersList() {
 		return players;
 	}
-	
+	/** This method is going to search the arraylist of players for 
+	*a specific player
+	*@param name of the player we want to find
+	*@return the entire player class of the player we wanted
+	**/
 	public static Player findPlayer(String playerName) {
 		for (Player player : players) {
 			if (playerName.equalsIgnoreCase(player.getName())) {
@@ -212,5 +233,4 @@ public class PlayerDatabase {
 
 	
 }
-
 
