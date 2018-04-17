@@ -19,8 +19,8 @@ public class GUICreateNewTournamentWindow {
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
 	private static String tournamentName;
-	private static int participantNumber;
-	private static int strategyNumber;
+	private static String participantNumber;
+	private static String strategyNumber;
 	private static Object[] values;
 	private static JComboBox combobox;
 	
@@ -116,11 +116,11 @@ public class GUICreateNewTournamentWindow {
 		return tournamentName;
 	}
 	
-	public static int getParticipantNumber() {
+	public static String getParticipantNumber() {
 		return participantNumber;
 	}
 	
-	public static int getStrategy() {
+	public static String getStrategy() {
 		return strategyNumber;
 	}
 	
@@ -137,8 +137,9 @@ public class GUICreateNewTournamentWindow {
 				public void run() {
 					try {
 						tournamentName = textField.getText();
-						participantNumber = Integer.parseInt(participantsChoice.getSelectedItem());
-						strategyNumber = Character.getNumericValue((strategyChoice.getSelectedItem().charAt(0)));
+						participantNumber = participantsChoice.getSelectedItem();
+						//participantNumber = Integer.parseInt(participantsChoice.getSelectedItem());
+						//strategyNumber = Character.getNumericValue((strategyChoice.getSelectedItem().charAt(0)));
 						
 						String text = textField.getText();
 						int item = Character.getNumericValue((strategyChoice.getSelectedItem().charAt(0)));
