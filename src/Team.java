@@ -80,6 +80,7 @@ public class Team {
 
 	public void setLastRoundAverage(double lastRoundAverage) {
 		this.lastRoundAverage = lastRoundAverage;
+
 	}
 
 }

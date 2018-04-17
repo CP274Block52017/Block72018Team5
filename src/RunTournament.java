@@ -343,7 +343,7 @@ public class RunTournament {
 				}
 			}
 		});
-		
+
 		Boolean exitTournamentGenerator = false;
 		System.out.println("Welcome to the tournament game!");
 		Scanner scan = new Scanner(System.in);
@@ -394,5 +394,4 @@ public class RunTournament {
  		System.out.println("\nThanks for playing! Come back soon!");
 	}
 }
-
 
