@@ -36,8 +36,7 @@ public class GUICreateTournamentWindow extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public GUICreateTournamentWindow(Object[] values) {
-		this.values = values;
+	public GUICreateTournamentWindow() {
 		initialize();
 	}
 	
