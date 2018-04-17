@@ -132,7 +132,7 @@ public class GUICreateTeam {
 		athleteChoice4.setBounds(1200, 182, 203, 42);
 		frame.getContentPane().add(athleteChoice4);
 		
-		Choice athleteChoice5 = new Choice();
+		athleteChoice5 = new Choice();
 		playerChoices = PlayerDatabase.getPlayersList();
 		for(int i = 0; i < playerChoices.size(); i++) {
 			athleteChoice5.add(playerChoices.get(i).getName() + ", " + playerChoices.get(i).getSport());
