@@ -124,16 +124,14 @@ public class RunTournament {
 
 	
 	/**
-	 * This method gets the names entered by the user.
+	 * This method gets the names entered by the user from the GUI
 	 * @param prompt - the prompt to ask the user for a question.
 	 * @param scan - user input.
 	 * @return String - the name inputed by the user.
 	 */
-	private static String askName(String prompt, Scanner scan) {
+	private static String askName(String prompt) {
  		System.out.println(prompt);
- 	 	//String name = scan.nextLine();
- 	 	String name = GUICreateTournamentWindow.getTeamName();
- 	 	System.out.println(name);
+ 	 	String name = .getTeamName();
  	 	return name;
  	 }
  	 	
@@ -143,7 +141,7 @@ public class RunTournament {
  	 * @param scan - user input.
  	 * @return int - number of teams to create.
  	 */
- 	private static int askNumberOfTeams(Scanner scan) {
+ 	private static int askNumberOfTeams() {
  		//int numParticipants = 0;
  		//Boolean validAnswer = false;
  		//while (!validAnswer) {
@@ -171,7 +169,7 @@ public class RunTournament {
  	 * @param scan - user input.
  	 * @return int - number correlating to the desired strategy.
  	 */
- 	private static int askStrategy(Scanner scan) {
+ 	private static int askStrategy() {
  		//int chosenStrategy = 0;
  		//Boolean validAnswer = false;
  		//while(!validAnswer) {
@@ -335,6 +333,7 @@ public class RunTournament {
 	public static void main(String[] args) {
 		PlayerDatabase.generateDatabase();
 		
+		//open beginning GUI window
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

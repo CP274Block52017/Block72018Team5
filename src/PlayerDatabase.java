@@ -1,8 +1,10 @@
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.sql.ResultSet;
 
 /**
@@ -66,6 +68,11 @@ public class PlayerDatabase {
 		catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	private static File getFile() {
+		File athletesFile = new File("athletes.txt");
+		return athletesFile;
 	}
 	
 	private static void addPlayersToDatabase() {

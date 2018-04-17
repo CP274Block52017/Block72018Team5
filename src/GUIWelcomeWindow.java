@@ -1,9 +1,10 @@
-	import javax.swing.JFrame;
-	import javax.swing.JButton;
-	import java.awt.Color;
-	import java.awt.event.ActionListener;
-	import java.awt.event.ActionEvent;
-	import javax.swing.JLabel;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 import java.awt.Font;
 	
 	public class GUIWelcomeWindow extends JFrame {
@@ -117,16 +118,16 @@ import java.awt.Font;
 		}
 	
 		public void actionPerformed(ActionEvent e) {
-	//		EventQueue.invokeLater(new Runnable() {
-	//			public void run() {
-	//				try {
-	//					GUICreateTournamentWindow window = new GUICreateTournamentWindow();
-	//					window.getFrame().setVisible(true);
-	//				} catch (Exception e) {
-	//					e.printStackTrace();
-	//				}
-	//			}
-	//		});
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						GUICreateTournamentWindow window = new GUICreateTournamentWindow();
+						window.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 			hasBeenClicked = true;
 		}
 	}
