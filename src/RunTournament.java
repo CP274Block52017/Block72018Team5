@@ -313,7 +313,7 @@ public class RunTournament {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//PlayerDatabase.generateDatabase();
+		PlayerDatabase.generateDatabase();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
