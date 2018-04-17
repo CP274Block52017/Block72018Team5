@@ -2,7 +2,8 @@
 	import javax.swing.JFrame;
 	import javax.swing.JButton;
 	import java.awt.Color;
-	import java.awt.event.ActionListener;
+import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 	import java.awt.event.ActionEvent;
 	import javax.swing.JLabel;
 	import java.awt.Font;
@@ -125,17 +126,16 @@
 		}
 	
 		public void actionPerformed(ActionEvent e) {
-	//		EventQueue.invokeLater(new Runnable() {
-	//			public void run() {
-	//				try {
-	//					GUICreateTournamentWindow window = new GUICreateTournamentWindow();
-	//					window.getFrame().setVisible(true);
-	//				} catch (Exception e) {
-	//					e.printStackTrace();
-	//				}
-	//			}
-	//		});
-			System.exit(1);
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						GUICreateTournamentWindow window = new GUICreateTournamentWindow();
+						window.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 			hasBeenClicked = true;
 		}
 	}
@@ -155,6 +155,19 @@
 			System.exit(1);
 			hasBeenClicked = false;
 		}
+	}
+	
+	public static void main(String[] agrs) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUIWelcomeWindow window = new GUIWelcomeWindow();
+					window.getFrame().setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }
