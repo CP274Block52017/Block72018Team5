@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class GUIShowTournamentInformation {
 
@@ -15,22 +16,6 @@ public class GUIShowTournamentInformation {
 	private ActionListener nextListener;
 	private ActionListener backListener;
 	private static boolean hasBeenClicked;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUIShowTournamentInformation window = new GUIShowTournamentInformation();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -51,59 +36,75 @@ public class GUIShowTournamentInformation {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblTournamentInformation = new JLabel("Tournament Information!");
+		lblTournamentInformation.setFont(new Font("Lucida Grande", Font.PLAIN, 40));
 		lblTournamentInformation.setForeground(Color.ORANGE);
-		lblTournamentInformation.setBounds(898, 25, 175, 36);
+		lblTournamentInformation.setBounds(475, 63, 506, 36);
 		frame.getContentPane().add(lblTournamentInformation);
 		
 		JLabel lblTournamentName = new JLabel("Tournament Name:");
+		lblTournamentName.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblTournamentName.setForeground(Color.ORANGE);
-		lblTournamentName.setBounds(898, 111, 133, 16);
+		lblTournamentName.setBounds(271, 176, 335, 36);
 		frame.getContentPane().add(lblTournamentName);
 		
 		JLabel lblNumberOfParticipants = new JLabel("Number of Participants:");
+		lblNumberOfParticipants.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblNumberOfParticipants.setForeground(Color.ORANGE);
-		lblNumberOfParticipants.setBounds(901, 196, 172, 16);
+		lblNumberOfParticipants.setBounds(271, 301, 405, 43);
 		frame.getContentPane().add(lblNumberOfParticipants);
 		
 		JLabel lblStrategyToDetermine = new JLabel("Strategy to Determine Winner:");
+		lblStrategyToDetermine.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblStrategyToDetermine.setForeground(Color.ORANGE);
-		lblStrategyToDetermine.setBounds(898, 284, 206, 16);
+		lblStrategyToDetermine.setBounds(271, 430, 515, 43);
 		frame.getContentPane().add(lblStrategyToDetermine);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setText(GUICreateNewTournament.getTournamentName());
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		lblNewLabel.setText(GUICreateNewTournamentWindow.getStrategy());
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(1138, 284, 317, 16);
+		lblNewLabel.setBounds(790, 430, 723, 43);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setText(GUICreateNewTournament.getParticipantNumber());
+		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
+		lblNewLabel_1.setText(GUICreateNewTournamentWindow.getTournamentName());
 		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBounds(1088, 111, 292, 16);
+		lblNewLabel_1.setBounds(618, 176, 768, 36);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel label = new JLabel("");
-		label.setText(GUICreateNewTournament.getStrategy());
+		label.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
+		label.setText(GUICreateNewTournamentWindow.getParticipantNumber());
 		label.setForeground(Color.WHITE);
-		label.setBounds(1088, 196, 292, 16);
+		label.setBounds(688, 301, 603, 36);
 		frame.getContentPane().add(label);
 		
-		JLabel lblIfTheInformation = new JLabel("If the information is correct, press next, if you want to edit the information, press back!");
+		JLabel lblIfTheInformation = new JLabel("If the information is correct, press Next. ");
+		lblIfTheInformation.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblIfTheInformation.setForeground(Color.ORANGE);
-		lblIfTheInformation.setBounds(873, 388, 582, 16);
+		lblIfTheInformation.setBounds(271, 595, 710, 36);
 		frame.getContentPane().add(lblIfTheInformation);
 		
 		JButton btnNext = new JButton("Next");
+		btnNext.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		nextListener = new NextButton();
 		btnNext.addActionListener(nextListener);
-		btnNext.setBounds(914, 472, 117, 29);
+		btnNext.setBounds(1115, 588, 154, 43);
 		frame.getContentPane().add(btnNext);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		backListener = new BackButton();
 		btnBack.addActionListener(backListener);
-		btnBack.setBounds(1137, 472, 117, 29);
+		btnBack.setBounds(1115, 661, 154, 43);
 		frame.getContentPane().add(btnBack);
+		
+		JLabel lblIfYouWant = new JLabel("If you want to edit the information, press Back.");
+		lblIfYouWant.setForeground(Color.ORANGE);
+		lblIfYouWant.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
+		lblIfYouWant.setBounds(271, 668, 793, 36);
+		frame.getContentPane().add(lblIfYouWant);
 	}
 	
 	public static JFrame getFrame() {
@@ -117,7 +118,16 @@ class NextButton extends JFrame implements ActionListener {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						GUICreateTeam window = new GUICreateTeam();
+						window.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 			hasBeenClicked = true;
 		}
 	}
@@ -132,14 +142,14 @@ class NextButton extends JFrame implements ActionListener {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						GUICreateNewTournament window = new GUICreateNewTournament();
+						GUICreateNewTournamentWindow window = new GUICreateNewTournamentWindow();
 						window.getFrame().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			});
-			hasBeenClicked = false;
+			hasBeenClicked = true;
 		}
 	}
 

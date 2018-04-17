@@ -80,6 +80,7 @@ public class GUICreateNewTournamentWindow {
 		frame.getContentPane().add(lblIfTheInformation);
 		
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		submitListener = new SubmitButton();
 		btnSubmit.addActionListener(submitListener);
 		btnSubmit.setBounds(658, 692, 144, 51);

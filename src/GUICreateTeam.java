@@ -89,8 +89,9 @@ public class GUICreateTeam {
 		Choice choice = new Choice();
 		ArrayList<Player> players = PlayerDatabase.getPlayersList();
 		for(int i = 0; i < players.size(); i++) {
-			choice.add(players.get(i).getName());
+			choice.add(players.get(i).getName() + players.get(i).getSport());
 		}
+		choice.add(players.get(0).getName());
 		choice.setForeground(Color.BLACK);
 		choice.setBackground(Color.ORANGE);
 		choice.setBounds(509, 350, 203, 42);
@@ -127,6 +128,7 @@ public class GUICreateTeam {
 		frame.getContentPane().add(lblPressEnterTo);
 		
 		JButton btnNewButton = new JButton("Enter");
+		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		btnNewButton.setBounds(640, 651, 189, 54);
 		frame.getContentPane().add(btnNewButton);
 		
