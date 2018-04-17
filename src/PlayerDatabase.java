@@ -187,6 +187,8 @@ public class PlayerDatabase {
 			ex.printStackTrace();
 		}	
 	}
+
+		
 	
 	/**
 	 * Gets all of the players entered into the database

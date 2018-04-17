@@ -19,15 +19,14 @@ public class GUICreateNewTournamentWindow {
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
 	private static String tournamentName;
-	private static String teamTournament;
-	private static String participantNumber;
-	private static String strategy;
+	private static int participantNumber;
+	private static int strategyNumber;
 	private static Object[] values;
 	private static JComboBox combobox;
 	
 	private static JTextField textField;
-	private static Choice choice;
-	private static Choice choice_1;
+	private static Choice strategyChoice;
+	private static Choice participantsChoice;
 	
 
 
@@ -83,27 +82,27 @@ public class GUICreateNewTournamentWindow {
 		btnSubmit.setBounds(395, 585, 117, 29);
 		frame.getContentPane().add(btnSubmit);
 		
-		choice = new Choice();
-		choice.setForeground(Color.BLACK);
-		choice.setBackground(Color.ORANGE);
-		choice.add("1: Random Winner");
-		choice.add("2: By Greatest Average Height");
-		choice.add("3: By Greatest Average Games Played");
-		choice.add("4: By Greatest Average Games Won");
-		choice.add("5: By Greatest Average Games Lost");
-		choice.add("6: By Greatest Average Class Year");
-		choice.setBounds(415, 422, 100, 500);
-		frame.getContentPane().add(choice);
+		strategyChoice = new Choice();
+		strategyChoice.setForeground(Color.BLACK);
+		strategyChoice.setBackground(Color.ORANGE);
+		strategyChoice.add("1: Random Winner");
+		strategyChoice.add("2: By Greatest Average Height");
+		strategyChoice.add("3: By Greatest Average Games Played");
+		strategyChoice.add("4: By Greatest Average Games Won");
+		strategyChoice.add("5: By Greatest Average Games Lost");
+		strategyChoice.add("6: By Greatest Average Class Year");
+		strategyChoice.setBounds(415, 422, 100, 500);
+		frame.getContentPane().add(strategyChoice);
 		
-		choice_1 = new Choice();
-		choice_1.setForeground(Color.BLACK);
-		choice_1.setBackground(Color.ORANGE);
-		choice_1.add("2");
-		choice_1.add("4");
-		choice_1.add("8");
-		choice_1.add("16");
-		choice_1.setBounds(425, 296, 100, 100);
-		frame.getContentPane().add(choice_1);
+		participantsChoice = new Choice();
+		participantsChoice.setForeground(Color.BLACK);
+		participantsChoice.setBackground(Color.ORANGE);
+		participantsChoice.add("2");
+		participantsChoice.add("4");
+		participantsChoice.add("8");
+		participantsChoice.add("16");
+		participantsChoice.setBounds(425, 296, 100, 100);
+		frame.getContentPane().add(participantsChoice);
 		frame.setBounds(100, 100, FRAME_WIDTH, FRAME_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -114,19 +113,21 @@ public class GUICreateNewTournamentWindow {
 	}
 	
 	public static String getTournamentName() {
-		return teamTournament;
+		return tournamentName;
 	}
 	
-	public static String getParticipantNumber() {
+	public static int getParticipantNumber() {
 		return participantNumber;
 	}
 	
-	public static String getStrategy() {
-		return strategy;
+	public static int getStrategy() {
+		return strategyNumber;
 	}
 	
 	class SubmitButton extends JFrame implements ActionListener {
 		
+		
+
 		public SubmitButton() {
 			hasBeenClicked = false;
 		}
@@ -135,10 +136,13 @@ public class GUICreateNewTournamentWindow {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						String text = textField.getText();
+						tournamentName = textField.getText();
+						participantNumber = Integer.parseInt(participantsChoice.getSelectedItem());
+						strategyNumber = Character.getNumericValue((strategyChoice.getSelectedItem().charAt(0)));
 						
-						int item = Integer.parseInt(choice.getSelectedItem());
-						String item1 = choice_1.getSelectedItem();
+						String text = textField.getText();
+						int item = Character.getNumericValue((strategyChoice.getSelectedItem().charAt(0)));
+						int item1 = Integer.parseInt(participantsChoice.getSelectedItem());
 						System.out.println(text+ " " + item + " " + item1);
 						
 					} catch (Exception e) {
