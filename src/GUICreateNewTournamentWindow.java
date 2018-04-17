@@ -2,12 +2,17 @@ import java.awt.EventQueue;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Choice;
 import java.awt.Font;
@@ -31,14 +36,14 @@ public class GUICreateNewTournamentWindow {
 	/**
 	 * Create the application.
 	 */
-	public GUICreateNewTournamentWindow() {
+	public GUICreateNewTournamentWindow() throws IOException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
@@ -109,6 +114,22 @@ public class GUICreateNewTournamentWindow {
 		frame.getContentPane().add(choice_1);
 		frame.setBounds(100, 100, FRAME_WIDTH, FRAME_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		String logoFile = "Logo.jpg";
+	    File logo_file = new File(logoFile);
+	    BufferedImage CC_logo = ImageIO.read(logo_file);
+	    JLabel graphic = new JLabel(new ImageIcon(CC_logo));
+	    graphic.setBounds(25, 155, 300, 1200);
+	    frame.getContentPane().add(graphic);
+	    
+	    
+	    String topBar = "TopLine.jpg";
+	    File topbar_file = new File(topBar);
+	    BufferedImage top_bar = ImageIO.read(topbar_file);
+	    JLabel top_graphic = new JLabel(new ImageIcon(top_bar));
+	    top_graphic.setBounds(100, 0, 1200, 100);
+	    frame.getContentPane().add(top_graphic);
+	    
 	}
 	
 	

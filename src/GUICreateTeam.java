@@ -57,9 +57,9 @@ public class GUICreateTeam {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblCreateTeam = new JLabel("Create Team!");
-		lblCreateTeam.setFont(new Font("Lucida Grande", Font.PLAIN, 40));
+		lblCreateTeam.setFont(new Font("Lucida Grande", Font.PLAIN, 45));
 		lblCreateTeam.setForeground(Color.ORANGE);
-		lblCreateTeam.setBounds(596, 40, 257, 36);
+		lblCreateTeam.setBounds(600, 106, 289, 36);
 		frame.getContentPane().add(lblCreateTeam);
 		
 		JLabel lblAthlete = new JLabel("Athlete 1:");

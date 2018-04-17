@@ -1,15 +1,15 @@
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.JTextField;
+import java.awt.EventQueue;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import java.awt.Label;
 import java.awt.Font;
 
 public class GUIWelcomeWindow extends JFrame {
@@ -21,15 +21,14 @@ public class GUIWelcomeWindow extends JFrame {
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1500;
 	
-	public GUIWelcomeWindow() {
-		initialize();
-		setSize(FRAME_WIDTH, FRAME_HEIGHT);	
+	public GUIWelcomeWindow() throws IOException {
+		initialize();	
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -107,6 +106,21 @@ public class GUIWelcomeWindow extends JFrame {
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(24, 583, 205, 194);
 		frame.getContentPane().add(lblNewLabel);
+		
+		String logoFile = "Logo.jpg";
+	    File logo_file = new File(logoFile);
+	    BufferedImage CC_logo = ImageIO.read(logo_file);
+	    JLabel graphic = new JLabel(new ImageIcon(CC_logo));
+	    graphic.setBounds(25, 155, 300, 1200);
+	    frame.getContentPane().add(graphic);
+	    
+	    
+	    String topBar = "TopLine.jpg";
+	    File topbar_file = new File(topBar);
+	    BufferedImage top_bar = ImageIO.read(topbar_file);
+	    JLabel top_graphic = new JLabel(new ImageIcon(top_bar));
+	    top_graphic.setBounds(100, 0, 1200, 100);
+	    frame.getContentPane().add(top_graphic);
 	}
 	
 	public static boolean getClick() {

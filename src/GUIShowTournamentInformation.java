@@ -1,12 +1,17 @@
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Font;
 
 public class GUIShowTournamentInformation {
 
@@ -20,14 +25,14 @@ public class GUIShowTournamentInformation {
 	/**
 	 * Create the application.
 	 */
-	public GUIShowTournamentInformation() {
+	public GUIShowTournamentInformation() throws IOException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -38,7 +43,7 @@ public class GUIShowTournamentInformation {
 		JLabel lblTournamentInformation = new JLabel("Tournament Information!");
 		lblTournamentInformation.setFont(new Font("Lucida Grande", Font.PLAIN, 40));
 		lblTournamentInformation.setForeground(Color.ORANGE);
-		lblTournamentInformation.setBounds(475, 63, 506, 36);
+		lblTournamentInformation.setBounds(475, 112, 506, 36);
 		frame.getContentPane().add(lblTournamentInformation);
 		
 		JLabel lblTournamentName = new JLabel("Tournament Name:");
@@ -83,28 +88,43 @@ public class GUIShowTournamentInformation {
 		JLabel lblIfTheInformation = new JLabel("If the information is correct, press Next. ");
 		lblIfTheInformation.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblIfTheInformation.setForeground(Color.ORANGE);
-		lblIfTheInformation.setBounds(271, 595, 710, 36);
+		lblIfTheInformation.setBounds(271, 558, 710, 36);
 		frame.getContentPane().add(lblIfTheInformation);
 		
 		JButton btnNext = new JButton("Next");
 		btnNext.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		nextListener = new NextButton();
 		btnNext.addActionListener(nextListener);
-		btnNext.setBounds(1115, 588, 154, 43);
+		btnNext.setBounds(1115, 551, 154, 43);
 		frame.getContentPane().add(btnNext);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		backListener = new BackButton();
 		btnBack.addActionListener(backListener);
-		btnBack.setBounds(1115, 661, 154, 43);
+		btnBack.setBounds(1115, 599, 154, 43);
 		frame.getContentPane().add(btnBack);
 		
 		JLabel lblIfYouWant = new JLabel("If you want to edit the information, press Back.");
 		lblIfYouWant.setForeground(Color.ORANGE);
 		lblIfYouWant.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
-		lblIfYouWant.setBounds(271, 668, 793, 36);
+		lblIfYouWant.setBounds(271, 606, 793, 36);
 		frame.getContentPane().add(lblIfYouWant);
+		
+		String logoFile = "Logo.jpg";
+	    File logo_file = new File(logoFile);
+	    BufferedImage CC_logo = ImageIO.read(logo_file);
+	    JLabel graphic = new JLabel(new ImageIcon(CC_logo));
+	    graphic.setBounds(25, 155, 300, 1200);
+	    frame.getContentPane().add(graphic);
+	    
+	    
+	    String topBar = "TopLine.jpg";
+	    File topbar_file = new File(topBar);
+	    BufferedImage top_bar = ImageIO.read(topbar_file);
+	    JLabel top_graphic = new JLabel(new ImageIcon(top_bar));
+	    top_graphic.setBounds(100, 0, 1200, 100);
+	    frame.getContentPane().add(top_graphic);
 	}
 	
 	public static JFrame getFrame() {
