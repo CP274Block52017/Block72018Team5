@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
@@ -78,7 +79,7 @@ public class RunTournament {
 	 			//and if it does not, gives user a chance to correct the input
 	 			while (!existingPlayer) {
 	 				String playerName = askName("\nWhich player do you want to add to your team?", scan);
-		 			Players chosenPlayer = PlayerDatabase.findPlayer(playerName);
+		 			Player chosenPlayer = PlayerDatabase.findPlayer(playerName);
 		 			if (chosenPlayer == null) {
 		 				System.out.println("Chosen player does not exist in athlete database. Please enter a valid player name.");
 		 			}
@@ -312,7 +313,7 @@ public class RunTournament {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//PlayerDatabase.generateDatabase();
+		PlayerDatabase.generateDatabase();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -367,3 +368,4 @@ public class RunTournament {
  		System.out.println("\nThanks for playing! Come back soon!");
 	}
 }
+

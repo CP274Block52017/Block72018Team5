@@ -25,22 +25,6 @@ public class GUIWelcomeWindow extends JFrame {
 		initialize();
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);	
 	}
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUIWelcomeWindow window = new GUIWelcomeWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -140,17 +124,16 @@ class YesButton extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					GUICreateTournamentWindow window = new GUICreateTournamentWindow();
-//					window.getFrame().setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-		System.exit(1);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUICreateNewTournament window = new GUICreateNewTournament();
+					window.getFrame().setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		hasBeenClicked = true;
 	}
 }

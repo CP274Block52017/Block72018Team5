@@ -1,3 +1,4 @@
+
 /**
  * This class utilizes the factory design pattern to 
  * create an instance of the desired TournamentWinnerStrategy
@@ -9,6 +10,7 @@
  */
 public class WinnerStrategyFactory {
 	
+
 	private static final int RANDOM_STRATEGY = 1;
 	private static final int BY_HEIGHT_STRATEGY = 2;
 	private static final int BY_GAMESPLAYED_STRATEGY = 3;
@@ -49,4 +51,5 @@ public class WinnerStrategyFactory {
 		}
 	}
 }
+
 
