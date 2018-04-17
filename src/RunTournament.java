@@ -28,8 +28,6 @@ public class RunTournament {
 	private static TournamentWinnerStrategy chosenStrategy;
 	private static Team finalWinningTeam;
 	
-	private static GUIWelcomeWindow welcomeWindow;
-	
 	/**
 	 * This method gets user input on whether or not they would like to
 	 * create a new tournament.
@@ -129,130 +127,11 @@ public class RunTournament {
 	 * @param scan - user input.
 	 * @return String - the name inputed by the user.
 	 */
-	private static String askName(String prompt) {
+	private static String askName(String prompt, Scanner scan) {
  		System.out.println(prompt);
- 	 	String name = .getTeamName();
+ 	 	String name = scan.nextLine();
  	 	return name;
- 	 }
- 	 	
- 	/**
- 	 * This method asks the user for the number of teams they would like 
- 	 * to create for the tournament.
- 	 * @param scan - user input.
- 	 * @return int - number of teams to create.
- 	 */
- 	private static int askNumberOfTeams() {
- 		//int numParticipants = 0;
- 		//Boolean validAnswer = false;
- 		//while (!validAnswer) {
-	 		//try {
-	 			//System.out.println("\nHow many participants do you want in your tournament? (2, 4, 8, or 16) ");
-	 	 		//numParticipants = scan.nextInt();
-	 	 		//scan.nextLine();
-	 	 		//if ((numParticipants == 2) || (numParticipants == 4) || (numParticipants == 8) || (numParticipants == MAX_PARTICIPANTS)) {
-	 	 			//validAnswer = true;
-	 	 		//}
-	 		//}
-	 		//catch(InputMismatchException ex) {
-				//scan.nextLine();
-			//}
-			//if (!validAnswer) {
-				//System.out.println("Invalid selection -- enter 2, 4, 8, or 16.");
-			//}
-	 	//}
- 		return GUICreateTournamentWindow.getParticipantNumber();
-	}
-		
- 	/**
- 	 * This method prompts the user for the strategy they would like 
- 	 * to use to determine the winner of the tournament.
- 	 * @param scan - user input.
- 	 * @return int - number correlating to the desired strategy.
- 	 */
- 	private static int askStrategy() {
- 		//int chosenStrategy = 0;
- 		//Boolean validAnswer = false;
- 		//while(!validAnswer) {
- 			//System.out.println("Choose a strategy to determine the winner of the tournament from the following options: ");
- 			//System.out.println("1: Random Winner");
- 			//System.out.println("2: By Greatest Average Height");
- 			//System.out.println("3: By Greatest Average Games Played");
- 		//	System.out.println("4: By Greatest Average Games Won");
- 			//System.out.println("5: By Greatest Average Games Lost");
- 			//System.out.println("6: By Greatest Average Class Year");
- 			//System.out.print("> ");
- 			//try {
- 				//chosenStrategy = scan.nextInt();
- 				//scan.nextLine();
- 				
- 				//switch (chosenStrategy) {
- 				//case RANDOM_STRATEGY:
- 					//chosenStrategy = RANDOM_STRATEGY;
- 					//validAnswer = true;
- 					//break;
- 				//case BY_HEIGHT_STRATEGY: 
- 					//chosenStrategy = BY_HEIGHT_STRATEGY;
- 					//validAnswer = true;
- 					//break;
- 				//case BY_GAMESPLAYED_STRATEGY: 
- 					//chosenStrategy = BY_GAMESPLAYED_STRATEGY;
- 					//validAnswer = true;
- 					//break;
- 				//case BY_GAMESWON_STRATEGY: 
- 					//chosenStrategy = BY_GAMESWON_STRATEGY;
- 					//validAnswer = true;
- 					//break;
- 				//case BY_GAMESLOST_STRATEGY: 
- 					//chosenStrategy = BY_GAMESLOST_STRATEGY;
- 					//validAnswer = true;
- 					//break;
- 				//case BY_CLASSYEAR_STRATEGY: 
- 					//chosenStrategy = BY_CLASSYEAR_STRATEGY;
- 					//validAnswer = true;
- 					//break;
- 				//default: 
- 					//System.out.println("Invalid selection -- enter a number between 1 and " + NUMBER_STRATEGIES);
- 				//}
- 			//}
- 			//catch (InputMismatchException ex) {
- 				//scan.nextLine();
- 				//System.out.println("Invalid selection -- enter a number between 1 and " + NUMBER_STRATEGIES);
- 			//}
- 		//}
- 		return GUICreateTournamentWindow.getStrategy();
-	 }
-	 	
-	 	
- 	/**
- 	 * This method is used to create a tournament given the 
- 	 * information the user has inputed. 
- 	 * @param scan - user input.
- 	 */
- 	private static void createTournament(Scanner scan) {
- 		Boolean confirmTournament = false;
- 		while(!confirmTournament) {
- 			String tournamentName = askName("\nWhat do you want to name your tournament?", scan);
- 			int numParticipants = askNumberOfTeams(scan);
- 			int strategyChoice = askStrategy(scan);
- 			chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
- 			System.out.println("\nTournament Name: " + tournamentName);
- 			System.out.println("Number of Teams/Participants: " + numParticipants);
- 			if (chosenStrategy.getName().equals("Random Winner")) {
- 				System.out.println("Strategy to determine winner: " + chosenStrategy.getName());
- 			}
- 			else {
- 				System.out.println("Strategy to determine winner: Greatest " + chosenStrategy.getName());
- 			}
- 			Boolean isCorrect = askYesNo("Is this the correct information for your tournament?\n", scan);
- 			if (!isCorrect) {
- 				System.out.println("Please edit your tournament information.");
- 			}
- 			else {
- 				newTournament = new Tournament(tournamentName, numParticipants, chosenStrategy);
- 				confirmTournament = true;
- 			}
- 		}
- 	}
+ 	 } 	 	 	
 
  	/**
  	 * This method determines the winner of each round and uses recursion to do
@@ -333,31 +212,14 @@ public class RunTournament {
 	public static void main(String[] args) {
 		PlayerDatabase.generateDatabase();
 		
-		//open beginning GUI window
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					welcomeWindow = new GUIWelcomeWindow();
-					welcomeWindow.getFrame().setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	
 		Boolean exitTournamentGenerator = false;
-		System.out.println("Welcome to the tournament game!");
-		Scanner scan = new Scanner(System.in);
-		Boolean yesCreate = askYesNo("\nWould you like to create a new tournament?\n", scan);
+		GUIWelcomeWindow welcomeWindow = new GUIWelcomeWindow();
+		GUICreateNewTournamentWindow createTournamentWindow = new GUICreateNewTournamentWindow();
+		Tournament newTournament = createTournamentWindow.getTournament();
 		
+		Scanner scan = new Scanner(System.in);
 		//loop continues while tournament master wants to create a new tournament
  		while(!exitTournamentGenerator) {
-			if (yesCreate) {
-				createTournament(scan);
-			}
-			else {
-				break;
-			}
 			
 			int numTeams = 0;
 			System.out.println("\nNeed to add " + (newTournament.getNumTeams() - numTeams) + " more team(s) to run tournament. Please add another team:");

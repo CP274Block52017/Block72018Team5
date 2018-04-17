@@ -10,16 +10,17 @@ import java.awt.Font;
 	public class GUIWelcomeWindow extends JFrame {
 	
 		private static final long serialVersionUID = 1L;
-		private static JFrame frame;
-		private static boolean hasBeenClicked;
-		private static ActionListener yesListener;
-		private static ActionListener noListener;
+		private JFrame frame;
+		private boolean hasBeenClicked;
+		private ActionListener yesListener;
+		private ActionListener noListener;
 		private static final int FRAME_WIDTH = 1500;
 		private static final int FRAME_HEIGHT = 1500;
 		
 		public GUIWelcomeWindow() {
 			initialize();
 			setSize(FRAME_WIDTH, FRAME_HEIGHT);	
+			openGUIWindow();
 		}
 	
 	/**
@@ -103,13 +104,24 @@ import java.awt.Font;
 		JLabel lblNewLabel = new JLabel("New label");
 			lblNewLabel.setBounds(24, 583, 205, 194);
 			frame.getContentPane().add(lblNewLabel);
-		}
+	}
 		
-		public JFrame getFrame() {
-			return frame;
-		}
+	/**
+	 * Opens GUI window
+	 */
+	private void openGUIWindow() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 		
-	class YesButton extends JFrame implements ActionListener {
+	private class YesButton extends JFrame implements ActionListener {
 		
 		private static final long serialVersionUID = 1L;
 
@@ -118,21 +130,11 @@ import java.awt.Font;
 		}
 	
 		public void actionPerformed(ActionEvent e) {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						GUICreateTournamentWindow window = new GUICreateTournamentWindow();
-						window.getFrame().setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
 			hasBeenClicked = true;
 		}
 	}
 	
-	class NoButton extends JFrame implements ActionListener {
+	private class NoButton extends JFrame implements ActionListener {
 	
 		private static final long serialVersionUID = 1L;
 
