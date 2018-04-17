@@ -15,6 +15,12 @@ public class GUICreateTeam {
 	private static JFrame frame;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
+	private static Choice athleteChoice1;
+	private static Choice athleteChoice2;
+	private static Choice athleteChoice3;
+	private static Choice athleteChoice4;
+	private static Choice athleteChoice5;
+	private static ArrayList<Player> playerChoices; 
 
 	/**
 	 * Launch the application.
@@ -86,40 +92,55 @@ public class GUICreateTeam {
 		lblAthlete_3.setBounds(755, 338, 223, 54);
 		frame.getContentPane().add(lblAthlete_3);
 		
-		Choice choice = new Choice();
-		ArrayList<Player> players = PlayerDatabase.getPlayersList();
-		for(int i = 0; i < players.size(); i++) {
-			choice.add(players.get(i).getName() + players.get(i).getSport());
+		athleteChoice1 = new Choice();
+		playerChoices = PlayerDatabase.getPlayersList();
+		for(int i = 0; i < playerChoices.size(); i++) {
+			athleteChoice1.add(playerChoices.get(i).getName() + ", " + playerChoices.get(i).getSport());
 		}
-		choice.add(players.get(0).getName());
-		choice.setForeground(Color.BLACK);
-		choice.setBackground(Color.ORANGE);
-		choice.setBounds(509, 350, 203, 42);
-		frame.getContentPane().add(choice);
+		athleteChoice1.setForeground(Color.BLACK);
+		athleteChoice1.setBackground(Color.ORANGE);
+		athleteChoice1.setBounds(509, 350, 203, 42);
+		frame.getContentPane().add(athleteChoice1);
 		
-		Choice choice_1 = new Choice();
-		choice_1.setBackground(Color.ORANGE);
-		choice_1.setForeground(Color.BLACK);
-		choice_1.setBounds(749, 182, 203, 42);
-		frame.getContentPane().add(choice_1);
+		athleteChoice2 = new Choice();
+		playerChoices = PlayerDatabase.getPlayersList();
+		for(int i = 0; i < playerChoices.size(); i++) {
+			athleteChoice2.add(playerChoices.get(i).getName() + ", " + playerChoices.get(i).getSport());
+		}
+		athleteChoice2.setBackground(Color.ORANGE);
+		athleteChoice2.setForeground(Color.BLACK);
+		athleteChoice2.setBounds(749, 182, 203, 42);
+		frame.getContentPane().add(athleteChoice2);
 		
-		Choice choice_2 = new Choice();
-		choice_2.setForeground(Color.BLACK);
-		choice_2.setBackground(Color.ORANGE);
-		choice_2.setBounds(972, 350, 203, 42);
-		frame.getContentPane().add(choice_2);
+		athleteChoice3 = new Choice();
+		playerChoices = PlayerDatabase.getPlayersList();
+		for(int i = 0; i < playerChoices.size(); i++) {
+			athleteChoice3.add(playerChoices.get(i).getName() + ", " + playerChoices.get(i).getSport());
+		}
+		athleteChoice3.setForeground(Color.BLACK);
+		athleteChoice3.setBackground(Color.ORANGE);
+		athleteChoice3.setBounds(972, 350, 203, 42);
+		frame.getContentPane().add(athleteChoice3);
 		
-		Choice choice_3 = new Choice();
-		choice_3.setForeground(Color.BLACK);
-		choice_3.setBackground(Color.ORANGE);
-		choice_3.setBounds(1200, 182, 203, 42);
-		frame.getContentPane().add(choice_3);
+		athleteChoice4 = new Choice();
+		playerChoices = PlayerDatabase.getPlayersList();
+		for(int i = 0; i < playerChoices.size(); i++) {
+			athleteChoice4.add(playerChoices.get(i).getName() + ", " + playerChoices.get(i).getSport());
+		}
+		athleteChoice4.setForeground(Color.BLACK);
+		athleteChoice4.setBackground(Color.ORANGE);
+		athleteChoice4.setBounds(1200, 182, 203, 42);
+		frame.getContentPane().add(athleteChoice4);
 		
-		Choice choice_4 = new Choice();
-		choice_4.setBackground(Color.ORANGE);
-		choice_4.setForeground(Color.BLACK);
-		choice_4.setBounds(279, 182, 203, 42);
-		frame.getContentPane().add(choice_4);
+		Choice athleteChoice5 = new Choice();
+		playerChoices = PlayerDatabase.getPlayersList();
+		for(int i = 0; i < playerChoices.size(); i++) {
+			athleteChoice5.add(playerChoices.get(i).getName() + ", " + playerChoices.get(i).getSport());
+		}
+		athleteChoice5.setBackground(Color.ORANGE);
+		athleteChoice5.setForeground(Color.BLACK);
+		athleteChoice5.setBounds(279, 182, 203, 42);
+		frame.getContentPane().add(athleteChoice5);
 		
 		JLabel lblPressEnterTo = new JLabel("Press Enter to submit these athletes to your team!");
 		lblPressEnterTo.setFont(new Font("Lucida Grande", Font.PLAIN, 40));
