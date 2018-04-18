@@ -1,3 +1,4 @@
+
 import javax.swing.JFrame;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -247,6 +248,4 @@ import java.awt.Font;
 	}
 
 }
-
-
 

@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -267,3 +268,4 @@ class StartButton extends JFrame implements ActionListener {
 		
 	}
 }
+

@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -278,3 +279,4 @@ public class GUICreateNewTeamWindow {
 		}
 	}
 }
+

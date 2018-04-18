@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+
 /**
  * This method is creating the frame to show the next round of matchups for our tournament
  *depending on the number of teams that are left in the tournament at this point it displays
@@ -259,4 +260,5 @@ public class GUINextRoundMatchupsWindow {
 		
 	}
 }
+
 
