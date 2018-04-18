@@ -25,7 +25,6 @@ import java.awt.Font;
 	
 		private static final long serialVersionUID = 1L;
 		private JFrame frame;
-		private boolean hasBeenClicked;
 		private ActionListener yesListener;
 		private ActionListener noListener;
 		private static final int FRAME_WIDTH = 1500;
@@ -191,7 +190,6 @@ import java.awt.Font;
 		 * that the button has not been clicked
 		 */
 		public YesButton() {
-			hasBeenClicked = false;
 		}
 		
 		/**
@@ -213,7 +211,6 @@ import java.awt.Font;
 					}
 				}
 			});
-			hasBeenClicked = true;
 		}
 	}
 	/**
@@ -233,7 +230,6 @@ import java.awt.Font;
 		 * that the button has not been clicked
 		 */
 		public NoButton() {
-			hasBeenClicked = false;
 		}
 	
 		/**
@@ -242,7 +238,6 @@ import java.awt.Font;
 		 */
 		public void actionPerformed(ActionEvent e) {
 			System.exit(1);
-			hasBeenClicked = false;
 		}
 	}
 

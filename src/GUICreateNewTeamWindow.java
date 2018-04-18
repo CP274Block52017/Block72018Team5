@@ -1,7 +1,6 @@
 
 
 import java.awt.EventQueue;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -11,7 +10,6 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,7 +39,6 @@ public class GUICreateNewTeamWindow {
 	private Choice playerChoice4;
 	private Choice playerChoice5;
 	private ArrayList<Player> playerChoices; 
-	private boolean hasBeenClicked;
 	private ActionListener enterListener;
 	
 	private Tournament tournament;
@@ -239,12 +236,13 @@ public class GUICreateNewTeamWindow {
 	 */
 	class EnterButton extends JFrame implements ActionListener {
 		
+		private static final long serialVersionUID = 1L;
+
 		/**
 		 * Constructor that stores the boolean
 		 * that the button has not been clicked
 		 */
 		public EnterButton() {
-			hasBeenClicked = false;
 		}
 		
 		/**
@@ -276,7 +274,6 @@ public class GUICreateNewTeamWindow {
 					}
 				}
 			});
-			hasBeenClicked = true;
 		}
 	}
 }

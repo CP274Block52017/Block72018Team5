@@ -1,5 +1,5 @@
-import java.awt.Component;
 import java.util.ArrayList;
+
 /**
  * This class contains the methods for creating
  * a tournament. 

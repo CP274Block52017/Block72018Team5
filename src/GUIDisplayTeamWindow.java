@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,11 +25,10 @@ import java.awt.Font;
  */
 public class GUIDisplayTeamWindow extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private static JFrame frame;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
-	private static int counter;
-	private static boolean hasBeenClicked;
 	private ActionListener backListener;
 	private ActionListener nextListener;
 	
@@ -176,8 +174,9 @@ public class GUIDisplayTeamWindow extends JFrame {
 	
 	class NextButton extends JFrame implements ActionListener {
 			
+		private static final long serialVersionUID = 1L;
+
 			public NextButton() {
-				hasBeenClicked = false;
 			}
 			
 			public void actionPerformed(ActionEvent e) {
@@ -206,14 +205,14 @@ public class GUIDisplayTeamWindow extends JFrame {
 						}
 					}
 				});
-				hasBeenClicked = true;
 			}
 	}
 
 	class BackButton extends JFrame implements ActionListener {
-		
+	
+		private static final long serialVersionUID = 1L;
+
 		public BackButton() {
-			hasBeenClicked = false;
 		}
 		
 		public void actionPerformed(ActionEvent e) {
@@ -230,7 +229,6 @@ public class GUIDisplayTeamWindow extends JFrame {
 					}
 				}
 			});
-			hasBeenClicked = true;
 		}
 	}
 }

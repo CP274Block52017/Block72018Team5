@@ -1,19 +1,15 @@
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
-
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,16 +28,9 @@ import java.awt.Choice;
 public class GUICreateNewTournamentWindow {
 
 	private JFrame frame;
-	private boolean hasBeenClicked;
 	private ActionListener submitListener;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
-	private String tournamentName;
-	private String numParticipants;
-	private int strategy;
-	private Object[] values;
-	private JComboBox combobox;
-	
 	private JTextField tournamentNameChoice;
 	private Choice strategyChoiceString;
 	private Choice numParticipantsChoice;
@@ -190,7 +179,6 @@ public class GUICreateNewTournamentWindow {
 		 * that the button has not been clicked
 		 */
 		public SubmitButton() {
-			hasBeenClicked = false;
 		}
 		
 		/**
@@ -217,7 +205,6 @@ public class GUICreateNewTournamentWindow {
 					}
 				}
 			});
-			hasBeenClicked = true;
 		}
 
 	}
