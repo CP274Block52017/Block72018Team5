@@ -41,6 +41,7 @@ public class GUIDisplayTeamWindow extends JFrame {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * Test comment
 	 */
 	private void initialize() throws IOException {
 		frame = new JFrame();
