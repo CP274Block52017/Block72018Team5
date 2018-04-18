@@ -62,6 +62,7 @@ public class GUICreateNewTournamentWindow {
 		frame.getContentPane().add(lblWhatWouldYou);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		textField.setBounds(619, 270, 224, 51);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
@@ -109,7 +110,6 @@ public class GUICreateNewTournamentWindow {
 		choice_1.add("2");
 		choice_1.add("4");
 		choice_1.add("8");
-		choice_1.add("16");
 		choice_1.setBounds(619, 424, 224, 36);
 		frame.getContentPane().add(choice_1);
 		frame.setBounds(100, 100, FRAME_WIDTH, FRAME_HEIGHT);
