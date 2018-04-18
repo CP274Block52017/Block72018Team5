@@ -226,6 +226,7 @@ public class GUIDisplayNextRoundWindow {
 	    frame.getContentPane().add(label_19);
 	    //top right bottom points blank
 	    JLabel label_28 = new JLabel("");
+	    label.setForeground(Color.WHITE);
 	    label_28.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_28.setBounds(1259, 455, 117, 40);
 	    frame.getContentPane().add(label_28);
