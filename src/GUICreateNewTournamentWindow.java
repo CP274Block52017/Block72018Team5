@@ -61,6 +61,8 @@ public class GUICreateNewTournamentWindow {
 	 * to get the name of the tournament as well as adding two drop down
 	 * menus one containing the possible number of participants and the other 
 	 * contain the strategy options
+	 * @throws IOException - make sure the user has the correct
+	 *graphics stored in their project file
 	 */
 	private void initialize() throws IOException {
 		//creates and initializes basic frame
