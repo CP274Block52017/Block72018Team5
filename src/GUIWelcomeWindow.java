@@ -148,6 +148,7 @@ class YesButton extends JFrame implements ActionListener {
 				}
 			}
 		});
+		frame.setVisible(false);
 		hasBeenClicked = true;
 	}
 }

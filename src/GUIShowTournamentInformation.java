@@ -170,6 +170,7 @@ class NextButton extends JFrame implements ActionListener {
 				}
 			});
 			hasBeenClicked = true;
+			frame.setVisible(false);
 		}
 	}
 

@@ -40,23 +40,8 @@ public class GUICreateTeam {
 	private static String fourthAthlete;
 	private static String fifthAthlete;
 	private static ActionListener enterListener;
+	private static ArrayList<String> teamNames;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUICreateTeam window = new GUICreateTeam();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 */
@@ -78,7 +63,7 @@ public class GUICreateTeam {
 		JLabel lblCreateTeam = new JLabel("Create Team!");
 		lblCreateTeam.setFont(new Font("Lucida Grande", Font.PLAIN, 45));
 		lblCreateTeam.setForeground(Color.ORANGE);
-		lblCreateTeam.setBounds(600, 127, 289, 36);
+		lblCreateTeam.setBounds(583, 128, 289, 36);
 		frame.getContentPane().add(lblCreateTeam);
 		
 		JLabel lblAthlete = new JLabel("Athlete 1:");
@@ -234,6 +219,10 @@ public class GUICreateTeam {
 		return fifthAthlete;
 	}
 	
+	public static ArrayList<String> getTeamNames() {
+		return teamNames;
+	}
+	
 	class EnterButton extends JFrame implements ActionListener {
 		
 		public EnterButton() {
@@ -250,11 +239,12 @@ public class GUICreateTeam {
 						thirdAthlete = athleteChoice3.getSelectedItem();
 						fourthAthlete = athleteChoice4.getSelectedItem();
 						fifthAthlete = athleteChoice5.getSelectedItem();
-						currentTeam.add(firstAthlete);
-						currentTeam.add(secondAthlete);
-						currentTeam.add(thirdAthlete);
-						currentTeam.add(fourthAthlete);
-						currentTeam.add(fifthAthlete);
+//						teamNames.add(teamName);
+//						currentTeam.add(firstAthlete);
+//						currentTeam.add(secondAthlete);
+//						currentTeam.add(thirdAthlete);
+//						currentTeam.add(fourthAthlete);
+//						currentTeam.add(fifthAthlete);
 						GUIDisplayTeam window = new GUIDisplayTeam();
 						window.getFrame().setVisible(true);
 					} catch (Exception e) {
@@ -262,6 +252,7 @@ public class GUICreateTeam {
 					}
 				}
 			});
+			frame.setVisible(false);
 			hasBeenClicked = true;
 		}
 	}
