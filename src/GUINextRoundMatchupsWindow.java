@@ -16,9 +16,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 /**
- * T
+ * This method is creating the frame to show the next round of matchups for our tournament
+ *depending on the number of teams that are left in the tournament at this point it displays
+ *the number of teams.
  * @author Kelli
- *
+ *@author Emma
+ *@author Nicole
  */
 public class GUINextRoundMatchupsWindow {
 
@@ -33,7 +36,11 @@ public class GUINextRoundMatchupsWindow {
 	private ArrayList<Team> nextRoundTeams;
 
 	/**
-	 * Create the application.
+	 * Constructor is going to take in all the information that we need for this tournament and then
+	 *take in an arraylist of the teams that are in the current round
+	 @param tournament - current tournament
+	 *@param arraylist of teams - teams that are currnetly in this round
+	 *@throws IOException - makes sure the jpg files are in the correct folder to read them in
 	 */
 	public GUINextRoundMatchupsWindow(Tournament tournament, ArrayList<Team> nextRoundTeams) throws IOException {
 		this.tournament = tournament;
@@ -42,14 +49,18 @@ public class GUINextRoundMatchupsWindow {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the frame that will display the teams that are
+	 * currently in the tournament still and let the user know who is going up 
+	 *against each other in the next round.
 	 */
 	private void initialize() throws IOException {
+		//create the basic frame
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
-		
+			
+			
 		JLabel lblNewLabel = new JLabel("Tournament Bracket");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 45));
 		lblNewLabel.setForeground(Color.ORANGE);
