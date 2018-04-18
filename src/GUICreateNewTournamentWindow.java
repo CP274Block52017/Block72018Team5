@@ -17,7 +17,6 @@ import javax.swing.JButton;
 import java.awt.Choice;
 import java.awt.Font;
 
-
 public class GUICreateNewTournamentWindow {
 
 	private static JFrame frame;
@@ -27,10 +26,7 @@ public class GUICreateNewTournamentWindow {
 	private static final int FRAME_HEIGHT = 1000;
 	private static String tournamentName;
 	private static String participantNumber;
-	private static String strategyNumber;
-	private static Object[] values;
-	private static JComboBox combobox;
-	
+	private static String strategy;
 	private static JTextField textField;
 	private static Choice choice;
 	private static Choice choice_1;
@@ -39,7 +35,6 @@ public class GUICreateNewTournamentWindow {
 
 	/**
 	 * Create the application.
-	 * @throws IOException 
 	 */
 	public GUICreateNewTournamentWindow() throws IOException {
 		initialize();
@@ -47,7 +42,6 @@ public class GUICreateNewTournamentWindow {
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @throws IOException 
 	 */
 	private void initialize() throws IOException {
 		frame = new JFrame();
@@ -68,6 +62,7 @@ public class GUICreateNewTournamentWindow {
 		frame.getContentPane().add(lblWhatWouldYou);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		textField.setBounds(619, 270, 224, 51);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
@@ -115,9 +110,10 @@ public class GUICreateNewTournamentWindow {
 		choice_1.add("2");
 		choice_1.add("4");
 		choice_1.add("8");
-		choice_1.add("16");
 		choice_1.setBounds(619, 424, 224, 36);
 		frame.getContentPane().add(choice_1);
+		frame.setBounds(100, 100, FRAME_WIDTH, FRAME_HEIGHT);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		String logoFile = "Logo.jpg";
 	    File logo_file = new File(logoFile);
@@ -134,10 +130,6 @@ public class GUICreateNewTournamentWindow {
 	    top_graphic.setBounds(100, 0, 1200, 100);
 	    frame.getContentPane().add(top_graphic);
 	    
-	    
-		frame.setBounds(100, 100, FRAME_WIDTH, FRAME_HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 	}
 	
 	
@@ -154,13 +146,11 @@ public class GUICreateNewTournamentWindow {
 	}
 	
 	public static String getStrategy() {
-		return strategyNumber;
+		return strategy;
 	}
 	
 	class SubmitButton extends JFrame implements ActionListener {
 		
-		
-
 		public SubmitButton() {
 			hasBeenClicked = false;
 		}
@@ -171,40 +161,18 @@ public class GUICreateNewTournamentWindow {
 					try {
 						tournamentName = textField.getText();
 						participantNumber = choice_1.getSelectedItem();
-//						//participantNumber = Integer.parseInt(participantsChoice.getSelectedItem());
-						strategyNumber = choice.getSelectedItem();
-//						
-//						String text = textField.getText();
-//						int item = Character.getNumericValue((strategyChoice.getSelectedItem().charAt(0)));
-//						int item1 = Integer.parseInt(participantsChoice.getSelectedItem());
-//						System.out.println(text+ " " + item + " " + item1);
+						strategy = choice.getSelectedItem();
 						GUIShowTournamentInformation window = new GUIShowTournamentInformation();
 						window.getFrame().setVisible(true);
-						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			});
+			frame.setVisible(false);
 			hasBeenClicked = true;
 		}
 
 	}
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//	EventQueue.invokeLater(new Runnable() {
-//		public void run() {
-//			try {
-//				GUICreateNewTournament window = new GUICreateNewTournament();
-//				window.frame.setVisible(true);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	});
-//}
-
-
+	
 }

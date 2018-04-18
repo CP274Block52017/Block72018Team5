@@ -156,7 +156,16 @@ class NextButton extends JFrame implements ActionListener {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						GUICreateTeam window = new GUICreateTeam();
+						window.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 			hasBeenClicked = true;
 		}
 	}
