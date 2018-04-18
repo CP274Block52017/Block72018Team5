@@ -15,6 +15,8 @@ public class Team {
 	
 	/**
 	 * Constructor for the Team class.
+	 * Must round lastRoundAverage for JUnit tests to pass; otherwise rounded values may end up equal to one another
+	 * in the tournament and result in a draw
 	 * @param teamName
 	 */
 	public Team(String teamName) {
@@ -27,10 +29,6 @@ public class Team {
 		return teamMembers;
 	}
 	
-	/**
-	 * This method provides the name of a team.
-	 * @return
-	 */
 	public String getName() {
 		return teamName;
 	}
@@ -44,8 +42,8 @@ public class Team {
 	}
 	
 	/**
-	 * Gets the players on a team. 
-	 * @return String - players on a team.
+	 * Gets the names of players on a team. 
+	 * @return String - names of players on a team.
 	 */
 	public String getMembers() {
 		String members = "";

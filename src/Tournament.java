@@ -19,7 +19,7 @@ public class Tournament {
 	 * Constructor contains needed information for creating
 	 * a new tournament.
 	 * @param name - name of the tournament.
-	 * @param numTeams - number of teams in the tournament.
+	 * @param maxNumTeams - max number of teams in the tournament, as chosen by tournament master (equal to number of participants)
 	 * @param winnerStrategy - strategy to determine the winner.
 	 */
 	public Tournament(String name, int maxNumTeams, TournamentWinnerStrategy winnerStrategy) {
@@ -29,10 +29,6 @@ public class Tournament {
 		teams = new ArrayList<Team>();
 	}
 
-	/**
-	 * Gets the chosen winner strategy.
-	 * @return TournamentWinerStrategy - strategy to determine the winner.
-	 */
 	public TournamentWinnerStrategy getWinnerStrategy() {
 		return winnerStrategy;
 	}
@@ -49,18 +45,10 @@ public class Tournament {
 		return name;
 	}
 
-	/**
-	 * Gets the max number of teams in the tournament.
-	 * @return maxNumTeams - max number of teams in the tournament.
-	 */
 	public int getMaxNumTeams() {
 		return maxNumTeams;
 	}
 	
-	/**
-	 * Gets the teams in the tournament.
-	 * @return teams - teams in the tournament.
-	 */
 	public ArrayList<Team> getTeams() {
 		return teams;
 	}
@@ -85,11 +73,7 @@ public class Tournament {
 	public int getNumTeams() {
 		return teams.size();
 	}
-	
-	/**
-	 * Allows us to set winner of tournament if we want to
-	 * @param winner of the tournament
-	 */
+
 	public void setWinner(Team winner) {
 		this.winner = winner;
 	}

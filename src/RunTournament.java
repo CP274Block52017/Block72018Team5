@@ -55,19 +55,7 @@ public class RunTournament {
 			}
 		}
 		return isYes;
-	}
-
-	/**
-	 * This method gets the names entered by the user from the GUI
-	 * @param prompt - the prompt to ask the user for a question.
-	 * @param scan - user input.
-	 * @return String - the name inputed by the user.
-	 */
-	private static String askName(String prompt, Scanner scan) {
- 		System.out.println(prompt);
- 	 	String name = scan.nextLine();
- 	 	return name;
- 	 } 	 	 	
+	} 	
 
  	/**
  	 * This method determines the winner of each round and uses recursion to do
