@@ -34,6 +34,9 @@ public class PlayerDatabase {
 		
 	}
 	
+	/**
+	 * This method creates our database using my SQL 
+	 */
 	private static void createDatabase() {
 		try (
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:" + PORT_NUMBER + "/?user=root&password=root");
@@ -47,6 +50,10 @@ public class PlayerDatabase {
 		}
 	}
 	
+	/**
+	 * Creates the athlete table containing the name, gender, sport, height, games played
+	 * team wins, team loss and class years of athletes
+	 */
 	private static void createTable() {
 		try (
 			Connection conn = DriverManager.getConnection(
@@ -73,6 +80,11 @@ public class PlayerDatabase {
 		}
 	}
 	
+	/**
+	 * This method add players to the table we have created
+	 * in our new database by reading in the file that contains
+	 * all the information about our athletes
+	 */
 	private static void addPlayersToDatabase() {
 		try (
 			Connection conn = DriverManager.getConnection(
@@ -103,7 +115,10 @@ public class PlayerDatabase {
 			ex.printStackTrace();
 		}	
 	}
-	
+	/**
+	 * Gets all the players from our database and their attributes
+	 * to store them in an arraylist of players
+	 */
 	private static void getPlayersFromDatabase() {
 		try (
 				Connection conn = DriverManager.getConnection(
@@ -141,6 +156,11 @@ public class PlayerDatabase {
 		return players;
 	}
 	
+	/**
+	 * Finds a particular player based on their primary key - their name
+	 * @param playerName - name of the player we want to find
+	 * @return player - all the attributes of the player
+	 */
 	public static Player findPlayer(String playerName) {
 		for (Player player : players) {
 			if (playerName.equalsIgnoreCase(player.getName())) {

@@ -45,6 +45,10 @@ public class Tournament {
 		teams.add(team);
 	}
 	
+	/**
+	 *  Gets the name of the team
+	 * @return name of team
+	 */
 	public String getName() {
 		return name;
 	}
@@ -63,6 +67,19 @@ public class Tournament {
 	 */
 	public ArrayList<Team> getTeams() {
 		return teams;
+	}
+	
+	/**
+	 * Gets the names of the teams in the tournament.
+	 * @return names of teams in the tournament.
+	 */
+	public ArrayList<String> getTeamNames() {
+		ArrayList<String> teamNames = new ArrayList<String>();
+		for (Team team : teams) {
+			String teamName = team.getName();
+			teamNames.add(teamName);
+		}
+		return teamNames;
 	}
 	
 	/**

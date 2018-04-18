@@ -24,6 +24,10 @@ public class Team {
 		lastRoundAverage = 0.0;
 	}
 	
+	/**
+	 * Gets the players that are on this team
+	 * @return array list of the players on the team
+	 */
 	public ArrayList<Player> getTeamMembersList() {
 		return teamMembers;
 	}
@@ -61,6 +65,10 @@ public class Team {
 		return members;
 	}
 	
+	/**
+	 * gets the size of the team
+	 * @return size of the team
+	 */
 	public int getTeamSize() {
 		return teamMembers.size();
 	}
@@ -74,10 +82,18 @@ public class Team {
 		return getMembers();
 	}
 
+	/**
+	 * gets the average of the last round
+	 * @return double - corresponds to last round's average
+	 */
 	public double getLastRoundAverage() {
 		return lastRoundAverage;
 	}
 
+	/**
+	 * set the average of the last round
+	 * @param double - the average you want to set the last round to
+	 */
 	public void setLastRoundAverage(double lastRoundAverage) {
 		this.lastRoundAverage = lastRoundAverage;
 
