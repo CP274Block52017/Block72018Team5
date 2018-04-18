@@ -133,7 +133,7 @@ public class GUIShowTournamentInformation {
 	    File logo_file = new File(logoFile);
 	    BufferedImage CC_logo = ImageIO.read(logo_file);
 	    JLabel graphic = new JLabel(new ImageIcon(CC_logo));
-	    graphic.setBounds(25, 155, 300, 1200);
+	    graphic.setBounds(25, 125, 300, 1200);
 	    frame.getContentPane().add(graphic);
 	    
 	    
