@@ -29,9 +29,7 @@ public class GUINextRoundMatchupsWindow {
 	private JFrame frame;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
-	private boolean hasBeenClicked;
 	private ActionListener nextListener;
-	private ArrayList<String> teamNames;
 	
 	private Tournament tournament;
 	private ArrayList<Team> nextRoundTeams;
@@ -221,6 +219,8 @@ public class GUINextRoundMatchupsWindow {
 	 */
 	class NextButton extends JFrame implements ActionListener {
 		
+		private static final long serialVersionUID = 1L;
+
 		/**
 		 * Constructor is empty
 		 */
@@ -254,8 +254,6 @@ public class GUINextRoundMatchupsWindow {
 					}
 				}
 			});
-			
-			hasBeenClicked = false;
 		}
 		
 	}

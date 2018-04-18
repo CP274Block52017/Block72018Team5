@@ -1,34 +1,15 @@
-
-import java.awt.EventQueue;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /**
- * This class contains the prompts for user input and uses it to 
- * provide input to create the tournament. 
+ * This class generates the database and 
+ * creates the first GUI window to start the tournament game.
  * @author Nicole
  * @author Kelli
  * @author Emma
  *
  */
+
 public class RunTournament {
-	
-	private static final int MAX_PARTICIPANTS = 8;
-	private static final int MAX_TEAM_SIZE = 5;
-	private static final int NUMBER_STRATEGIES = 6;
-	
-	private static final int RANDOM_STRATEGY = 1;
-	private static final int BY_HEIGHT_STRATEGY = 2;
-	private static final int BY_GAMESPLAYED_STRATEGY = 3;
-	private static final int BY_GAMESWON_STRATEGY = 4;
-	private static final int BY_GAMESLOST_STRATEGY = 5;
-	private static final int BY_CLASSYEAR_STRATEGY = 6;
-	
-	private static Tournament newTournament;
-	private static TournamentWinnerStrategy chosenStrategy;
-	private static Team finalWinningTeam;
  	
  	/**
  	 * This method determines the winner of each an individual matchup between two teams.
@@ -51,13 +32,12 @@ public class RunTournament {
 
 
 	/**
-	 * This is the main method that runs the tournament.
+	 * This is the main method that runs the tournament game from the first GUI.
 	 * @param args
 	 */
 	public static void main(String[] args) throws IOException {
 		PlayerDatabase.generateDatabase();
 		
-		Boolean exitTournamentGenerator = false;
-		GUIWelcomeWindow welcomeWindow = new GUIWelcomeWindow();
+		new GUIWelcomeWindow();
 	}
 }

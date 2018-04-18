@@ -8,8 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,11 +27,9 @@ public class GUIDisplayNextRoundWindow {
 	private JFrame frame;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
-	private boolean hasBeenClicked;
 	private ActionListener nextListener;
 	
 	private Tournament tournament;
-	private Team finalWinningTeam;
 	private ArrayList<Team> thisRoundTeams;
 	private ArrayList<Team> nextRoundTeams;
 
@@ -396,6 +392,8 @@ public class GUIDisplayNextRoundWindow {
  	 */
 	class NextButton extends JFrame implements ActionListener {
 		
+		private static final long serialVersionUID = 1L;
+
 		/**
 		 * Constructor is empty.
 		 */
@@ -421,7 +419,6 @@ public class GUIDisplayNextRoundWindow {
 					}
 				}
 			});
-			hasBeenClicked = true;
 		}
 	}
 	

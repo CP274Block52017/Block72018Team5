@@ -31,7 +31,6 @@ public class GUITournamentWinnerWindow {
 	private static final int FRAME_HEIGHT = 1000;
 	private ActionListener exitListener;
 	private ActionListener playListener;
-	private boolean hasBeenClicked;
 	
 	private Tournament tournament;
 	private Team tournamentWinner;
@@ -161,6 +160,8 @@ public class GUITournamentWinnerWindow {
 	 */
 	class PlayButton extends JFrame implements ActionListener {
 		
+		private static final long serialVersionUID = 1L;
+
 		/**
 		 * Constructor that stores the boolean
 		 * that the button has not been clicked
@@ -180,7 +181,7 @@ public class GUITournamentWinnerWindow {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						GUIWelcomeWindow welcome = new GUIWelcomeWindow();
+						new GUIWelcomeWindow();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -199,6 +200,8 @@ public class GUITournamentWinnerWindow {
 	 */
 	class ExitButton extends JFrame implements ActionListener {
 			
+		private static final long serialVersionUID = 1L;
+
 		/**
 		 * Constructor that stores the boolean
 		 * that the button has not been clicked

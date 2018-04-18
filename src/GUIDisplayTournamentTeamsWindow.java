@@ -11,9 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
+
 /**
  * This GUI is going to display all the information of the
  * teams that the user has inputed and confirm it before 
@@ -28,10 +27,7 @@ public class GUIDisplayTournamentTeamsWindow {
 	private JFrame frame;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
-	private boolean hasBeenClicked;
 	private ActionListener startListener;
-	private ArrayList<String> teamNames;
-	
 	private Tournament tournament;
 
 	/**
@@ -231,12 +227,12 @@ public class GUIDisplayTournamentTeamsWindow {
 	 */
 class StartButton extends JFrame implements ActionListener {
 		
+		private static final long serialVersionUID = 1L;
 		/**
 		*This constructs a new button that will act as the start button to
 		*get results from the tournament
 		**/
 		public StartButton() {
-			hasBeenClicked = false;
 		}
 		/**
 		*This method is called when the user pushes the start button and then sets 
@@ -262,7 +258,6 @@ class StartButton extends JFrame implements ActionListener {
 					}
 				}
 			});
-			hasBeenClicked = true;
 		}
 		
 	}
