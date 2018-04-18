@@ -178,9 +178,6 @@ public class GUICreateNewTeamWindow {
 	}
 	
 	class EnterButton extends JFrame implements ActionListener {
-<<<<<<< HEAD
-		
-=======
 		
 		private static final long serialVersionUID = 1L;
 
@@ -188,7 +185,6 @@ public class GUICreateNewTeamWindow {
 		 * Constructor that stores the boolean
 		 * that the button has not been clicked
 		 */
->>>>>>> refs/remotes/origin/Kelli's_Branch
 		public EnterButton() {
 		}
 		
