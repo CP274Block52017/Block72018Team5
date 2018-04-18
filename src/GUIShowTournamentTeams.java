@@ -47,7 +47,7 @@ public class GUIShowTournamentTeams {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setText(GUICreateTeam.getTeamNames().get(0));
+		lblNewLabel_1.setText(GUICreateNewTeamWindow.getTeamNames().get(0));
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(150, 298, 327, 48);
@@ -75,21 +75,21 @@ public class GUIShowTournamentTeams {
 	    frame.getContentPane().add(lblVs);
 	    
 	    JLabel label = new JLabel("");
-	    label.setText(GUICreateTeam.getTeamNames().get(1));
+	    label.setText(GUICreateNewTeamWindow.getTeamNames().get(1));
 	    label.setForeground(Color.WHITE);
 	    label.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label.setBounds(150, 455, 327, 48);
 	    frame.getContentPane().add(label);
 	    
 	    JLabel label_1 = new JLabel((String) null);
-	    label_1.setText(GUICreateTeam.getTeamNames().get(2));
+	    label_1.setText(GUICreateNewTeamWindow.getTeamNames().get(2));
 	    label_1.setForeground(Color.WHITE);
 	    label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_1.setBounds(150, 569, 327, 48);
 	    frame.getContentPane().add(label_1);
 	    
 	    JLabel label_2 = new JLabel("");
-	    label_2.setText(GUICreateTeam.getTeamNames().get(3));
+	    label_2.setText(GUICreateNewTeamWindow.getTeamNames().get(3));
 	    label_2.setForeground(Color.WHITE);
 	    label_2.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_2.setBounds(150, 695, 327, 48);
@@ -102,28 +102,28 @@ public class GUIShowTournamentTeams {
 	    frame.getContentPane().add(label_3);
 	    
 	    JLabel label_4 = new JLabel((String) null);
-	    label_4.setText(GUICreateTeam.getTeamNames().get(4));
+	    label_4.setText(GUICreateNewTeamWindow.getTeamNames().get(4));
 	    label_4.setForeground(Color.WHITE);
 	    label_4.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_4.setBounds(942, 310, 327, 48);
 	    frame.getContentPane().add(label_4);
 	    
 	    JLabel label_5 = new JLabel((String) null);
-	    label_5.setText(GUICreateTeam.getTeamNames().get(5));
+	    label_5.setText(GUICreateNewTeamWindow.getTeamNames().get(5));
 	    label_5.setForeground(Color.WHITE);
 	    label_5.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_5.setBounds(942, 455, 327, 48);
 	    frame.getContentPane().add(label_5);
 	    
 	    JLabel label_6 = new JLabel((String) null);
-	    label_6.setText(GUICreateTeam.getTeamNames().get(6));
+	    label_6.setText(GUICreateNewTeamWindow.getTeamNames().get(6));
 	    label_6.setForeground(Color.WHITE);
 	    label_6.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_6.setBounds(942, 554, 327, 48);
 	    frame.getContentPane().add(label_6);
 	    
 	    JLabel label_7 = new JLabel((String) null);
-	    label_7.setText(GUICreateTeam.getTeamNames().get(7));
+	    label_7.setText(GUICreateNewTeamWindow.getTeamNames().get(7));
 	    label_7.setForeground(Color.WHITE);
 	    label_7.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_7.setBounds(942, 695, 327, 48);

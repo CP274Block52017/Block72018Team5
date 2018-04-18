@@ -9,11 +9,12 @@ import java.util.ArrayList;
 public class Tournament {
 	
 	private String name;
-	private int numTeams;
+	private int maxNumTeams;
 	private TournamentWinnerStrategy winnerStrategy;
 	private ArrayList<Team> teams;
 	private Team winner;
 
+	
 	/**
 	 * Constructor contains needed information for creating
 	 * a new tournament.
@@ -21,9 +22,9 @@ public class Tournament {
 	 * @param numTeams - number of teams in the tournament.
 	 * @param winnerStrategy - strategy to determine the winner.
 	 */
-	public Tournament(String name, int numTeams, TournamentWinnerStrategy winnerStrategy) {
+	public Tournament(String name, int maxNumTeams, TournamentWinnerStrategy winnerStrategy) {
 		this.name = name;
-		this.numTeams = numTeams;
+		this.maxNumTeams = maxNumTeams;
 		this.winnerStrategy = winnerStrategy;
 		teams = new ArrayList<Team>();
 	}
@@ -35,7 +36,6 @@ public class Tournament {
 	public TournamentWinnerStrategy getWinnerStrategy() {
 		return winnerStrategy;
 	}
-
 	
 	/**
 	 * Adds a team to the list of teams in the tournament.
@@ -45,31 +45,41 @@ public class Tournament {
 		teams.add(team);
 	}
 	
+	public String getName() {
+		return name;
+	}
+
 	/**
-	 * Gets the number of teams in the tournament.
-	 * @return int - number of teams in the tournament.
+	 * Gets the max number of teams in the tournament.
+	 * @return maxNumTeams - max number of teams in the tournament.
 	 */
-	public int getNumTeams() {
-		return numTeams;
+	public int getMaxNumTeams() {
+		return maxNumTeams;
 	}
 	
 	/**
 	 * Gets the teams in the tournament.
-	 * @return ArrayList<Team> - teams in the tournament.
+	 * @return teams - teams in the tournament.
 	 */
 	public ArrayList<Team> getTeams() {
 		return teams;
 	}
 	
 	/**
-
+	 * Gets the current number of teams in the tournament.
+	 * @return current number of teams in the tournament.
+	 */
+	public int getNumTeams() {
+		return teams.size();
+	}
+	
+	/**
 	 * Allows us to set winner of tournament if we want to
 	 * @param winner of the tournament
 	 */
 	public void setWinner(Team winner) {
 		this.winner = winner;
 	}
-
 	
 }
 

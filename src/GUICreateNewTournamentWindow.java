@@ -1,10 +1,12 @@
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import java.awt.Color;
@@ -15,23 +17,23 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Choice;
-import java.awt.Font;
 
 public class GUICreateNewTournamentWindow {
 
-	private static JFrame frame;
-	private static boolean hasBeenClicked;
+	private JFrame frame;
+	private boolean hasBeenClicked;
 	private ActionListener submitListener;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
-	private static String tournamentName;
-	private static String participantNumber;
-	private static String strategy;
-	private static JTextField textField;
-	private static Choice choice;
-	private static Choice choice_1;
+	private String tournamentName;
+	private String numParticipants;
+	private int strategy;
+	private Object[] values;
+	private JComboBox combobox;
 	
-
+	private JTextField tournamentNameChoice;
+	private Choice strategyChoiceString;
+	private Choice numParticipantsChoice;
 
 	/**
 	 * Create the application.
@@ -61,11 +63,10 @@ public class GUICreateNewTournamentWindow {
 		lblWhatWouldYou.setBounds(329, 198, 798, 36);
 		frame.getContentPane().add(lblWhatWouldYou);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
-		textField.setBounds(619, 270, 224, 51);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		tournamentNameChoice = new JTextField();
+		tournamentNameChoice.setBounds(619, 270, 224, 51);
+		frame.getContentPane().add(tournamentNameChoice);
+		tournamentNameChoice.setColumns(10);
 		
 		JLabel lblHowManyParticipants = new JLabel("How many participants do you want in the tournament?");
 		lblHowManyParticipants.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
@@ -92,26 +93,27 @@ public class GUICreateNewTournamentWindow {
 		btnSubmit.setBounds(658, 692, 144, 51);
 		frame.getContentPane().add(btnSubmit);
 		
-		choice = new Choice();
-		choice.setForeground(Color.BLACK);
-		choice.setBackground(Color.ORANGE);
-		choice.add("1: Random Winner");
-		choice.add("2: By Greatest Average Height");
-		choice.add("3: By Greatest Average Games Played");
-		choice.add("4: By Greatest Average Games Won");
-		choice.add("5: By Greatest Average Games Lost");
-		choice.add("6: By Greatest Average Class Year");
-		choice.setBounds(619, 561, 216, 36);
-		frame.getContentPane().add(choice);
+		strategyChoiceString = new Choice();
+		strategyChoiceString.setForeground(Color.BLACK);
+		strategyChoiceString.setBackground(Color.ORANGE);
+		strategyChoiceString.add("1: Random Winner");
+		strategyChoiceString.add("2: By Greatest Average Height");
+		strategyChoiceString.add("3: By Greatest Average Games Played");
+		strategyChoiceString.add("4: By Greatest Average Games Won");
+		strategyChoiceString.add("5: By Greatest Average Games Lost");
+		strategyChoiceString.add("6: By Greatest Average Class Year");
+		strategyChoiceString.setBounds(619, 561, 216, 36);
+		frame.getContentPane().add(strategyChoiceString);
 		
-		choice_1 = new Choice();
-		choice_1.setForeground(Color.BLACK);
-		choice_1.setBackground(Color.ORANGE);
-		choice_1.add("2");
-		choice_1.add("4");
-		choice_1.add("8");
-		choice_1.setBounds(619, 424, 224, 36);
-		frame.getContentPane().add(choice_1);
+		numParticipantsChoice = new Choice();
+		numParticipantsChoice.setForeground(Color.BLACK);
+		numParticipantsChoice.setBackground(Color.ORANGE);
+		numParticipantsChoice.add("2");
+		numParticipantsChoice.add("4");
+		numParticipantsChoice.add("8");
+		numParticipantsChoice.setBounds(619, 424, 224, 36);
+		frame.getContentPane().add(numParticipantsChoice);
+		
 		frame.setBounds(100, 100, FRAME_WIDTH, FRAME_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -122,57 +124,48 @@ public class GUICreateNewTournamentWindow {
 	    graphic.setBounds(25, 155, 300, 1200);
 	    frame.getContentPane().add(graphic);
 	    
-	    
 	    String topBar = "TopLine.jpg";
 	    File topbar_file = new File(topBar);
 	    BufferedImage top_bar = ImageIO.read(topbar_file);
 	    JLabel top_graphic = new JLabel(new ImageIcon(top_bar));
 	    top_graphic.setBounds(100, 0, 1200, 100);
 	    frame.getContentPane().add(top_graphic);
-	    
 	}
 	
-	
-	public static JFrame getFrame() {
+	public JFrame getFrame() {
 		return frame;
 	}
 	
-	public static String getTournamentName() {
-		return tournamentName;
-	}
-	
-	public static String getParticipantNumber() {
-		return participantNumber;
-	}
-	
-	public static String getStrategy() {
-		return strategy;
-	}
-	
 	class SubmitButton extends JFrame implements ActionListener {
-		
+	
+		private static final long serialVersionUID = 1L;
+
 		public SubmitButton() {
 			hasBeenClicked = false;
 		}
 		
 		public void actionPerformed(ActionEvent e) {
+			frame.setVisible(false);
+			String tournamentName = tournamentNameChoice.getText();
+			Character firstCharStrategyString = strategyChoiceString.getSelectedItem().charAt(0);
+			int strategyChoiceString = Character.getNumericValue(firstCharStrategyString);
+			int numParticipants = Integer.parseInt(numParticipantsChoice.getSelectedItem());
+			
+			//open next window
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						tournamentName = textField.getText();
-						participantNumber = choice_1.getSelectedItem();
-						strategy = choice.getSelectedItem();
-						GUIShowTournamentInformation window = new GUIShowTournamentInformation();
-						window.getFrame().setVisible(true);
+						GUIShowTournamentInfoWindow showTournamentInfoWindow = new GUIShowTournamentInfoWindow(tournamentName, strategyChoiceString, numParticipants);
+						showTournamentInfoWindow.getFrame().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			});
-			frame.setVisible(false);
 			hasBeenClicked = true;
 		}
 
 	}
-	
+
 }
+

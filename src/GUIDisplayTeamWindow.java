@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -14,23 +15,27 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
 
-public class GUIDisplayTeam extends JFrame {
+public class GUIDisplayTeamWindow extends JFrame {
 
 	private static JFrame frame;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
 	private static int counter;
 	private static boolean hasBeenClicked;
-	private ActionListener editListener;
+	private ActionListener backListener;
 	private ActionListener nextListener;
-	private int participantNumber;
+	
+	private Tournament tournament;
+	private String teamName;
+	private ArrayList<String> chosenPlayers;
 
 	/**
 	 * Create the application.
 	 */
-	public GUIDisplayTeam() throws IOException {
-		counter = 0;
-		participantNumber = Integer.parseInt(GUICreateNewTournamentWindow.getParticipantNumber());
+	public GUIDisplayTeamWindow(Tournament tournament, String teamName, ArrayList<String> chosenPlayers) throws IOException {
+		this.tournament = tournament;
+		this.teamName = teamName;
+		this.chosenPlayers = chosenPlayers;
 		initialize();
 	}
 
@@ -49,7 +54,7 @@ public class GUIDisplayTeam extends JFrame {
 	    File logo_file = new File(logoFile);
 	    BufferedImage CC_logo = ImageIO.read(logo_file);
 	    JLabel graphic = new JLabel(new ImageIcon(CC_logo));
-	    graphic.setBounds(0, 142, 300, 1200);
+	    graphic.setBounds(6, 153, 300, 1200);
 	    frame.getContentPane().add(graphic);
 	    
 	    String topBar = "TopLine.jpg";
@@ -62,7 +67,7 @@ public class GUIDisplayTeam extends JFrame {
 	    JLabel lblDoubleCheckYou = new JLabel("Double check your team!");
 	    lblDoubleCheckYou.setFont(new Font("Lucida Grande", Font.PLAIN, 45));
 	    lblDoubleCheckYou.setForeground(Color.ORANGE);
-	    lblDoubleCheckYou.setBounds(482, 142, 560, 62);
+	    lblDoubleCheckYou.setBounds(503, 142, 560, 62);
 	    frame.getContentPane().add(lblDoubleCheckYou);
 	    
 	    JLabel lblTeamName = new JLabel("Team Name:");
@@ -72,9 +77,8 @@ public class GUIDisplayTeam extends JFrame {
 	    frame.getContentPane().add(lblTeamName);
 	    
 	    JLabel label = new JLabel("");
-	    label.setText(GUICreateTeam.getTeamName());
+	    label.setText(teamName);
 	    label.setFont(new Font("Lucida Grande", Font.PLAIN, 40));
-	    label.setText(GUICreateTeam.getTeamName());
 	    label.setForeground(Color.ORANGE);
 	    label.setBounds(392, 257, 560, 48);
 	    frame.getContentPane().add(label);
@@ -86,63 +90,72 @@ public class GUIDisplayTeam extends JFrame {
 	    frame.getContentPane().add(lblAthletesInTeam);
 	    
 	    JLabel label_1 = new JLabel("");
-	    label_1.setText(GUICreateTeam.getFirstAthlete());
-	    label_1.setForeground(Color.WHITE);
+	    label_1.setText(chosenPlayers.get(0));
+	    label_1.setForeground(Color.ORANGE);
 	    label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_1.setBounds(503, 366, 432, 48);
 	    frame.getContentPane().add(label_1);
 	    
 	    JLabel label_2 = new JLabel("");
-	    label_2.setText(GUICreateTeam.getSecondAthlete());
-	    label_2.setForeground(Color.WHITE);
+	    label_2.setText(chosenPlayers.get(1));
+	    label_2.setForeground(Color.ORANGE);
 	    label_2.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_2.setBounds(986, 366, 432, 48);
 	    frame.getContentPane().add(label_2);
 	    
 	    JLabel label_3 = new JLabel("");
-	    label_3.setText(GUICreateTeam.getThirdAthlete());
-	    label_3.setForeground(Color.WHITE);
+	    label_3.setText(chosenPlayers.get(2));
+	    label_3.setForeground(Color.ORANGE);
 	    label_3.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_3.setBounds(100, 480, 432, 48);
 	    frame.getContentPane().add(label_3);
 	    
 	    JLabel label_4 = new JLabel("");
-	    label_4.setText(GUICreateTeam.getFourthAthlete());
-	    label_4.setForeground(Color.WHITE);
+	    label_4.setText(chosenPlayers.get(3));
+	    label_4.setForeground(Color.ORANGE);
 	    label_4.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_4.setBounds(558, 480, 432, 48);
 	    frame.getContentPane().add(label_4);
 	    
 	    JLabel label_5 = new JLabel("");
-	    label_5.setText(GUICreateTeam.getFifthAthlete());
-	    label_5.setForeground(Color.WHITE);
+	    label_5.setText(chosenPlayers.get(4));
+	    label_5.setForeground(Color.ORANGE);
 	    label_5.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_5.setBounds(1012, 480, 432, 48);
 	    frame.getContentPane().add(label_5);
 	    
-	    JLabel lblClickEditTo = new JLabel("Click Edit to change team, click Next to continue");
-	    lblClickEditTo.setFont(new Font("Lucida Grande", Font.PLAIN, 45));
-	    lblClickEditTo.setForeground(Color.ORANGE);
-	    lblClickEditTo.setBounds(224, 599, 1076, 54);
-	    frame.getContentPane().add(lblClickEditTo);
+	    JLabel lblClickBackTo = new JLabel("Click Back to edit team, click Next to continue!");
+	    lblClickBackTo.setFont(new Font("Lucida Grande", Font.PLAIN, 45));
+	    lblClickBackTo.setForeground(Color.ORANGE);
+	    lblClickBackTo.setBounds(265, 599, 1076, 54);
+	    frame.getContentPane().add(lblClickBackTo);
 	    
-	    JButton btnEdit = new JButton("Edit");
-	    editListener = new EditButton();
-	    btnEdit.addActionListener(editListener);
-	    btnEdit.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-	    btnEdit.setBounds(503, 690, 160, 54);
-	    frame.getContentPane().add(btnEdit);
+	    JButton btnBack = new JButton("Back");
+	    backListener = new BackButton();
+	    btnBack.addActionListener(backListener);
+	    btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+	    btnBack.setBounds(518, 690, 160, 54);
+	    frame.getContentPane().add(btnBack);
 	    
 	    JButton btnNext = new JButton("Next");
-	    nextListener = new NextButton();
+	    nextListener = new BackButton();
 	    btnNext.addActionListener(nextListener);
 	    btnNext.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-	    btnNext.setBounds(829, 690, 160, 54);
+	    btnNext.setBounds(882, 690, 160, 54);
 	    frame.getContentPane().add(btnNext);
 	}
 	
-	public static JFrame getFrame() {
+	public JFrame getFrame() {
 		return frame;
+	}
+	
+	private Team createTeam() {
+		Team newTeam = new Team(teamName);
+		for (String playerName : chosenPlayers) {
+			Player chosenPlayer = PlayerDatabase.findPlayer(playerName);
+			newTeam.addPlayer(chosenPlayer);
+		}
+		return newTeam;
 	}
 	
 	class NextButton extends JFrame implements ActionListener {
@@ -152,17 +165,25 @@ public class GUIDisplayTeam extends JFrame {
 			}
 			
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(participantNumber);
+				frame.setVisible(false);
+				Team team = createTeam();
+				
+				//add team to tournament
+				tournament.addTeam(team);
+				
+				//open next window
+				//if below max number of teams, go back to make a new team
+				//otherwise, advance to confirmation window
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							if(counter < participantNumber) {
-								GUICreateTeam window = new GUICreateTeam();
-								window.getFrame().setVisible(true);
-								counter++;
-							} else {
-							//	GUIShowTournamentTeams window = new GUIShowTournamentTeams();
-							//	window.getFrame().setVisible(true);
+							if (tournament.getNumTeams() < tournament.getMaxNumTeams()) {
+								GUICreateNewTeamWindow createNewTeamWindow = new GUICreateNewTeamWindow(tournament);
+								createNewTeamWindow.getFrame().setVisible(true);
+							}
+							else {
+								//GUIShowTournamentTeams window = new GUIShowTournamentTeams();
+								//window.getFrame().setVisible(true);
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -173,25 +194,27 @@ public class GUIDisplayTeam extends JFrame {
 			}
 		}
 
-	class EditButton extends JFrame implements ActionListener {
+	class BackButton extends JFrame implements ActionListener {
 		
-		public EditButton() {
+		public BackButton() {
 			hasBeenClicked = false;
 		}
 		
 		public void actionPerformed(ActionEvent e) {
+			frame.setVisible(false);
+			
+			//go back to create-a-tournament window
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						GUICreateTeam window = new GUICreateTeam();
-						window.getFrame().setVisible(true);
+						GUICreateNewTeamWindow createNewTeamWindow = new GUICreateNewTeamWindow(tournament);
+						createNewTeamWindow.getFrame().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			});
 			hasBeenClicked = true;
-			frame.setVisible(false);
 		}
 	}
 }
