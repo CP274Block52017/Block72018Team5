@@ -88,6 +88,7 @@ import java.awt.Font;
 		JButton btnYes = new JButton("Yes");
 		yesListener = new YesButton();
 		btnYes.addActionListener(yesListener);
+		btnYes.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		btnYes.setBounds(517, 666, 142, 52);
 		frame.getContentPane().add(btnYes);
 		
@@ -95,6 +96,7 @@ import java.awt.Font;
 		JButton btnNo = new JButton("No");
 		noListener = new NoButton();
 		btnNo.addActionListener(noListener);
+		btnNo.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		btnNo.setBounds(747, 666, 142, 52);
 		frame.getContentPane().add(btnNo);
 		

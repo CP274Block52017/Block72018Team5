@@ -78,9 +78,9 @@ public class GUITournamentWinnerWindow {
 		
 		//get the winner and display
 		JLabel label = new JLabel(tournamentWinner.getName() + " with " + tournamentWinner.getLastRoundAverage() + " points!!!");
-		label.setFont(new Font("Lucida Grande", Font.PLAIN, 50));
+		label.setFont(new Font("Lucida Grande", Font.PLAIN, 40));
 		label.setForeground(Color.WHITE);
-		label.setBounds(415, 340, 607, 59);
+		label.setBounds(415, 340, 607, 125);
 		frame.getContentPane().add(label);
 		
 		//congratulate the winner
@@ -109,12 +109,15 @@ public class GUITournamentWinnerWindow {
 		playListener = new PlayButton();
 		btnPlayAgain.addActionListener(playListener);
 		btnPlayAgain.setBounds(469, 689, 143, 54);
+		btnPlayAgain.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		frame.getContentPane().add(btnPlayAgain);
 		
 		//create the exit button
 		JButton btnExit = new JButton("Exit");
 		exitListener = new ExitButton();
 		btnExit.addActionListener(exitListener);
+		btnExit.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		frame.getContentPane().add(btnPlayAgain);
 		btnExit.setBounds(825, 689, 143, 54);
 		frame.getContentPane().add(btnExit);
 		
