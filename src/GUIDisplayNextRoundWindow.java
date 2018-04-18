@@ -13,7 +13,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-
+/**
+ * This class creates a User Interface in the form of a JFrame
+ * that displayed the winners and their points of a round in 
+ * the tournament. 
+ * @author emmablair
+ *
+ */
 public class GUIDisplayNextRoundWindow {
 
 	private JFrame frame;
@@ -25,36 +31,23 @@ public class GUIDisplayNextRoundWindow {
 	
 	private Tournament tournament;
 
-
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUIDisplayNextRoundWindow window = new GUIDisplayNextRoundWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
+	 * Constructor initializes the application.
 	 */
 	public GUIDisplayNextRoundWindow() throws IOException {
 		initialize();
 	}
 	
+	/**
+	 * Return the frame for this window.
+	 * @return JFrame - this window's frame.
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame.
 	 */
 	private void initialize() throws IOException {
 		frame = new JFrame();
@@ -324,12 +317,29 @@ public class GUIDisplayNextRoundWindow {
 	    frame.getContentPane().add(btnNextRound);
 	}
 	
+	/**
+	 * This class allows for the next button to execute
+	 * an action.
+	 * @author Nicole
+	 * @author Kelli
+	 * @author Emma
+	 *
+	 */
 	class NextButton extends JFrame implements ActionListener {
 		
+		/**
+		 * Constructor is empty
+		 */
 		public NextButton() {
 			
 		}
 		
+		/**
+		 * This method calls the next window based on if the button
+		 * was pressed. It then sets the visibility to false so 
+		 * that the window disappears.
+		 * @param ActionEvent - the action the button performs.
+		 */
 		public void actionPerformed(ActionEvent e) {
 			frame.setVisible(false);
 			
