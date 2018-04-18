@@ -78,6 +78,7 @@ public class GUICreateNewTournamentWindow {
 		//creates the text field to get the tournament name from user
 		tournamentNameChoice = new JTextField();
 		tournamentNameChoice.setBounds(619, 270, 224, 51);
+		tournamentNameChoice.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		frame.getContentPane().add(tournamentNameChoice);
 		tournamentNameChoice.setColumns(10);
 		
@@ -120,7 +121,8 @@ public class GUICreateNewTournamentWindow {
 		strategyChoiceString.add("4: By Greatest Average Games Won");
 		strategyChoiceString.add("5: By Greatest Average Games Lost");
 		strategyChoiceString.add("6: By Greatest Average Class Year");
-		strategyChoiceString.setBounds(619, 561, 216, 36);
+		strategyChoiceString.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
+		strategyChoiceString.setBounds(450, 561, 500, 100);
 		frame.getContentPane().add(strategyChoiceString);
 		
 		//creates a drop down menu of all the choices for the number of participants
@@ -131,6 +133,7 @@ public class GUICreateNewTournamentWindow {
 		numParticipantsChoice.add("4");
 		numParticipantsChoice.add("8");
 		numParticipantsChoice.setBounds(619, 424, 224, 36);
+		numParticipantsChoice.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		frame.getContentPane().add(numParticipantsChoice);
 		
 		//finishes setting up frame
