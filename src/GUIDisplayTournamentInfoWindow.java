@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class GUIShowTournamentInfoWindow {
+public class GUIDisplayTournamentInfoWindow {
 
 	private JFrame frame;
 	private static final int FRAME_WIDTH = 1500;
@@ -28,7 +28,7 @@ public class GUIShowTournamentInfoWindow {
 	/**
 	 * Create the application.
 	 */
-	public GUIShowTournamentInfoWindow(String tournamentName, int strategyChoice, int numParticipants) throws IOException {
+	public GUIDisplayTournamentInfoWindow(String tournamentName, int strategyChoice, int numParticipants) throws IOException {
 		this.tournamentName = tournamentName;
 		this.strategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
 		this.numParticipants = numParticipants;

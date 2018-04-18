@@ -66,6 +66,19 @@ public class Tournament {
 	}
 	
 	/**
+	 * Gets the names of the teams in the tournament.
+	 * @return names of teams in the tournament.
+	 */
+	public ArrayList<String> getTeamNames() {
+		ArrayList<String> teamNames = new ArrayList<String>();
+		for (Team team : teams) {
+			String teamName = team.getName();
+			teamNames.add(teamName);
+		}
+		return teamNames;
+	}
+	
+	/**
 	 * Gets the current number of teams in the tournament.
 	 * @return current number of teams in the tournament.
 	 */
