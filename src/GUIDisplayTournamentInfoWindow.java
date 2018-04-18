@@ -195,8 +195,8 @@ public class GUIDisplayTournamentInfoWindow {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						GUICreateNewTournamentWindow window = new GUICreateNewTournamentWindow();
-						window.getFrame().setVisible(true);
+						GUICreateNewTournamentWindow createTournamentWindow = new GUICreateNewTournamentWindow();
+						createTournamentWindow.getFrame().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
