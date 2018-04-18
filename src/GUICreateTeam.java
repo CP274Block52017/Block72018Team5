@@ -246,10 +246,10 @@ public class GUICreateTeam {
 					try {
 						teamName = textField.getText();
 						firstAthlete = athleteChoice1.getSelectedItem();
-						secondAthlete = athleteChoice1.getSelectedItem();
-						thirdAthlete = athleteChoice1.getSelectedItem();
-						fourthAthlete = athleteChoice1.getSelectedItem();
-						fifthAthlete = athleteChoice1.getSelectedItem();
+						secondAthlete = athleteChoice2.getSelectedItem();
+						thirdAthlete = athleteChoice3.getSelectedItem();
+						fourthAthlete = athleteChoice4.getSelectedItem();
+						fifthAthlete = athleteChoice5.getSelectedItem();
 						currentTeam.add(firstAthlete);
 						currentTeam.add(secondAthlete);
 						currentTeam.add(thirdAthlete);
