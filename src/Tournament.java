@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Tournament {
 	
 	private String name;
-	private int numTeams;
+	private int maxNumTeams;
 	private TournamentWinnerStrategy winnerStrategy;
 	private ArrayList<Team> teams;
 	private Team winner;
@@ -22,9 +22,9 @@ public class Tournament {
 	 * @param numTeams - number of teams in the tournament.
 	 * @param winnerStrategy - strategy to determine the winner.
 	 */
-	public Tournament(String name, int numTeams, TournamentWinnerStrategy winnerStrategy) {
+	public Tournament(String name, int maxNumTeams, TournamentWinnerStrategy winnerStrategy) {
 		this.name = name;
-		this.numTeams = numTeams;
+		this.maxNumTeams = maxNumTeams;
 		this.winnerStrategy = winnerStrategy;
 		teams = new ArrayList<Team>();
 	}
@@ -50,19 +50,27 @@ public class Tournament {
 	}
 
 	/**
-	 * Gets the number of teams in the tournament.
-	 * @return int - number of teams in the tournament.
+	 * Gets the max number of teams in the tournament.
+	 * @return maxNumTeams - max number of teams in the tournament.
 	 */
-	public int getNumTeams() {
-		return numTeams;
+	public int getMaxNumTeams() {
+		return maxNumTeams;
 	}
 	
 	/**
 	 * Gets the teams in the tournament.
-	 * @return ArrayList<Team> - teams in the tournament.
+	 * @return teams - teams in the tournament.
 	 */
 	public ArrayList<Team> getTeams() {
 		return teams;
+	}
+	
+	/**
+	 * Gets the current number of teams in the tournament.
+	 * @return current number of teams in the tournament.
+	 */
+	public int getNumTeams() {
+		return teams.size();
 	}
 	
 	/**

@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ import java.util.Scanner;
  */
 public class RunTournament {
 	
-	private static final int MAX_PARTICIPANTS = 16;
+	private static final int MAX_PARTICIPANTS = 8;
 	private static final int MAX_TEAM_SIZE = 5;
 	private static final int NUMBER_STRATEGIES = 6;
 	
@@ -209,7 +210,7 @@ public class RunTournament {
 	 * This is the main method that runs the tournament.
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		PlayerDatabase.generateDatabase();
 		
 		Boolean exitTournamentGenerator = false;

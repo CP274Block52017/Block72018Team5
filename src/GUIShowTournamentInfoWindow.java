@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.imageio.ImageIO;
@@ -92,7 +91,7 @@ public class GUIShowTournamentInfoWindow {
 		label.setBounds(688, 301, 603, 36);
 		frame.getContentPane().add(label);
 		
-		JLabel lblIfTheInformation = new JLabel("If the information is correct, press Next. ");
+		JLabel lblIfTheInformation = new JLabel("If the information is correct, click Next. ");
 		lblIfTheInformation.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblIfTheInformation.setForeground(Color.ORANGE);
 		lblIfTheInformation.setBounds(271, 558, 710, 36);
@@ -112,7 +111,7 @@ public class GUIShowTournamentInfoWindow {
 		btnBack.setBounds(1115, 599, 154, 43);
 		frame.getContentPane().add(btnBack);
 		
-		JLabel lblIfYouWant = new JLabel("If you want to edit the information, press Back.");
+		JLabel lblIfYouWant = new JLabel("If you want to edit the information, click Back.");
 		lblIfYouWant.setForeground(Color.ORANGE);
 		lblIfYouWant.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblIfYouWant.setBounds(271, 606, 793, 36);
@@ -154,7 +153,7 @@ public class GUIShowTournamentInfoWindow {
  	 * @param
  	 * @return
  	 */
- 	private Tournament createTournament(String tournamentName, int numParticipants, TournamentWinnerStrategy strategy) {
+ 	private Tournament createTournament() {
  			Tournament newTournament = new Tournament(tournamentName, numParticipants, strategy);
  			return newTournament;
  	}
@@ -167,14 +166,14 @@ public class GUIShowTournamentInfoWindow {
 
 		public void actionPerformed(ActionEvent e) {
 			frame.setVisible(false);
-			createTournament(tournamentName, numParticipants, strategy);
+			Tournament tournament = createTournament();
 			
 			//open next window
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						//GUICreateTeam window = new GUICreateTeam();
-						//window.getFrame().setVisible(true);
+						GUICreateNewTeamWindow createNewTeamWindow = new GUICreateNewTeamWindow(tournament);
+						createNewTeamWindow.getFrame().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -192,7 +191,7 @@ public class GUIShowTournamentInfoWindow {
 
 		public void actionPerformed(ActionEvent e) {
 			frame.setVisible(false);
-			//go back to create-a-team window
+			//go back to create-a-tournament window
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
