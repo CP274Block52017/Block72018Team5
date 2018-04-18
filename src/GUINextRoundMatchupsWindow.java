@@ -39,7 +39,9 @@ public class GUINextRoundMatchupsWindow {
 	 * Constructor is going to take in all the information that we need for this tournament and then
 	 *take in an arraylist of the teams that are in the current round
 	 @param tournament - current tournament
+
 	 *@param arraylist of teams - teams that are currently in this round
+
 	 *@throws IOException - makes sure the jpg files are in the correct folder to read them in
 	 */
 	public GUINextRoundMatchupsWindow(Tournament tournament, ArrayList<Team> nextRoundTeams) throws IOException {
@@ -60,6 +62,7 @@ public class GUINextRoundMatchupsWindow {
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
 			
+
 		//creates a label that states the current tournament bracket
 		JLabel lblNewLabel = new JLabel("Tournament Bracket");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 45));
