@@ -6,26 +6,32 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class GUIShowTournamentInformation {
+public class GUIShowTournamentInfoWindow {
 
-	private static JFrame frame;
+	private JFrame frame;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
 	private ActionListener nextListener;
 	private ActionListener backListener;
-	private static boolean hasBeenClicked;
+	private boolean hasBeenClicked;
+	
+	private String tournamentName;
+	private TournamentWinnerStrategy strategy;
+	private int numParticipants;
 
 	/**
 	 * Create the application.
 	 */
-	public GUIShowTournamentInformation() throws IOException {
+	public GUIShowTournamentInfoWindow(String tournamentName, int strategyChoice, int numParticipants) throws IOException {
+		this.tournamentName = tournamentName;
+		this.strategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
+		this.numParticipants = numParticipants;
 		initialize();
 	}
 
@@ -66,26 +72,26 @@ public class GUIShowTournamentInformation {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-		lblNewLabel.setText(GUICreateNewTournamentWindow.getStrategy());
+		lblNewLabel.setText(getStrategyDisplayName(strategy));
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(790, 430, 723, 43);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
-		lblNewLabel_1.setText(GUICreateNewTournamentWindow.getTournamentName());
+		lblNewLabel_1.setText(tournamentName);
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(618, 176, 768, 36);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel label = new JLabel("");
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
-		label.setText(GUICreateNewTournamentWindow.getParticipantNumber());
+		label.setText(Integer.toString(numParticipants));
 		label.setForeground(Color.WHITE);
 		label.setBounds(688, 301, 603, 36);
 		frame.getContentPane().add(label);
 		
-		JLabel lblIfTheInformation = new JLabel("If the information is correct, press Next. ");
+		JLabel lblIfTheInformation = new JLabel("If the information is correct, click Next. ");
 		lblIfTheInformation.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblIfTheInformation.setForeground(Color.ORANGE);
 		lblIfTheInformation.setBounds(271, 558, 710, 36);
@@ -105,7 +111,7 @@ public class GUIShowTournamentInformation {
 		btnBack.setBounds(1115, 599, 154, 43);
 		frame.getContentPane().add(btnBack);
 		
-		JLabel lblIfYouWant = new JLabel("If you want to edit the information, press Back.");
+		JLabel lblIfYouWant = new JLabel("If you want to edit the information, click Back.");
 		lblIfYouWant.setForeground(Color.ORANGE);
 		lblIfYouWant.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblIfYouWant.setBounds(271, 606, 793, 36);
@@ -127,22 +133,47 @@ public class GUIShowTournamentInformation {
 	    frame.getContentPane().add(top_graphic);
 	}
 	
-	public static JFrame getFrame() {
+	public JFrame getFrame() {
 		return frame;
 	}
 	
-class NextButton extends JFrame implements ActionListener {
+	private String getStrategyDisplayName(TournamentWinnerStrategy strategy) {
+		String strategyDisplayName = "";
+		if (strategy.getName().equals("Random Winner")) {
+			strategyDisplayName = strategy.getName();
+		}
+		else {
+			strategyDisplayName = "Greatest " + strategy.getName();
+		}
+		return strategyDisplayName;
+	}
+	
+	/**
+ 	 * This method is used to create a tournament given the information the user has entered
+ 	 * @param
+ 	 * @return
+ 	 */
+ 	private Tournament createTournament() {
+ 			Tournament newTournament = new Tournament(tournamentName, numParticipants, strategy);
+ 			return newTournament;
+ 	}
+	
+	class NextButton extends JFrame implements ActionListener {
 		
 		public NextButton() {
 			hasBeenClicked = false;
 		}
 
 		public void actionPerformed(ActionEvent e) {
+			frame.setVisible(false);
+			Tournament tournament = createTournament();
+			
+			//open next window
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						GUICreateTeam window = new GUICreateTeam();
-						window.getFrame().setVisible(true);
+						GUICreateNewTeamWindow createNewTeamWindow = new GUICreateNewTeamWindow(tournament);
+						createNewTeamWindow.getFrame().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -159,6 +190,8 @@ class NextButton extends JFrame implements ActionListener {
 		}
 
 		public void actionPerformed(ActionEvent e) {
+			frame.setVisible(false);
+			//go back to create-a-tournament window
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -170,7 +203,6 @@ class NextButton extends JFrame implements ActionListener {
 				}
 			});
 			hasBeenClicked = true;
-			frame.setVisible(false);
 		}
 	}
 

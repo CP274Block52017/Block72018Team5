@@ -6,25 +6,28 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.io.File;
+import java.io.IOException;
 import java.awt.Font;
-
-public class GUIWelcomeWindow extends JFrame {
-
-	private static JFrame frame;
-	private static boolean hasBeenClicked;
-	private ActionListener yesListener;
-	private ActionListener noListener;
-	private static final int FRAME_WIDTH = 1500;
-	private static final int FRAME_HEIGHT = 1500;
 	
-	public GUIWelcomeWindow() throws IOException {
-		initialize();	
-	}
-
+	public class GUIWelcomeWindow extends JFrame {
+	
+		private static final long serialVersionUID = 1L;
+		private JFrame frame;
+		private boolean hasBeenClicked;
+		private ActionListener yesListener;
+		private ActionListener noListener;
+		private static final int FRAME_WIDTH = 1500;
+		private static final int FRAME_HEIGHT = 1500;
+		
+		public GUIWelcomeWindow() throws IOException {
+			initialize();
+			setSize(FRAME_WIDTH, FRAME_HEIGHT);	
+			openGUIWindow();
+		}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -79,7 +82,7 @@ public class GUIWelcomeWindow extends JFrame {
 		lblHowToPlay.setBounds(624, 311, 171, 41);
 		frame.getContentPane().add(lblHowToPlay);
 		
-		JLabel label = new JLabel("2, 4, 8, or 16 friends to be the participants in the tournament");
+		JLabel label = new JLabel("2, 4, or 8 friends to be the participants in the tournament");
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		label.setForeground(Color.WHITE);
 		label.setBounds(343, 411, 756, 28);
@@ -114,7 +117,6 @@ public class GUIWelcomeWindow extends JFrame {
 	    graphic.setBounds(25, 155, 300, 1200);
 	    frame.getContentPane().add(graphic);
 	    
-	    
 	    String topBar = "TopLine.jpg";
 	    File topbar_file = new File(topBar);
 	    BufferedImage top_bar = ImageIO.read(topbar_file);
@@ -122,50 +124,61 @@ public class GUIWelcomeWindow extends JFrame {
 	    top_graphic.setBounds(100, 0, 1200, 100);
 	    frame.getContentPane().add(top_graphic);
 	}
-	
-	public static boolean getClick() {
-		return hasBeenClicked;
-	}
-	
-	public static JFrame getFrame() {
-		return frame;
-	}
-
-class YesButton extends JFrame implements ActionListener {
-	
-	public YesButton() {
-		hasBeenClicked = false;
-	}
-
-	public void actionPerformed(ActionEvent e) {
+		
+	/**
+	 * Opens GUI window
+	 */
+	private void openGUIWindow() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUICreateNewTournamentWindow window = new GUICreateNewTournamentWindow();
-					window.getFrame().setVisible(true);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		frame.setVisible(false);
-		hasBeenClicked = true;
 	}
-}
+		
+	private class YesButton extends JFrame implements ActionListener {
+		
+		private static final long serialVersionUID = 1L;
 
-class NoButton extends JFrame implements ActionListener {
+		public YesButton() {
+			hasBeenClicked = false;
+		}
 	
-	public NoButton() {
-		hasBeenClicked = false;
+		public void actionPerformed(ActionEvent e) {
+			frame.setVisible(false);
+			//open next window
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						GUICreateNewTournamentWindow createTournamentWindow = new GUICreateNewTournamentWindow();
+						createTournamentWindow.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			hasBeenClicked = true;
+		}
+	}
+	
+	private class NoButton extends JFrame implements ActionListener {
+	
+		private static final long serialVersionUID = 1L;
+
+		public NoButton() {
+			hasBeenClicked = false;
+		}
+	
+		public void actionPerformed(ActionEvent e) {
+			System.exit(1);
+			hasBeenClicked = false;
+		}
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		System.exit(1);
-		hasBeenClicked = false;
-	}
 }
-
-}
-
 
 
