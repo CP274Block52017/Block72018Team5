@@ -161,6 +161,7 @@ import java.awt.event.ActionEvent;
 			hasBeenClicked = true;
 		}
 	}
+
 	
 	class NoButton extends JFrame implements ActionListener {
 		

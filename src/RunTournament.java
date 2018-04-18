@@ -214,7 +214,16 @@ public class RunTournament {
 		PlayerDatabase.generateDatabase();
 		
 		Boolean exitTournamentGenerator = false;
-		GUIWelcomeWindow welcomeWindow = new GUIWelcomeWindow();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUIWelcomeWindow window = new GUIWelcomeWindow();
+					window.getFrame().setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		
 		Scanner scan = new Scanner(System.in);
 		//loop continues while tournament master wants to create a new tournament
