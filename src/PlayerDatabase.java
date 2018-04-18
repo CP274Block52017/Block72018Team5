@@ -34,6 +34,9 @@ public class PlayerDatabase {
 		
 	}
 	
+	/**
+	*This method actually creates the database using mySQL 
+	**/
 	private static void createDatabase() {
 		try (
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:" + PORT_NUMBER + "/?user=root&password=root");
@@ -47,6 +50,12 @@ public class PlayerDatabase {
 		}
 	}
 	
+	/**
+	*This method adds all the schema we want in our database
+	*It creates a table of players containing their name, sport, gender, height
+	*games played, teams wins, team losses, class year, and it makes the name the
+	*primary key of this table is going to be the player name
+	**/
 	private static void createTable() {
 		try (
 			Connection conn = DriverManager.getConnection(
@@ -73,6 +82,13 @@ public class PlayerDatabase {
 		}
 	}
 	
+	/**
+	*This method puts the players into the table we generated above
+	*in the database that we have already created. We got this information
+	*about CC athletes from the 2016-2017 season, but the athletes are read in
+	*from a file which can be replaced with a another file containing a different set of
+	*athletes from another school.
+	**/
 	private static void addPlayersToDatabase() {
 		try (
 			Connection conn = DriverManager.getConnection(
@@ -104,6 +120,9 @@ public class PlayerDatabase {
 		}	
 	}
 	
+	/**This method grabs the players from our database
+	*and getting their inforamtion
+	**/
 	private static void getPlayersFromDatabase() {
 		try (
 				Connection conn = DriverManager.getConnection(
@@ -140,7 +159,12 @@ public class PlayerDatabase {
 	public static ArrayList<Player> getPlayersList() {
 		return players;
 	}
-	
+		
+	/** This method searches the arraylist of players for 
+	*a specific player to see if there is a match
+	*@param name of the player we want to find
+	*@return player - the player we want
+	**/
 	public static Player findPlayer(String playerName) {
 		for (Player player : players) {
 			if (playerName.equalsIgnoreCase(player.getName())) {
@@ -158,12 +182,11 @@ public class PlayerDatabase {
 		return players.size();
 	}
 	
-	
 	/**
 	 * 
-	 * Creates the database and table of athletes and 
-	 * their information. This information will be used by the 
-	 * tournament strategies.
+	 * Calls the methods to create the database and table of athletes and 
+	 * their information, as well as store the players in an arraylist. 
+	 * This information will be used by the tournament strategies.
 	 */
 	public static void generateDatabase() {
 		createDatabase();
@@ -171,7 +194,6 @@ public class PlayerDatabase {
 		addPlayersToDatabase();		
 		getPlayersFromDatabase();
 	}
-
 	
 }
 
