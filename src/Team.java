@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 /**
  * This class provides the methods for the teams in
@@ -15,8 +16,6 @@ public class Team {
 	
 	/**
 	 * Constructor for the Team class.
-	 * Must round lastRoundAverage for JUnit tests to pass; otherwise rounded values may end up equal to one another
-	 * in the tournament and result in a draw
 	 * @param teamName
 	 */
 	public Team(String teamName) {
@@ -25,10 +24,18 @@ public class Team {
 		lastRoundAverage = 0.0;
 	}
 	
+	/**
+	 * Gets the players that are on this team
+	 * @return array list of the players on the team
+	 */
 	public ArrayList<Player> getTeamMembersList() {
 		return teamMembers;
 	}
 	
+	/**
+	 * This method provides the name of a team.
+	 * @return
+	 */
 	public String getName() {
 		return teamName;
 	}
@@ -42,8 +49,8 @@ public class Team {
 	}
 	
 	/**
-	 * Gets the names of players on a team. 
-	 * @return String - names of players on a team.
+	 * Gets the players on a team. 
+	 * @return String - players on a team.
 	 */
 	public String getMembers() {
 		String members = "";
@@ -58,6 +65,10 @@ public class Team {
 		return members;
 	}
 	
+	/**
+	 * gets the size of the team
+	 * @return size of the team
+	 */
 	public int getTeamSize() {
 		return teamMembers.size();
 	}
@@ -71,12 +82,21 @@ public class Team {
 		return getMembers();
 	}
 
+	/**
+	 * gets the average of the last round
+	 * @return double - corresponds to last round's average
+	 */
 	public double getLastRoundAverage() {
 		return lastRoundAverage;
 	}
 
+	/**
+	 * set the average of the last round
+	 * @param double - the average you want to set the last round to
+	 */
 	public void setLastRoundAverage(double lastRoundAverage) {
 		this.lastRoundAverage = lastRoundAverage;
+
 	}
 
 }

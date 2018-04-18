@@ -1,4 +1,3 @@
-
  /**
  * This class contains the methods and information for the players
  * on the teams in the tournaments and will be connected to the 
@@ -125,3 +124,4 @@ public class Player {
 	}
 	
 }
+

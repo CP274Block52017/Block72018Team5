@@ -1,16 +1,16 @@
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 /**
- * This class is a concrete implementation of TournamentWinnerStrategy
- * that determines the winner between two given teams by 
- * taking the athletes' on the teams number of games played.
- * @author Nicole
- * @author Kelli
- * @author Emma
- */
+*This class is a concrete implementation of TournamentWinnerStrategy
+*that determines the winner between two given teams by 
+*taking the athletes' on the teams number of games played.
+* @author Nicole
+* @author Kelli
+* @author Emma
+*/
 public class ByGamesPlayedStrategy implements TournamentWinnerStrategy {
 
-   /**
+	/**
 	* This method determines the winner between two given team by 
 	* taking the games played of each team and then getting the average.
 	* The winning team is the team with the greatest average number of games
@@ -33,7 +33,7 @@ public class ByGamesPlayedStrategy implements TournamentWinnerStrategy {
 		return RunTournament.determineWinningAverage(firstTeam, secondTeam);
 	}
 	
-   /**
+	/**
 	* Gets the name of the strategy.
 	* @return String - name of the strategy.
 	*/
@@ -42,3 +42,4 @@ public class ByGamesPlayedStrategy implements TournamentWinnerStrategy {
 	}
 
 }
+
