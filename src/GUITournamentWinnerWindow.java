@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -30,6 +31,9 @@ public class GUITournamentWinnerWindow {
 	private ActionListener exitListener;
 	private ActionListener playListener;
 	private boolean hasBeenClicked;
+	
+	private Tournament tournament;
+	private Team tournamentWinner;
 
 	/**
 	 * Constructor is going to call the method it initialize the 
@@ -37,7 +41,9 @@ public class GUITournamentWinnerWindow {
 	 * @throws IOException - make sure the user has the correct
 	 *graphics stored in their project file
 	 */
-	public GUITournamentWinnerWindow() throws IOException {
+	public GUITournamentWinnerWindow(Tournament tournament, ArrayList<Team> finalTeams) throws IOException {
+		this.tournament = tournament;
+		determineTournamentWinner(tournament.getWinnerStrategy(), finalTeams);
 		initialize();
 	}
 
@@ -71,7 +77,7 @@ public class GUITournamentWinnerWindow {
 		frame.getContentPane().add(lblTheWinnerIs);
 		
 		//get the winner and display
-		JLabel label = new JLabel("");
+		JLabel label = new JLabel(tournamentWinner.getName() + " with " + tournamentWinner.getLastRoundAverage() + " points!!!");
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 50));
 		label.setForeground(Color.WHITE);
 		label.setBounds(415, 340, 607, 59);
@@ -129,6 +135,21 @@ public class GUITournamentWinnerWindow {
 	    frame.getContentPane().add(top_graphic);
 	}
 	
+	public JFrame getFrame() {
+		return frame;
+	}
+	
+	/**
+ 	 * This method determines the winner of the tournament
+ 	 * @param strategy to determine winner
+ 	 * @param teams that are playing in the tournament
+ 	 */
+ 	private void determineTournamentWinner(TournamentWinnerStrategy strategy, ArrayList<Team> finalTeams) {
+ 		tournamentWinner = strategy.determineWinner(finalTeams.get(0), finalTeams.get(1));
+ 		tournament.setWinner(tournamentWinner);
+ 		}
+ 	}
+	
 	/**
 	 * Class that extends JFrame and implements the ActionListener
 	 * to produce actions when the JButton denoting "Play Again" is pressed
@@ -153,6 +174,8 @@ public class GUITournamentWinnerWindow {
 		 */
 		public void actionPerformed(ActionEvent e) {
 			frame.setVisible(false);
+			
+			//go back to start window
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -162,7 +185,6 @@ public class GUITournamentWinnerWindow {
 					}
 				}
 			});
-			hasBeenClicked = false;
 		}
 	}
 	
@@ -189,9 +211,7 @@ public class GUITournamentWinnerWindow {
 			 * the window since the user no longer wants to play
 			 */
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
 				System.exit(1);
-				hasBeenClicked = false;
 			}
 		}
 }

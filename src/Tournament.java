@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.util.ArrayList;
 /**
  * This class contains the methods for creating
@@ -96,6 +97,10 @@ public class Tournament {
 	 */
 	public void setWinner(Team winner) {
 		this.winner = winner;
+	}
+
+	public Team getWinner() {
+		return winner;
 	}
 	
 }
