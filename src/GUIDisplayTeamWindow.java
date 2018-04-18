@@ -79,7 +79,7 @@ public class GUIDisplayTeamWindow extends JFrame {
 	    JLabel label = new JLabel("");
 	    label.setText(teamName);
 	    label.setFont(new Font("Lucida Grande", Font.PLAIN, 40));
-	    label.setForeground(Color.ORANGE);
+	    label.setForeground(Color.WHITE);
 	    label.setBounds(392, 257, 560, 48);
 	    frame.getContentPane().add(label);
 	    
@@ -91,35 +91,35 @@ public class GUIDisplayTeamWindow extends JFrame {
 	    
 	    JLabel label_1 = new JLabel("");
 	    label_1.setText(chosenPlayers.get(0));
-	    label_1.setForeground(Color.ORANGE);
+	    label_1.setForeground(Color.WHITE);
 	    label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_1.setBounds(503, 366, 432, 48);
 	    frame.getContentPane().add(label_1);
 	    
 	    JLabel label_2 = new JLabel("");
 	    label_2.setText(chosenPlayers.get(1));
-	    label_2.setForeground(Color.ORANGE);
+	    label_2.setForeground(Color.WHITE);
 	    label_2.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_2.setBounds(986, 366, 432, 48);
 	    frame.getContentPane().add(label_2);
 	    
 	    JLabel label_3 = new JLabel("");
 	    label_3.setText(chosenPlayers.get(2));
-	    label_3.setForeground(Color.ORANGE);
+	    label_3.setForeground(Color.WHITE);
 	    label_3.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_3.setBounds(100, 480, 432, 48);
 	    frame.getContentPane().add(label_3);
 	    
 	    JLabel label_4 = new JLabel("");
 	    label_4.setText(chosenPlayers.get(3));
-	    label_4.setForeground(Color.ORANGE);
+	    label_4.setForeground(Color.WHITE);
 	    label_4.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_4.setBounds(558, 480, 432, 48);
 	    frame.getContentPane().add(label_4);
 	    
 	    JLabel label_5 = new JLabel("");
 	    label_5.setText(chosenPlayers.get(4));
-	    label_5.setForeground(Color.ORANGE);
+	    label_5.setForeground(Color.WHITE);
 	    label_5.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 	    label_5.setBounds(1012, 480, 432, 48);
 	    frame.getContentPane().add(label_5);
