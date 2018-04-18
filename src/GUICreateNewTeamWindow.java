@@ -121,6 +121,7 @@ public class GUICreateNewTeamWindow {
 		}
 		playerChoice1.setForeground(Color.BLACK);
 		playerChoice1.setBackground(Color.ORANGE);
+		playerChoice1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		playerChoice1.setBounds(514, 478, 203, 42);
 		frame.getContentPane().add(playerChoice1);
 		
@@ -130,6 +131,7 @@ public class GUICreateNewTeamWindow {
 		for(int i = 0; i < playerChoices.size(); i++) {
 			playerChoice2.add(playerChoices.get(i).getName());
 		}
+		playerChoice2.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		playerChoice2.setBackground(Color.ORANGE);
 		playerChoice2.setForeground(Color.BLACK);
 		playerChoice2.setBounds(743, 343, 203, 42);
@@ -142,6 +144,7 @@ public class GUICreateNewTeamWindow {
 		for(int i = 0; i < playerChoices.size(); i++) {
 			playerChoice3.add(playerChoices.get(i).getName());
 		}
+		playerChoice3.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		playerChoice3.setForeground(Color.BLACK);
 		playerChoice3.setBackground(Color.ORANGE);
 		playerChoice3.setBounds(984, 478, 203, 42);
@@ -153,6 +156,7 @@ public class GUICreateNewTeamWindow {
 		for(int i = 0; i < playerChoices.size(); i++) {
 			playerChoice4.add(playerChoices.get(i).getName());
 		}
+		playerChoice4.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		playerChoice4.setForeground(Color.BLACK);
 		playerChoice4.setBackground(Color.ORANGE);
 		playerChoice4.setBounds(1181, 343, 203, 42);
@@ -164,6 +168,7 @@ public class GUICreateNewTeamWindow {
 		for(int i = 0; i < playerChoices.size(); i++) {
 			playerChoice5.add(playerChoices.get(i).getName());
 		}
+		playerChoice5.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		playerChoice5.setBackground(Color.ORANGE);
 		playerChoice5.setForeground(Color.BLACK);
 		playerChoice5.setBounds(290, 343, 203, 42);
