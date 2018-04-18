@@ -186,8 +186,14 @@ public class GUIDisplayTournamentTeamsWindow {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						GUIDisplayNextRoundWindow displayNextRoundWindow = new GUIDisplayNextRoundWindow(tournament, tournament.getTeams());
-						displayNextRoundWindow.getFrame().setVisible(true);
+						if (tournament.getMaxNumTeams() == 2) {
+							GUITournamentWinnerWindow tournamentWinnerWindow = new GUITournamentWinnerWindow(tournament, tournament.getTeams());
+							tournamentWinnerWindow.getFrame().setVisible(true);
+						}
+						else {
+							GUIDisplayNextRoundWindow displayNextRoundWindow = new GUIDisplayNextRoundWindow(tournament, tournament.getTeams());
+							displayNextRoundWindow.getFrame().setVisible(true);
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
