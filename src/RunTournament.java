@@ -214,8 +214,6 @@ public class RunTournament {
 		
 		Boolean exitTournamentGenerator = false;
 		GUIWelcomeWindow welcomeWindow = new GUIWelcomeWindow();
-		GUICreateNewTournamentWindow createTournamentWindow = new GUICreateNewTournamentWindow();
-		Tournament newTournament = createTournamentWindow.getTournament();
 		
 		Scanner scan = new Scanner(System.in);
 		//loop continues while tournament master wants to create a new tournament

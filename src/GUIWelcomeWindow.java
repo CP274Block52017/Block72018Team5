@@ -130,6 +130,18 @@ import java.awt.Font;
 		}
 	
 		public void actionPerformed(ActionEvent e) {
+			frame.setVisible(false);
+			//open next window
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						GUICreateNewTournamentWindow createTournamentWindow = new GUICreateNewTournamentWindow();
+						createTournamentWindow.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 			hasBeenClicked = true;
 		}
 	}

@@ -45,6 +45,10 @@ public class Tournament {
 		teams.add(team);
 	}
 	
+	public String getName() {
+		return name;
+	}
+
 	/**
 	 * Gets the number of teams in the tournament.
 	 * @return int - number of teams in the tournament.

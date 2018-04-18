@@ -28,16 +28,12 @@ public class GUICreateNewTournamentWindow {
 	private JTextField tournamentNameChoice;
 	private Choice strategyChoiceString;
 	private Choice numParticipantsChoice;
-	
-	private Tournament tournament;
-	
 
 	/**
 	 * Create the application.
 	 */
 	public GUICreateNewTournamentWindow() {
 		initialize();
-		openGUIWindow();
 	}
 
 	/**
@@ -110,34 +106,9 @@ public class GUICreateNewTournamentWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	/**
-	 * Opens GUI window
-	 */
-	public void openGUIWindow() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public JFrame getFrame() {
+		return frame;
 	}
-	
-	/**
- 	 * This method is used to create a tournament given the information the user has entered
- 	 * @return the new tournament
- 	 */
- 	private void createTournament(String tournamentName, int strategyChoice, int numParticipants) {
- 			TournamentWinnerStrategy chosenStrategy = WinnerStrategyFactory.getWinnerStrategy(strategyChoice);
- 			tournament = new Tournament(tournamentName, numParticipants, chosenStrategy);
- 		}
- 	
- 	public Tournament getTournament() {
- 		return tournament;
- 	}
- 	
 	
 	class SubmitButton extends JFrame implements ActionListener {
 	
@@ -148,12 +119,23 @@ public class GUICreateNewTournamentWindow {
 		}
 		
 		public void actionPerformed(ActionEvent e) {
+			frame.setVisible(false);
 			String tournamentName = tournamentNameChoice.getText();
 			Character firstCharStrategyString = strategyChoiceString.getSelectedItem().charAt(0);
 			int strategyChoice = Character.getNumericValue(firstCharStrategyString);
 			int numParticipants = Integer.parseInt(numParticipantsChoice.getSelectedItem());
-			createTournament(tournamentName, strategyChoice, numParticipants);
 			
+			//open next window
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						GUIShowTournamentInfoWindow showTournamentInfoWindow = new GUIShowTournamentInfoWindow(tournamentName, strategyChoice, numParticipants);
+						showTournamentInfoWindow.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 			hasBeenClicked = true;
 		}
 
