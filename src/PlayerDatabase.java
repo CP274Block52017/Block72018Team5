@@ -23,7 +23,7 @@ import java.sql.ResultSet;
  */
 public class PlayerDatabase {
 	
-	public static final String PORT_NUMBER = "3306";
+	public static final String PORT_NUMBER = "8889";
 	
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	

@@ -138,7 +138,7 @@ public class GUIDisplayTeamWindow extends JFrame {
 	    frame.getContentPane().add(btnBack);
 	    
 	    JButton btnNext = new JButton("Next");
-	    nextListener = new BackButton();
+	    nextListener = new NextButton();
 	    btnNext.addActionListener(nextListener);
 	    btnNext.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 	    btnNext.setBounds(882, 690, 160, 54);
@@ -182,8 +182,8 @@ public class GUIDisplayTeamWindow extends JFrame {
 								createNewTeamWindow.getFrame().setVisible(true);
 							}
 							else {
-								//GUIShowTournamentTeams window = new GUIShowTournamentTeams();
-								//window.getFrame().setVisible(true);
+								GUIDisplayTournamentTeamsWindow displayTeamsWindow = new GUIDisplayTournamentTeamsWindow(tournament);
+								displayTeamsWindow.getFrame().setVisible(true);
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -192,7 +192,7 @@ public class GUIDisplayTeamWindow extends JFrame {
 				});
 				hasBeenClicked = true;
 			}
-		}
+	}
 
 	class BackButton extends JFrame implements ActionListener {
 		

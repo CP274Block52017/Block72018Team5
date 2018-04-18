@@ -155,7 +155,7 @@ public class GUICreateNewTournamentWindow {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						GUIShowTournamentInfoWindow showTournamentInfoWindow = new GUIShowTournamentInfoWindow(tournamentName, strategyChoiceString, numParticipants);
+						GUIDisplayTournamentInfoWindow showTournamentInfoWindow = new GUIDisplayTournamentInfoWindow(tournamentName, strategyChoiceString, numParticipants);
 						showTournamentInfoWindow.getFrame().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
