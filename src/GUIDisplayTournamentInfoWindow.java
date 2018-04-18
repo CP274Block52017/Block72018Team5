@@ -19,7 +19,6 @@ public class GUIDisplayTournamentInfoWindow {
 	private static final int FRAME_HEIGHT = 1000;
 	private ActionListener nextListener;
 	private ActionListener backListener;
-	private boolean hasBeenClicked;
 	
 	private String tournamentName;
 	private TournamentWinnerStrategy strategy;
@@ -159,9 +158,18 @@ public class GUIDisplayTournamentInfoWindow {
  	}
 	
 	class NextButton extends JFrame implements ActionListener {
+<<<<<<< HEAD
 		
+=======
+		
+		private static final long serialVersionUID = 1L;
+
+		/**
+		 * Constructor that stores the boolean
+		 * that the button has not been clicked
+		 */
+>>>>>>> refs/remotes/origin/Kelli's_Branch
 		public NextButton() {
-			hasBeenClicked = false;
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -179,14 +187,22 @@ public class GUIDisplayTournamentInfoWindow {
 					}
 				}
 			});
-			hasBeenClicked = true;
 		}
 	}
 	
 	class BackButton extends JFrame implements ActionListener {
+<<<<<<< HEAD
 		
+=======
+		
+		private static final long serialVersionUID = 1L;
+
+		/**
+		 * Constructor that stores the boolean
+		 * that the button has not been clicked
+		 */
+>>>>>>> refs/remotes/origin/Kelli's_Branch
 		public BackButton() {
-			hasBeenClicked = false;
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -202,7 +218,6 @@ public class GUIDisplayTournamentInfoWindow {
 					}
 				}
 			});
-			hasBeenClicked = true;
 		}
 	}
 

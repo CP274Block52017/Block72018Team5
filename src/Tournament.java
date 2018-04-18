@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.util.ArrayList;
+
+>>>>>>> refs/remotes/origin/Kelli's_Branch
 /**
  * This class contains the methods for creating
  * a tournament. 

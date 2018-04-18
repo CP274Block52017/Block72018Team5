@@ -11,18 +11,30 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> refs/remotes/origin/Kelli's_Branch
 import javax.swing.JButton;
 
+<<<<<<< HEAD
+=======
+/**
+ * This GUI is going to display all the information of the
+ * teams that the user has inputed and confirm it before 
+ * it heads to start the tournament
+ * @author Kelli
+ * @author Emma
+ * @author Kelli
+ *
+ */
+>>>>>>> refs/remotes/origin/Kelli's_Branch
 public class GUIDisplayTournamentTeamsWindow {
 
 	private JFrame frame;
 	private static final int FRAME_WIDTH = 1500;
 	private static final int FRAME_HEIGHT = 1000;
-	private boolean hasBeenClicked;
 	private ActionListener startListener;
-	private ArrayList<String> teamNames;
-	
 	private Tournament tournament;
 
 	/**
@@ -176,8 +188,15 @@ public class GUIDisplayTournamentTeamsWindow {
 	
 	class StartButton extends JFrame implements ActionListener {
 		
+<<<<<<< HEAD
+=======
+		private static final long serialVersionUID = 1L;
+		/**
+		*This constructs a new button that will act as the start button to
+		*get results from the tournament
+		**/
+>>>>>>> refs/remotes/origin/Kelli's_Branch
 		public StartButton() {
-			hasBeenClicked = false;
 		}
 		
 		public void actionPerformed(ActionEvent e) {
@@ -193,7 +212,6 @@ public class GUIDisplayTournamentTeamsWindow {
 					}
 				}
 			});
-			hasBeenClicked = true;
 		}
 		
 	}
