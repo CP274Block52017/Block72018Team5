@@ -231,10 +231,18 @@ public class GUIDisplayTournamentTeamsWindow {
 	 */
 class StartButton extends JFrame implements ActionListener {
 		
+		/**
+		*This constructs a new button that will act as the start button to
+		*get results from the tournament
+		**/
 		public StartButton() {
 			hasBeenClicked = false;
 		}
-		
+		/**
+		*This method is called when the user pushes the start button and then sets 
+		*the current display to no longer visible and then creates then next windown
+		*which will diplsay the rounds of the tournamnet
+		**/
 		public void actionPerformed(ActionEvent e) {
 			frame.setVisible(false);
 			//open next window
