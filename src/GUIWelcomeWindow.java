@@ -247,6 +247,3 @@ import java.awt.Font;
 	}
 
 }
-
-
-
