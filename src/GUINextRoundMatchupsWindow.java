@@ -15,6 +15,11 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+/**
+ * T
+ * @author Kelli
+ *
+ */
 public class GUINextRoundMatchupsWindow {
 
 	private JFrame frame;
@@ -86,7 +91,7 @@ public class GUINextRoundMatchupsWindow {
 	    label.setBounds(150, 455, 327, 48);
 	    frame.getContentPane().add(label);
 	    
-	    if (tournament.getMaxNumTeams() > 2) {
+	    if (nextRoundTeams.size() > 2) {
 	    	 JLabel label_1 = new JLabel((String) null);
 	 	    label_1.setText(nextRoundTeams.get(2).getName());
 	 	    label_1.setForeground(Color.WHITE);
@@ -108,7 +113,7 @@ public class GUINextRoundMatchupsWindow {
 	 	    frame.getContentPane().add(label_2);
 	    }
 	    
-	    if (tournament.getMaxNumTeams() > 4) { 
+	    if (nextRoundTeams.size() > 4) { 
 	    	JLabel label_4 = new JLabel((String) null);
 	 	    label_4.setText(nextRoundTeams.get(4).getName());
 	 	    label_4.setForeground(Color.WHITE);
@@ -130,7 +135,7 @@ public class GUINextRoundMatchupsWindow {
 	 	    frame.getContentPane().add(label_5);
 	    }
 	   
-	    if (tournament.getMaxNumTeams() > 6) { 
+	    if (nextRoundTeams.size() > 6) { 
 	    	JLabel label_6 = new JLabel((String) null);
 		    label_6.setText(nextRoundTeams.get(6).getName());
 		    label_6.setForeground(Color.WHITE);

@@ -207,6 +207,7 @@ public class GUIDisplayTournamentTeamsWindow {
 	    //start button
 	    JButton btnStart = new JButton("Start");
 	    startListener = new StartButton();
+	    btnStart.addActionListener(startListener);
 	    btnStart.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 	    btnStart.setBounds(643, 458, 142, 48);
 	    frame.getContentPane().add(btnStart);
@@ -228,20 +229,26 @@ public class GUIDisplayTournamentTeamsWindow {
 	 *@author Emma
 	 *@author Nicole
 	 */
-	class StartButton extends JFrame implements ActionListener {
+class StartButton extends JFrame implements ActionListener {
 		
-		/**
-		 * Constructor that stores the boolean
-		 * that the button has not been clicked
-		 */
 		public StartButton() {
-			
+			hasBeenClicked = false;
 		}
 		
 		public void actionPerformed(ActionEvent e) {
 			frame.setVisible(false);
-			System.exit(1);
-			hasBeenClicked = false;
+			//open next window
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						GUIDisplayNextRoundWindow displayNextRoundWindow = new GUIDisplayNextRoundWindow(tournament, tournament.getTeams());
+						displayNextRoundWindow.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			hasBeenClicked = true;
 		}
 		
 	}

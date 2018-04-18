@@ -148,7 +148,7 @@ public class GUITournamentWinnerWindow {
  		tournamentWinner = strategy.determineWinner(finalTeams.get(0), finalTeams.get(1));
  		tournament.setWinner(tournamentWinner);
  		}
- 	}
+
 	
 	/**
 	 * Class that extends JFrame and implements the ActionListener
@@ -213,5 +213,8 @@ public class GUITournamentWinnerWindow {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(1);
 			}
-		}
+	}
+	
 }
+
+

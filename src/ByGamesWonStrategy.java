@@ -8,13 +8,14 @@ import java.util.ArrayList;
 * @author Kelli
 * @author Emma
 */
+
 public class ByGamesWonStrategy implements TournamentWinnerStrategy {
-	
+
 	/**
-	* This method determines the winner between two given teams
-	* by taking the teams' number of games won and determines the average.
-	* The team with the highest average number of games won is the
-	* winner.
+	* This method determines the winner between two given team by 
+	* taking the games won of each team and then getting the average.
+	* The winning team is the team with the greatest average number of games
+	* won.
 	* @param firstTeam - a team in the tournament.
 	* @param secondTeam - another team in the tournament.
 	* @return Team - the winning team.
@@ -35,6 +36,7 @@ public class ByGamesWonStrategy implements TournamentWinnerStrategy {
 	
 	/**
 	* Gets the name of the strategy.
+	* @return String - name of the strategy.
 	*/
 	public String getName() {
 		return "Average Games Won";

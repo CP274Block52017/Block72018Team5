@@ -169,6 +169,12 @@ public class GUIDisplayNextRoundWindow {
 		    label_20.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		    label_20.setBounds(1120, 622, 129, 42);
 		    frame.getContentPane().add(label_20);
+		  //bottom right round winner
+		    JLabel label_18 = new JLabel("Winner: ");
+		    label_18.setForeground(Color.ORANGE);
+		    label_18.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		    label_18.setBounds(504, 635, 129, 42);
+		    frame.getContentPane().add(label_18);
 		    //bottom left top point blank
 		    JLabel label_21 = new JLabel(Double.toString(thisRoundTeams.get(2).getLastRoundAverage()));
 		    label_21.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
@@ -269,7 +275,7 @@ public class GUIDisplayNextRoundWindow {
 		    label_9.setBounds(922, 382, 67, 48);
 		    frame.getContentPane().add(label_9);
 		    
-		  //bottom right top points blank
+		    //bottom right top points blank
 		    JLabel label_25 = new JLabel(Double.toString(thisRoundTeams.get(6).getLastRoundAverage()));
 		    label_25.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		    label_25.setForeground(Color.WHITE);
@@ -287,12 +293,13 @@ public class GUIDisplayNextRoundWindow {
 		    label_27.setForeground(Color.WHITE);
 		    label_27.setBounds(1259, 703, 117, 40);
 		    frame.getContentPane().add(label_27);
-		    //bottom right round winner
-		    JLabel label_18 = new JLabel("Winner: ");
-		    label_18.setForeground(Color.ORANGE);
-		    label_18.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-		    label_18.setBounds(504, 635, 129, 42);
-		    frame.getContentPane().add(label_18);
+		    
+		    //bottom left round winner
+		    JLabel label_20 = new JLabel("Winner: ");
+		    label_20.setForeground(Color.ORANGE);
+		    label_20.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		    label_20.setBounds(1120, 622, 129, 42);
+		    frame.getContentPane().add(label_20);
 		    
 		    //bottom right top team points 
 		    JLabel label_14 = new JLabel("Points:");
@@ -350,8 +357,8 @@ public class GUIDisplayNextRoundWindow {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						//GUIDisplayNextRoundWindow displayNextRoundWindow = new GUIDisplayNextRoundWindow(tournament, nextRoundTeams);
-						//displayNextRoundWindow.getFrame().setVisible(true);
+						GUINextRoundMatchupsWindow displayNextRoundWindow = new GUINextRoundMatchupsWindow(tournament, nextRoundTeams);
+						displayNextRoundWindow.getFrame().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -360,5 +367,6 @@ public class GUIDisplayNextRoundWindow {
 			hasBeenClicked = true;
 		}
 	}
+	}
 
-}
+
