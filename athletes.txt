@@ -52,4 +52,8 @@
 'Teemu Kivihalme', 'Hockey', 'Male', 72, 36, 8, 24, 3
 'Trevor Gooch', 'Hockey', 'Male', 73, 21, 8, 24, 2
 'Max St. Pierre', 'Hockey', 'Male', 74, 7, 8, 24, 1
+<<<<<<< HEAD
 'Cole McCaskill', 'Hockey', 'Male', 73, 30, 8, 24, 2
+=======
+'Cole McCaskill', 'Hockey', 'Male', 73, 30, 8, 24, 2
+>>>>>>> refs/remotes/origin/master

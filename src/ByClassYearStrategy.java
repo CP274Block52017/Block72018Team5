@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 /**
@@ -41,3 +42,4 @@ public class ByClassYearStrategy implements TournamentWinnerStrategy {
 	}
 
 }
+

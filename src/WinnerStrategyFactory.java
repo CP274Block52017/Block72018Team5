@@ -28,7 +28,7 @@ public class WinnerStrategyFactory {
 	 * This is the factory that creates a concrete instance of a 
 	 * TournamentWinnerStrategy determined by the user's choice of
 	 * strategy.
-	 * @param number that corresponds to the chosen strategy
+	 * @param chosenStrategy
 	 * @return the strategy that will be used 
 	 */
 	public static TournamentWinnerStrategy getWinnerStrategy(int chosenStrategy) {
@@ -50,4 +50,5 @@ public class WinnerStrategyFactory {
 		}
 	}
 }
+
 
