@@ -163,13 +163,7 @@ public class GUIDisplayNextRoundWindow {
 		    label_17.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		    label_17.setBounds(504, 701, 117, 42);
 		    frame.getContentPane().add(label_17);
-		    //bottom left round winner
-		    JLabel label_20 = new JLabel("Winner: ");
-		    label_20.setForeground(Color.ORANGE);
-		    label_20.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-		    label_20.setBounds(1120, 622, 129, 42);
-		    frame.getContentPane().add(label_20);
-		  //bottom right round winner
+		    //bottom right round winner
 		    JLabel label_18 = new JLabel("Winner: ");
 		    label_18.setForeground(Color.ORANGE);
 		    label_18.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
@@ -216,7 +210,7 @@ public class GUIDisplayNextRoundWindow {
 	 	    label_5.setBounds(783, 455, 327, 48);
 	 	    frame.getContentPane().add(label_5);
 	 	    
-	 	 //top right round points top team
+	 	    //top right round points top team
 		    JLabel label_11 = new JLabel("Points:");
 		    label_11.setForeground(Color.ORANGE);
 		    label_11.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
