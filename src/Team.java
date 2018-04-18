@@ -86,7 +86,6 @@ public class Team {
 	 * gets the average of the last round
 	 * @return double - corresponds to last round's average
 	 */
-
 	public double getLastRoundAverage() {
 		return lastRoundAverage;
 	}

@@ -1,6 +1,4 @@
 
-
-
 import java.awt.EventQueue;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,4 +61,3 @@ public class RunTournament {
 		GUIWelcomeWindow welcomeWindow = new GUIWelcomeWindow();
 	}
 }
-
